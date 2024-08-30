@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/D,4.86/0.27/C,2.446875/3.54375/B,-1.0125/2.3625/A}
+
+\tkzDefMidPoint(A,B) \tkzGetPoint{M1}
+\tkzDefMidPoint(B,C) \tkzGetPoint{M2}
+\tkzDefMidPoint(C,D) \tkzGetPoint{M3}
+\tkzDefMidPoint(D,A) \tkzGetPoint{M4}
+
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](M1,M2,M3,M4)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPolygon[color=ShapeClr](M1,M2,M3,M4)
+\tkzDrawPoints[size=3](A,B,C,D,M1,M2,M3,M4)
+\tkzLabelPoint[left](A){$\rm A$}
+\tkzLabelPoint[above](B){$\rm B$}
+\tkzLabelPoint[right](C){$\rm \Gamma$}
+\tkzLabelPoint[below left](D){$\rm \Delta$}
+
+\tkzLabelPoint[above](M1){$\rm M_1$}
+\tkzLabelPoint[right](M2){$\rm M_2$}
+\tkzLabelPoint[below](M3){$\rm M_3$}
+\tkzLabelPoint[left](M4){$\rm M_4$}
+
+\tkzMarkSegments[mark=||,size=3](M1,M2 M3,M4)
+\tkzMarkSegments[mark=|,size=3](M2,M3 M1,M4)
+
+\end{tikzpicture}
+
+\end{document}
