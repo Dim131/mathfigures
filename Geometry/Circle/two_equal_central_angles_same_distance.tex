@@ -5,6 +5,7 @@
 \usetikzlibrary{arrows,calc}
 \usepackage{tkz-euclide}
 
+\usepackage{fp}
 \pagestyle{empty}
 
 \definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
@@ -23,19 +24,28 @@
 \tkzDefPoint(-10:2){C}
 \tkzDefPoint(-50:2){D}
 
-\tkzDrawSegments[line width=0.75pt,color=black](O,A O,B O,C O,D)
+\tkzDefPointBy[projection=onto A--B](O)\tkzGetPoint{K}
+\tkzDefPointBy[projection=onto C--D](O)\tkzGetPoint{L}
+
+\tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](O,K,A O,L,C)
+
+\tkzDrawSegments[line width=0.75pt,color=black](O,A O,C A,B C,D O,K O,L)
 
 \tkzDrawCircle[color=black,line width=0.5pt](O,X)
 
-\tkzFillAngles[fill=AngleClr,size=.55,fill opacity=0.1](B,O,A D,O,C)
-\tkzMarkAngles[line width=1pt,size=.55,color=AngleClr](B,O,A D,O,C)
-
 \tkzDrawPoints[size=3](A,B,O,C,D)
+\tkzDrawPoints[size=2](K,L)
 \tkzLabelPoint[above](A){$\rm A$}
 \tkzLabelPoint[right](B){$\rm B$}
 \tkzLabelPoint[right](C){$\rm \Gamma$}
 \tkzLabelPoint[below](D){$\rm \Delta$}
+\tkzLabelPoint[above right](K){$\rm K$}
+\tkzLabelPoint[below right](L){$\rm \Lambda$}
 \tkzLabelPoint[below](O){$\rm O$}
 
+\tkzMarkSegments[mark=|,size=2](O,A O,C)
+\tkzMarkSegments[mark=s||,size=2](K,A L,C)
+
 \end{tikzpicture}
+
 \end{document}

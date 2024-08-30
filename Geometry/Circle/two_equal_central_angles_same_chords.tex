@@ -23,7 +23,7 @@
 \tkzDefPoint(-10:2){C}
 \tkzDefPoint(-50:2){D}
 
-\tkzDrawSegments[line width=0.75pt,color=black](O,A O,B O,C O,D)
+\tkzDrawSegments[line width=0.75pt,color=black](O,A O,B O,C O,D A,B C,D)
 
 \tkzDrawCircle[color=black,line width=0.5pt](O,X)
 
@@ -36,6 +36,8 @@
 \tkzLabelPoint[right](C){$\rm \Gamma$}
 \tkzLabelPoint[below](D){$\rm \Delta$}
 \tkzLabelPoint[below](O){$\rm O$}
+
+\tkzMarkSegments[mark=|,size=2](O,A O,B O,C O,D)
 
 \end{tikzpicture}
 \end{document}
