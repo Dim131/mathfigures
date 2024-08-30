@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,4/0/B,0.7/1.05/C}
+
+\tkzDefCircle[circum](A,B,C) \tkzGetPoint{O}
+\tkzDrawCircle[line width=1.0pt, color=black](O,A)
+
+\tkzDefMidPoint(A,B) \tkzGetPoint{M1}
+\tkzDefMidPoint(B,C) \tkzGetPoint{M2}
+\tkzDefMidPoint(A,C) \tkzGetPoint{M3}
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C)
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,A O,B O,C)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](O,M1,A O,M2,B O,M3,C)
+
+\tkzDrawSegments[line width=0.5pt,color=black, add=0.4 and 0.4](O,M1 O,M2 O,M3)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=3](A,B,C,O)
+\tkzLabelPoint[left](A){$\rm A$}
+\tkzLabelPoint[right](B){$\rm B$}
+\tkzLabelPoint[above](C){$\rm \Gamma$}
+\tkzLabelPoint[below right](O){$\rm O$}
+
+\tkzMarkSegments[mark=s||,size=2.5](O,A O,B O,C)
+
+\end{tikzpicture}
+
+\end{document}
