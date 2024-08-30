@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,0/2.4/B,4.8/0/C}
+
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzMarkRightAngle[line width=1pt, size=.3,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,A,C)
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](A,B,C)
+\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](A,B,C)
+\tkzFillAngle[fill=AngleClr,size=.55,fill opacity=0.1](B,C,A)
+\tkzMarkAngle[line width=1pt,color=AngleClr,size=.55](B,C,A)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=3](A,B,C)
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[above left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+
+\tkzLabelAngle[scale=0.75](A,B,C){$60^\circ$}
+\tkzLabelAngle[scale=0.75,pos=1.35](B,C,A){$30^\circ$}
+
+\end{tikzpicture}
+
+\end{document}
