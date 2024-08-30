@@ -1,0 +1,12 @@
+\tikzset{
+  svgid/.style={
+    execute at begin scope={\special{dvisvgm:raw <g id="#1" style="visibility: hidden">}},
+    execute at end scope={\special{dvisvgm:raw </g>}},
+  }
+}
+
+% Label shapes.
+\newcommand{\LS}[2]{\begin{scope}[svgid=#1] #2\end{scope}}
+
+% Label text.
+\newcommand{\LT}[2]{\special{dvisvgm:raw <g id="#1" style="visibility: hidden">}#2\special{dvisvgm:raw </g>}}

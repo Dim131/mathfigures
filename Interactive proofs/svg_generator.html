@@ -1,0 +1,158 @@
+<head>
+<script>
+function show(name) {
+  return [name, "visibility", "visible", "hidden"];
+}
+
+function hide(name) {
+  return [name, "visibility", "hidden", "visible"];
+}
+
+
+function transition(id, trigger_id, attribute, value) {
+   return '<set xlink:href="#' + id + '" attributeType="XML" attributeName="' + attribute + '" to="' + value + '" begin="' + trigger_id + '.click" />\n'
+}
+
+function generate_steps() {
+   eval(document.getElementById("transition_steps").value);
+   
+   let total_steps = 0;
+   while (true) {
+     if (transitions[total_steps + 1] != null) ++total_steps;
+     else break;
+   }
+   
+   let pos_x = parseFloat(document.getElementById("arrow_pos_x").value)
+   let pos_y = parseFloat(document.getElementById("arrow_pos_y").value)
+   
+   function next_arrow(id, visibility, clr) {
+     return '<path id="nxt' + id + '" style="visibility:' + visibility + '; fill:' + clr + '" d="m ' + (pos_x + 100) + "," + pos_y + ' -35.835495,20.1247 0.489248,-41.0968 z" transform="scale(0.5)" />\n';
+   }
+   function prev_arrow(id, visibility, clr) {
+     return '<path id="prev' + id + '" style="visibility:' + visibility + ';fill:' + clr + '" d="m ' + pos_x + "," + pos_y + ' 35.835495,20.1247 0.489248,-41.0968 z" transform="scale(0.5)" />\n';
+   }
+   
+   let str = '';
+   str += next_arrow(0, "visible", "#000");
+   str += prev_arrow(0, "visible", "#d5d5d5");
+   for (let i = 1; i <= total_steps; ++i) {
+      str += next_arrow(i, "hidden", (i == total_steps) ? "#d5d5d5" : "#000");
+      str += prev_arrow(i, "hidden", "#000");
+   }
+   
+   // Add actions for next steps.
+   for (let i = 1; i <= total_steps; ++i) {
+      var current_transitions = transitions[i];
+      for (let j = 0; j < current_transitions.length; ++j) {
+         var cur = current_transitions[j];
+         str += transition(cur[0], "nxt" + (i-1), cur[1], cur[2]);
+         
+      }
+      str += transition("nxt" + (i-1), "nxt" + (i-1), "visibility", "hidden");
+      str += transition("prev" + (i-1), "nxt" + (i-1), "visibility", "hidden");
+      str += transition("nxt" + i, "nxt" + (i-1), "visibility", "visible");
+      str += transition("prev" + i, "nxt" + (i-1), "visibility", "visible");
+   }  
+
+
+   // Add actions for previous steps.
+   for (let i = 1; i <= total_steps; ++i) {
+      var current_transitions = transitions[i];
+      for (let j = 0; j < current_transitions.length; ++j) {
+         var cur = current_transitions[j];
+         str += transition(cur[0], "prev" + i, cur[1], cur[3]);
+         
+      }
+      str += transition("nxt" + i, "prev" + i, "visibility", "hidden");
+      str += transition("prev" + i, "prev" + i, "visibility", "hidden");
+      str += transition("nxt" + (i-1), "prev" + i, "visibility", "visible");
+      str += transition("prev" + (i-1), "prev" + i, "visibility", "visible");
+   }     
+   
+   let svg_content = document.getElementById("svg_doc").value;
+   document.getElementById('svg_holder').innerHTML = svg_content;
+   document.getElementsByTagName('g')[0].innerHTML += str;
+   document.getElementById("output").innerText = document.getElementById('svg_holder').innerHTML;
+}
+
+function copy_to_clipboard() {
+  navigator.clipboard.writeText(document.getElementById("output").value);
+}
+
+</script>
+</head>
+
+<body>
+
+<div style="display: flex;">
+
+<div>
+<textarea id="transition_steps" rows="25" cols="40">
+var transitions = {
+  1 : [
+    show("step1")
+  ],
+  2 : [
+    show("step2"),
+  ],
+  3 : [
+    show("step3"),
+  ],
+  4 : [
+    show("step4"),
+  ],
+  5 : [
+    show("step5"),
+  ],
+  6 : [
+    show("step6"),
+  ],
+  7 : [
+    show("step7"),
+  ],
+  8 : [
+    show("step8")
+  ],
+  9 : [
+    show("step9"),
+  ],
+  10: [ 
+    show("step10"),
+  ],
+  11: [ 
+    show("step11"),
+  ],
+  12: [ 
+    show("step12"),
+  ],
+  13: [ 
+    show("step13"),
+  ],
+}
+</textarea><br>
+
+<label for="arrow_pos_x">Arrow Position (x):</label> <input type="text" id="arrow_pos_x" size=6 value="200"><br>
+<label for="arrow_pos_x">Arrow Position (y):</label> <input type="text" id="arrow_pos_y" size=6 value="500"><br>
+<button onclick="generate_steps()">Generate</button>
+<button onclick="copy_to_clipboard()">Copy</button>
+<br>
+
+<textarea id="svg_doc" rows="25" cols="40">
+
+</textarea>
+
+<textarea id="output" style="display: none" rows="25" cols="40">
+
+</textarea>
+</div>
+<div >
+<div id="svg_holder" style="transform: scale(0.7)">
+
+</div>
+</div>
+
+</div>
+
+</body>
+
+</html>
