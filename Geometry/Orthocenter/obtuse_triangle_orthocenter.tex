@@ -1,0 +1,54 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,2.2/0/B}
+
+\tkzDefPoint(-115:3.1){C}
+
+\tkzDefTriangleCenter[ortho](A,B,C)
+\tkzGetPoint{H}
+
+\tkzDefPointBy[projection=onto B--C](H)\tkzGetPoint{HA}
+\tkzDefPointBy[projection=onto A--C](H)\tkzGetPoint{HB}
+\tkzDefPointBy[projection=onto A--B](H)\tkzGetPoint{HC}
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](A,B,C)
+\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](A,B,C)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](H,HA H,B H,C)
+
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0 and 0.45](C,A)
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.65 and 0](A,B)
+
+\tkzMarkRightAngles[line width=1pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HA,B H,HB,C H,HC,A)
+
+\tkzDrawPoints[size=3](A,B,C,H)
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[right](B){$\rm B$}
+\tkzLabelPoint[below left](C){$\rm \Gamma$}
+\tkzLabelPoint[above left](H){$\rm H$}
+
+\tkzDrawSegments[line width=0.75pt](B,A A,C)
+
+\end{tikzpicture}
+
+\end{document}
