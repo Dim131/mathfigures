@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Line segment AB -->
+   <svg style="overflow: visible;">
+   
+      <!-- Moving the segment towards CD -->
+      <animate attributeName="x" values="0;20" dur="2s" repeatCount="1" fill="freeze" />
+      <animate attributeName="y" values="0;30" dur="2s" repeatCount="1" fill="freeze" />
+    
+      <g>
+         <text  style="font-size: 10px;" dx="-4" dy="-4" >B</text>
+         <!-- Rotate B to meet point on the line CD -->
+         <animateMotion path="M 60 5" dur="2s" begin='0s' fill="freeze" />
+         <animateMotion path="M 60 5 A 58.30951 58.30951 0 0 1 67.99 28.94" dur="2s" begin='2s' fill="freeze" />
+      </g>
+      
+      <g>
+         <text  style="font-size: 10px;" dx="0" dy="-3" >ε</text>
+         <animateMotion path="M 75 -4" dur="2s" begin='0s' fill="freeze" />
+         <animateMotion path="M 75 -4 A 75.802 75.802 0 0 1 85.39 27.12" dur="2s" begin='2s' fill="freeze" />
+      </g>
+      <!-- Point and Label A -->
+      <circle cx="10" cy="35" r="2" fill="black" />
+      <text x="10" y="35" style="font-size: 10px;" dx="-4" dy="-4" >A</text>
+      
+      <g>
+         <!-- Rotate line segment, line and point B -->
+         <circle cx="60" cy="5" r="2" fill="black" />
+         <line x1="10" y1="35" x2="60" y2="5" stroke="black" />
+         <line stroke-dasharray="2,2" x1="-5" y1="44" x2="75" y2="-4" stroke="black" />
+         <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 10 35"
+            to="25 10 35"
+            begin="2s"
+            dur="2s"
+            repeatCount="1"
+            fill="freeze" />
+      </g>
+      
+   </svg>
+   
+   <!-- Line segment CD -->
+   <svg>
+      <circle cx="76.395" cy="60.153" r="2" fill="black" />
+      <text x="76.395" y="60.153" style="font-size: 10px;" dx="-4" dy="10" >Δ</text>
+      
+      <circle cx="30" cy="65" r="2" fill="black" />
+      <text x="30" y="65" style="font-size: 10px;" dx="-4" dy="10" >Γ</text>
+      
+      <text x="105.387" y="57.12" style="font-size: 10px" dx="0" dy="8" >δ</text>
+      
+      <line x1="30" y1="65" x2="76.395" y2="60.153" stroke="black" />
+      <line stroke-dasharray="2,2" x1="12.60" y1="66.818" x2="105.387" y2="57.12" stroke="black" />
+   </svg>
+   
+</svg>

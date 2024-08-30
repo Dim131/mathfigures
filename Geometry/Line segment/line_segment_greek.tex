@@ -1,0 +1,27 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,2/-1.25/B,3/-1.875/E} % The endpoints of the line segment.
+
+\tkzDrawSegments[line width=0.75pt,color=black](A,B)
+\tkzDrawSegment[line width=0.75pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add = 0.5 and 0.5](A,B)
+
+\tkzDrawPoints[size=3](A,B)
+
+\tkzLabelPoint[below](A){$\rm A$}
+\tkzLabelPoint[below](B){$\rm B$}
+\tkzLabelPoint[below](E){$\epsilon$}
+
+\end{tikzpicture}
+
+\end{document}
