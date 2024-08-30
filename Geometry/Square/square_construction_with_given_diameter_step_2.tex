@@ -1,0 +1,37 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,3/3/C}
+
+\tkzDrawCircles[line width=1.0pt, color=black,dashed,dash pattern=on 1pt off 1.75pt](A,C C,A)
+
+\tkzInterCC(A,C)(C,A) \tkzGetPoints{T1}{T2}
+\tkzInterLL(T1,T2)(A,C) \tkzGetPoint{O}
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,C T1,T2)
+
+\tkzDrawPoints[size=3](A,C,T1,T2,O)
+
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[above right](C){$\rm \Gamma$}
+\tkzLabelPoint[below](O){$\rm O$}
+\tkzLabelPoint[above left](T1){$\rm T_1$}
+\tkzLabelPoint[below right](T2){$\rm T_2$}
+
+\end{tikzpicture}
+
+\end{document}
