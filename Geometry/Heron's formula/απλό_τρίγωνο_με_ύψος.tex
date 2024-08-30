@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{-3.5/0.84/A,-4.28/-2.7/B,1.56/-2.7/C}
+
+\tkzDefTriangleCenter[ortho](A,B,C) \tkzGetPoint{H}
+\tkzDefPointBy[projection=onto B--C](H)\tkzGetPoint{HA}
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A A,C,B B,A,C)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B B,A,C)
+
+\tkzMarkRightAngle[line width=0.75pt, size=.225,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HA,C)
+\tkzDrawSegment[line width=0.75pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,HA)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=3](A,B,C)
+\tkzDrawPoints[size=2](HA)
+
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$};
+\tkzLabelPoint[below](HA){$\rm H_A$};
+
+\tkzLabelSegment[below](B,C){$\alpha$}
+\tkzLabelSegment[right=0.2cm](A,C){$\beta$}
+\tkzLabelSegment[left](A,B){$\gamma$}
+
+
+\tkzLabelSegment[right,scale=0.75](A,HA){$\upsilon_{\rm A}$}
+
+\end{tikzpicture}
+
+\end{document}
