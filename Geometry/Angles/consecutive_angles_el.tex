@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{SecondAngleClr}{RGB}{166, 7, 7}
+\definecolor{ThirdAngleClr}{RGB}{14, 70, 161}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B}
+
+\tkzDefPoint(35:2){A}
+\tkzDefPoint(10:2){C}
+\tkzDefPoint(70:2){D}
+\tkzDefPoint(145:2){E}
+
+\tkzFillAngle[fill=AngleClr,size=.5,fill opacity=0.1](C,B,A)
+\tkzMarkAngle[line width=1pt,size=.5,color=AngleClr](C,B,A)
+
+\tkzFillAngle[fill=SecondAngleClr,size=.4,fill opacity=0.1](A,B,D)
+\tkzMarkAngle[line width=1pt,size=.4,color=SecondAngleClr](A,B,D)
+
+\tkzFillAngle[fill=ThirdAngleClr,size=.5,fill opacity=0.1](D,B,E)
+\tkzMarkAngle[line width=1pt,size=.5,color=ThirdAngleClr](D,B,E)
+
+\tkzDrawPoints[size=3](B)
+\tkzLabelPoint[right](A){$\rm x$}
+\tkzLabelPoint[below left](B){$\rm O$}
+\tkzLabelPoint[right](C){$\rm w$}
+\tkzLabelPoint[above](D){$\rm y$}
+\tkzLabelPoint[above left](E){$\rm z$}
+
+\tkzDrawSegments[line width=0.75pt](A,B B,C B,D B,E)
+
+\end{tikzpicture}
+
+\end{document}
