@@ -1,0 +1,90 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\usepackage{fp}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/I}
+
+% Define the points where the circle touches the quadrilateral.
+\tkzDefPoint(45:3){Ia}
+\tkzDefPoint(-20:3){Ib}
+\tkzDefPoint(-110:3){Ic}
+\tkzDefPoint(140:3){Id}
+
+% Find the lines containing the sides of the quadrilateral.
+\tkzDefLine[tangent at=Ia](I) \tkzGetPoint{h1}
+\tkzDefLine[tangent at=Ib](I) \tkzGetPoint{h2}
+\tkzDefLine[tangent at=Ic](I) \tkzGetPoint{h3}
+\tkzDefLine[tangent at=Id](I) \tkzGetPoint{h4}
+
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](I,Ia I,Ib I,Ic I,Id)
+
+% Find the vertices of the quadrilateral.
+\tkzInterLL(Id,h4)(Ia,h1)\tkzGetPoint{A}
+\tkzInterLL(Ia,h1)(Ib,h2)\tkzGetPoint{B}
+\tkzInterLL(Ib,h2)(Ic,h3)\tkzGetPoint{C}
+\tkzInterLL(Ic,h3)(Id,h4)\tkzGetPoint{D}
+
+% Draw angle bisectors.
+\tkzDrawSegments[line width=0.5pt,color=black](I,A I,B I,C I,D)
+
+\tkzFillAngles[fill=AngleClr,size=.5,fill opacity=0.1](D,A,I I,A,B)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.5](D,A,I I,A,B)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.5,color=AngleClr](D,A,I I,A,B)
+
+\tkzFillAngles[fill=AngleClr,size=.5,fill opacity=0.1](A,B,I I,B,C)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.5](A,B,I I,B,C)
+\tkzMarkAngles[mark=||,mksize=2,line width=1pt,size=.5](A,B,I I,B,C)
+
+\tkzFillAngles[fill=AngleClr,size=.5,fill opacity=0.1](B,C,I I,C,D)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.5](B,C,I I,C,D)
+\tkzMarkAngles[mark=|||,mksize=2,line width=1pt,size=.5](B,C,I I,C,D)
+
+\tkzFillAngles[fill=AngleClr,size=.5,fill opacity=0.1](C,D,I I,D,A)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.5](C,D,I I,D,A)
+\tkzMarkAngles[mark=s,mksize=2,line width=1pt,size=.5](C,D,I I,D,A)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](I,Ia,B I,Ib,C I,Ic,D I,Id,A)
+
+\tkzDrawCircle[line width=0.75](I,Ia)
+
+
+
+% Draw the quadrilateral.
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+
+% \tkzDrawSegments[line width=1pt,color=ShapeClr]()
+
+\tkzDrawPoints[size=3](A,B,C,D)
+\tkzDrawPoints[size=2](Ia,Ib,Ic,Id,I)
+\tkzLabelPoint[above right](Ia){${\rm I}_\alpha$}
+\tkzLabelPoint[below right](Ib){${\rm I}_\beta$}
+\tkzLabelPoint[below left](Ic){${\rm I}_\gamma$}
+\tkzLabelPoint[above left](Id){${\rm I}_\delta$}
+\tkzLabelPoint[below](I){$\rm I$}
+
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[right](B){$\rm B$}
+\tkzLabelPoint[below left](C){$\rm \Gamma$}
+\tkzLabelPoint[left](D){$\rm \Delta$}
+
+\end{tikzpicture}
+
+\end{document}
