@@ -1,0 +1,33 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/D,3.5/0/C,1/2/A,4.5/2/B}
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+
+\tkzDrawPoints[size=3](A,B,C,D)
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$};
+\tkzLabelPoint[below left](D){$\rm \Delta$};
+
+\tkzMarkSegments[mark=s||,size=3](A,B C,D)
+\tkzMarkSegments[mark=s|,size=3](D,A B,C)
+
+\end{tikzpicture}
+\end{document}
