@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,2.2/0/C}
+
+\tkzDefPoint(120:2){A}
+
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A)
+\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](C,B,A)
+
+\tkzDrawPoints[size=3](B)
+\tkzLabelPoint[above](A){$\rm x$}
+\tkzLabelPoint[below left](B){$\rm O$}
+\tkzLabelPoint[right](C){$\rm y$}
+
+\tkzDrawSegments[line width=0.75pt](A,B B,C)
+
+\end{tikzpicture}
+
+\end{document}
