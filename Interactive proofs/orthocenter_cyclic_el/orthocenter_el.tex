@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\usepackage{graphics}
+
+\pagestyle{empty}
+
+\usepackage[greek,english]{babel}
+\usepackage{textgreek}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
+\definecolor{LinkClr}{HTML}{b20f0f}
+
+\usepackage[hypertex,colorlinks=true,urlcolor=LinkClr]{hyperref}
+\usepackage{../svg_labels}
+
+\begin{document}
+\scalebox{1.5}{
+\begin{tikzpicture}
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,1.1/3.3/A,5/0/C}
+
+\tkzDefTriangleCenter[ortho](A,B,C)
+\tkzGetPoint{H}
+
+\tkzDefPointBy[projection=onto B--C](H)\tkzGetPoint{D}
+\tkzDefPointBy[projection=onto A--C](H)\tkzGetPoint{E}
+\tkzDefPointBy[projection=onto A--B](H)\tkzGetPoint{Z}
+
+\tkzDefTriangleCenter[circum](A,E,Z) \tkzGetPoint{O1}
+\tkzDefTriangleCenter[circum](B,E,Z) \tkzGetPoint{O2}
+
+
+\LS{ABCfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)}
+\LS{BCEZfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](B,C,E,Z)}
+\LS{AEZHfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](E,H,Z,A)}
+\LS{AZHfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,H,Z)}
+
+
+
+\LS{AEZHcircle}{\tkzDrawCircle[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O1,A)}
+\LS{BCEZcircle}{\tkzDrawCircle[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O2,B)}
+
+\LS{ADB}{\tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,D,B)}
+\LS{BEC}{\tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,E,C)}
+\LS{AZC}{\tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,Z,A)}
+\LS{CZB}{\tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,Z,H)}
+
+\LS{BAD}{
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](Z,A,H)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](Z,A,H)
+\tkzLabelAngles[scale=0.4,pos=1.5](Z,A,H){$\omega$}
+}
+
+\LS{ZEB}{
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](Z,E,H)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](Z,E,H)
+\tkzLabelAngles[scale=0.55,pos=1.3](Z,E,H){$\omega$}
+}
+
+\LS{ZCB}{
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](Z,C,D)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](Z,C,D)
+\tkzLabelAngles[scale=0.55,pos=1.3](Z,C,D){$\omega$}
+}
+
+\LS{AHZ}{
+\tkzFillAngles[fill=BlueClr,size=.25,fill opacity=0.1](A,H,Z)
+\tkzMarkAngles[line width=1pt,color=BlueClr,size=.25](A,H,Z)
+\tkzLabelAngles[scale=0.55,pos=0.7](A,H,Z){$\phi$}
+}
+
+\LS{CHD}{
+\tkzFillAngles[fill=BlueClr,size=.25,fill opacity=0.1](D,H,C)
+\tkzMarkAngles[line width=1pt,color=BlueClr,size=.25](D,H,C)
+\tkzLabelAngles[scale=0.55,pos=0.7](D,H,C){$\phi$}
+}
+
+\LS{AD}{\tkzDrawSegment[line width=0.5pt,color=black](A,D)}
+\LS{BE}{\tkzDrawSegment[line width=0.5pt,color=black](B,E)}
+\LS{CZ}{\tkzDrawSegment[line width=0.5pt,color=black](C,Z)}
+\LS{ZE}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](E,Z)}
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+
+\tkzDrawPoints[size=3](A)\tkzLabelPoint[above](A){$\rm A$}
+\tkzDrawPoints[size=3](B)\tkzLabelPoint[below left](B){$\rm B$}
+\tkzDrawPoints[size=3](C)\tkzLabelPoint[below right](C){$\rm \Gamma$}
+
+\LS{H}{\tkzDrawPoints[size=3](H)\tkzLabelPoint[right](H){$\rm H$}}
+\LS{D}{\tkzDrawPoints[size=2](D)\tkzLabelPoint[below](D){$\rm \Delta$}}
+\LS{E}{\tkzDrawPoints[size=2](E)\tkzLabelPoint[above right](E){$\rm E$}}
+\LS{Z}{\tkzDrawPoints[size=2](Z)\tkzLabelPoint[above left](Z){$\rm Z$}}
+
+
+  
+\node[text width=10cm] at (10, 0) {
+ \LT{step1}{\textgreek{Έστω τρίγωνο $\rm AB\Gamma$.}}
+ \LT{step2}{\textgreek{Τα ύψη $\rm BE$ και $\rm \Gamma Z$ τέμνονται στο $\rm H$.}}
+ \LT{step3}{\textgreek{Θα αποδείξουμε ότι και η $\rm AH$ είναι κάθετη στην $\rm B\Gamma$, δλδ ύψος του τριγώνου $\rm AB\Gamma$.}}
+ \begin{itemize}
+   \LT{step4}{\item \textgreek{Το τετράπλευρο $\rm BZE\Gamma$ είναι \href{https://el.wikipedia.org/wiki/\%CE\%95\%CE\%B3\%CE\%B3\%CE\%B5\%CE\%B3\%CF\%81\%CE\%B1\%CE\%BC\%CE\%BC\%CE\%AD\%CE\%BD\%CE\%BF_\%CF\%84\%CE\%B5\%CF\%84\%CF\%81\%CE\%AC\%CF\%80\%CE\%BB\%CE\%B5\%CF\%85\%CF\%81\%CE\%BF}{εγγράψιμο}, διότι έχει τις γωνίες $\angle {\rm BZ\Gamma} = \angle {\rm \Gamma EB} = 90^\circ$.}}
+      \LT{step5}{\textgreek{Άρα και οι γωνίες $\angle {\rm ZEB} = \angle {\rm Z\Gamma B} = \omega$ (βαίνουν στο ίδιο τόξο).}}
+   \LT{step6}{\item \textgreek{Το τετράπλευρο $\rm AZHE$ είναι εγγράψιμο διότι έχει τις απέναντι γωνίες του $\angle \rm AEH$ και $\angle \rm AZH$ \href{https://el.wikipedia.org/wiki/\%CE\%A0\%CE\%B1\%CF\%81\%CE\%B1\%CF\%80\%CE\%BB\%CE\%B7\%CF\%81\%CF\%89\%CE\%BC\%CE\%B1\%CF\%84\%CE\%B9\%CE\%BA\%CE\%AD\%CF\%82_\%CE\%B3\%CF\%89\%CE\%BD\%CE\%AF\%CE\%B5\%CF\%82}{παραπληρωματικές} ($\angle \rm AEH + \angle \rm AZH = 90^\circ + 90^\circ = 180^\circ$).}}
+      \LT{step7}{\textgreek{Άρα και οι γωνίες $\angle \rm ZAH$ και $\angle \rm ZEH = \omega$ είναι ίσες.}}
+   \LT{step8}{\item \textgreek{Οι γωνίες $\angle \rm AHZ$ και $\angle \rm \Delta H\Gamma$ είναι ίσες ως \href{https://el.wikipedia.org/wiki/\%CE\%9A\%CE\%B1\%CF\%84\%CE\%B1\%CE\%BA\%CE\%BF\%CF\%81\%CF\%85\%CF\%86\%CE\%AE\%CE\%BD_\%CE\%B3\%CF\%89\%CE\%BD\%CE\%AF\%CE\%B5\%CF\%82}{κατακορυφήν}, δλδ $\angle {\rm AHZ} = \angle {\rm \Delta H\Gamma} = \varphi$.}}
+      \LT{step9}{\textgreek{Από το τρίγωνο $\rm AHZ$, έχουμε ότι $\varphi + \omega = 90^\circ$, τότε στο τρίγωνο $\rm H\Delta\Gamma$ είναι $\angle {\rm A\Delta\Gamma} = 90^\circ$.}}
+  \end{itemize}
+\LT{step10}{\textgreek{Συνεπώς τα τρία ύψη διέρχονται από το ίδιο σημείο.}}
+};
+
+\end{tikzpicture}}
+
+\end{document}
