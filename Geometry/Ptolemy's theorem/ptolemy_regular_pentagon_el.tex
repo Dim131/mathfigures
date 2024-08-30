@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueSqr}{RGB}{5,81,163}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,2.5/0/B}
+
+\tkzDefRegPolygon[side,sides=5,name=P](A,B)
+
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](P1,P2,P3,P4,P5)
+
+\tkzDrawSegments[line width=1pt,color=black](P1,P4 P2,P4 P1,P3)
+
+\tkzDefTriangleCenter[circum](P1,P2,P3) \tkzGetPoint{O}
+
+\tkzDrawCircle[line width=0.75pt,color=black](O,A)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5)
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below right](P2){$\rm B$}
+\tkzLabelPoint[above right](P3){$\rm \Gamma$}
+\tkzLabelPoint[above](P4){$\rm \Delta$}
+\tkzLabelPoint[above left](P5){$\rm E$}
+
+\tkzLabelSegments[below=-0.05cm](P1,P2){$\alpha$}
+\tkzLabelSegments[left,pos=0.6](P1,P4){$\beta$}
+\tkzLabelSegments[right,pos=0.6](P2,P4){$\beta$}
+\tkzLabelSegments[above,pos=0.3](P1,P3){$\beta$}
+
+\tkzMarkSegments[mark=s||,size=2.25](P1,P2 P2,P3 P3,P4 P4,P5 P5,P1)
+
+\end{tikzpicture}
+\end{document}
