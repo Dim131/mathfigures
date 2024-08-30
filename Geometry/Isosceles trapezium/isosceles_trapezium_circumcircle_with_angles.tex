@@ -1,0 +1,69 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueSqr}{RGB}{5,81,163}
+\definecolor{RedSqr}{RGB}{199, 28, 16}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/-2/D,6/-2/C,1/1/A,5/1/B}
+
+\tkzDefPointBy[projection=onto C--D](A)\tkzGetPoint{A'}
+\tkzDefPointBy[projection=onto C--D](B)\tkzGetPoint{B'}
+
+\tkzDefCircle[circum](A,B,C) \tkzGetPoint{O}
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D) 
+\tkzDrawCircle[line width=1.0pt, color=black](O,A)
+
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,A' B,B')
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](B,D,A B,C,A)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](B,D,A B,C,A)
+\tkzLabelAngles[scale=0.65,pos=1.1](B,D,A B,C,A){$\theta_3$}
+
+\tkzFillAngles[fill=BlueSqr,size=.4,fill opacity=0.1](D,A,C D,B,C)
+\tkzMarkAngles[line width=1pt,color=BlueSqr,size=.4](D,A,C D,B,C)
+\tkzLabelAngles[scale=0.65,pos=1.1](D,A,C D,B,C){$\theta_1$}
+
+\tkzFillAngles[fill=RedSqr,size=.4,fill opacity=0.1](C,A,B A,B,D C,D,B A,C,D)
+\tkzMarkAngles[line width=1pt,color=RedSqr,size=.4](C,A,B A,B,D C,D,B A,C,D)
+\tkzLabelAngles[scale=0.65,pos=1.1](C,A,B A,B,D C,D,B A,C,D){$\theta_2$}
+
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,C B,D)
+
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPoints[size=3](A,B,C,D)
+\tkzDrawPoints[size=2](A',B')
+\tkzLabelPoint[above left](A){$\mathrm{A}$}
+\tkzLabelPoint[above right](B){$\mathrm{B}$}
+\tkzLabelPoint[below right](C){$\mathrm{\Gamma}$};
+\tkzLabelPoint[below left](D){$\mathrm{\Delta}$};
+
+\tkzLabelPoint[below](A'){$\mathrm{A}'$}
+\tkzLabelPoint[below](B'){$\mathrm{B}'$}
+
+\tkzLabelSegments[above,sloped](A,B){$\alpha$}
+\tkzLabelSegments[right=-0.05cm](B,C){$\beta$}
+\tkzLabelSegments[below](C,D){$\gamma$}
+\tkzLabelSegments[left=-0.05cm](D,A){$\delta$}
+
+\tkzLabelSegments[scale=0.75,below](D,A'){\scalebox{0.75}{$x$}}
+\tkzLabelSegments[scale=0.75,below](B',C){\scalebox{0.75}{$x$}}
+
+\end{tikzpicture}
+\end{document}

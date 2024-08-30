@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/D,6/0/C,1/1.5/A,5/1.5/B}
+
+\tkzDefPointBy[projection=onto C--D](A)\tkzGetPoint{A'}
+\tkzDefPointBy[projection=onto C--D](B)\tkzGetPoint{B'}
+
+\tkzDefCircle[circum](A,B,C) \tkzGetPoint{O}
+
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D) 
+\tkzDrawCircle[line width=1.0pt, color=black](O,A)
+
+
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPoints[size=3](A,B,C,D,O)
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$};
+\tkzLabelPoint[below left](D){$\rm \Delta$};
+\tkzLabelPoint[below](O){$\rm O$};
+
+\end{tikzpicture}
+\end{document}
