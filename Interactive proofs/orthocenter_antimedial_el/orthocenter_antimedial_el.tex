@@ -1,0 +1,125 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\usepackage{graphics}
+
+\pagestyle{empty}
+
+\usepackage[greek,english]{babel}
+\usepackage{textgreek}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
+\definecolor{LinkClr}{HTML}{b20f0f}
+
+\usepackage[hypertex,colorlinks=true,urlcolor=LinkClr]{hyperref}
+\usepackage{../svg_labels}
+
+% Reduce spacing after math block.
+\usepackage{amssymb,amsmath,amsthm}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+
+\begin{document}
+\scalebox{1.5}{
+\begin{tikzpicture}
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/L,0.8/-3.7/M,5/0/K}
+
+\tkzDefMidPoint(M,L) \tkzGetPoint{B}
+\tkzDefMidPoint(L,K) \tkzGetPoint{A}
+\tkzDefMidPoint(K,M) \tkzGetPoint{C}
+
+\LS{ABCfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,C,B)}
+\LS{ACBLfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](K,A,B,C)}
+\LS{AKCBfill}{\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,L,B,C)}
+
+
+\tkzDefTriangleCenter[ortho](A,C,B)\tkzGetPoint{H}
+
+\tkzDefPointBy[projection=onto C--B](H)\tkzGetPoint{HA}
+\tkzDefPointBy[projection=onto A--C](H)\tkzGetPoint{HB}
+\tkzDefPointBy[projection=onto A--B](H)\tkzGetPoint{HC}
+
+\LS{epsa}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.15 and 0.15](L,K)}
+\LS{epsb}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.15 and 0.15](K,M)}
+\LS{epsc}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.15 and 0.15](M,L)}
+
+
+\LS{mua}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.2 and 0.2](A,HA)}
+\LS{mub}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.2 and 0.2](B,HB)}
+\LS{muc}{\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.2 and 0.2](C,HC)}
+
+\LS{uaAngle}{\tkzMarkRightAngle[line width=0.5pt, size=.125,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HA,C)}
+\LS{ubAngle}{\tkzMarkRightAngle[line width=0.5pt, size=.125,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HB,A)}
+\LS{ucAngle}{\tkzMarkRightAngle[line width=0.5pt, size=.125,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HC,B)}
+
+\LS{muaAngle}{\tkzMarkRightAngle[line width=0.5pt, size=.125,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,A,L)}
+\LS{mubAngle}{\tkzMarkRightAngle[line width=0.5pt, size=.125,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,B,M)}
+\LS{mucAngle}{\tkzMarkRightAngle[line width=0.5pt, size=.125,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,C,K)}
+
+\LS{ua}{\tkzDrawSegment[line width=0.5pt,color=black](A,HA)}
+\LS{ub}{\tkzDrawSegment[line width=0.5pt,color=black](C,HC)}
+\LS{uc}{\tkzDrawSegment[line width=0.5pt,color=black](B,HB)}
+
+
+
+\LS{ABC}{
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=3](A,B,C)
+\tkzLabelPoint[above right](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelSegment[below, scale=0.75](C,B){$\alpha$}
+\tkzLabelSegment[right, scale=0.75](A,C){$\beta$}
+\tkzLabelSegment[left, scale=0.75](A,B){$\gamma$}
+}
+
+\LS{KLM}{
+\tkzDrawPoints[size=3](K,L,M)
+\tkzLabelPoint[above right](K){$\rm K$}
+\tkzLabelPoint[above left](L){$\rm \Lambda$}
+\tkzLabelPoint[below](M){$\rm M$}}
+
+\LS{H}{\tkzDrawPoints[size=3](H)}
+
+\LS{ALlabel}{\tkzLabelSegment[above, scale=0.75](L,A){$\alpha$}}
+\LS{AKlabel}{\tkzLabelSegment[above, scale=0.75](A,K){$\alpha$}}
+
+
+\LS{OtherBetaGamma}{
+\tkzLabelSegment[left, scale=0.75](M,B){$\beta$}
+\tkzLabelSegment[left, scale=0.75](B,L){$\beta$}
+\tkzLabelSegment[right, scale=0.75](M,C){$\gamma$}
+\tkzLabelSegment[right, scale=0.75](C,K){$\gamma$}}
+
+
+
+\node[text width=15cm, anchor=north west] at (6, 0) {
+\LT{step1}{\textgreek{Έστω τρίγωνο $\rm AB\Gamma$.}}
+\LT{step2}{\textgreek{Θα κατασκευάσουμε ένα τρίγωνο $\rm K\Lambda M$ ώστε οι \href{https://el.wikipedia.org/wiki/\%CE\%9C\%CE\%B5\%CF\%83\%CE\%BF\%CE\%BA\%CE\%AC\%CE\%B8\%CE\%B5\%CF\%84\%CE\%B7_\%CE\%B5\%CF\%85\%CE\%B8\%CF\%8D\%CE\%B3\%CF\%81\%CE\%B1\%CE\%BC\%CE\%BC\%CE\%BF\%CF\%85_\%CF\%84\%CE\%BC\%CE\%AE\%CE\%BC\%CE\%B1\%CF\%84\%CE\%BF\%CF\%82}{μεσοκάθετοι} των πλευρών του να συμπίπτουν με τα ύψη του $\rm AB\Gamma$.}}
+\LT{step3}{\textgreek{Για τις μεσοκαθέτους γνωρίζουμε ότι διέρχονται από το ίδιο σημείο, το \href{https://el.wikipedia.org/wiki/\%CE\%A0\%CE\%B5\%CF\%81\%CE\%B9\%CE\%B3\%CE\%B5\%CE\%B3\%CF\%81\%CE\%B1\%CE\%BC\%CE\%BC\%CE\%AD\%CE\%BD\%CE\%BF\%CF\%82_\%CE\%BA\%CF\%8D\%CE\%BA\%CE\%BB\%CE\%BF\%CF\%82_\%CF\%84\%CF\%81\%CE\%B9\%CE\%B3\%CF\%8E\%CE\%BD\%CE\%BF\%CF\%85}{περίκεντρο}, και έτσι θα καταλήξουμε ότι και τα ύψη του $\rm AB\Gamma$ (ή οι προεκτάσεις τους) διέρχονται από το ίδιο σημείο.}}\vspace{0.2cm}
+
+\LT{step4}{\textgreek{Θεωρούμε την ευθεία που διέρχεται από το $\rm A$ και είναι παράλληλη στο $\rm B\Gamma$,}} \LT{step5}{\textgreek{την ευθεία που διέρχεται από το $\rm B$ και είναι παράλληλη στο $\rm A\Gamma$ και την ευθεία που  διέρχεται από το $\rm \Gamma$ και είναι παράλληλη στο $\rm AB$.}} \LT{step6}{\textgreek{Έστω $\rm K\Lambda M$ το τρίγωνο που σχηματίζουν αυτές οι τρεις ευθείες.}}
+\begin{itemize}\setlength\itemsep{0pt}
+ \LT{step7}{\item \textgreek{Το τετράπλευρο $\rm KAB\Gamma$ είναι \href{https://el.wikipedia.org/wiki/\%CE\%A0\%CE\%B1\%CF\%81\%CE\%B1\%CE\%BB\%CE\%BB\%CE\%B7\%CE\%BB\%CF\%8C\%CE\%B3\%CF\%81\%CE\%B1\%CE\%BC\%CE\%BC\%CE\%BF}{παραλληλόγραμμο} καθώς οι πλευρές του είναι παράλληλες,}}\LT{step8}{\textgreek{ επομένως}
+\[{\rm AK} = {\rm B\Gamma} = \alpha.\]}
+\vspace{-0.7cm}
+ \LT{step9}{\item \textgreek{Αντίστοιχα, από το παραλληλόγραμμο  $\rm A\Lambda \Gamma B$ έχουμε ότι}
+\[{\rm \Lambda A} = {\rm B\Gamma} = \alpha.\]}
+\vspace{-0.7cm}
+ \LT{step10}{\item \textgreek{Συνεπώς το $\rm A$ είναι το μέσο του $\rm K\Lambda$ και η μεσοκάθετος του $\rm K\Lambda$ διέρχεται από το $\rm A$.}} \LT{step11}{\textgreek{Επίσης είναι κάθετη στο $\rm B\Gamma$ (καθώς ${\rm K\Lambda} \parallel {\rm B\Gamma}$), άρα το ύψος $\upsilon_{\alpha}$ ανήκει σε αυτή.}}
+ \item \LT{step12}{\textgreek{Αντίστοιχα, τα $\rm B$ και $\rm \Gamma$ είναι τα μέσα των $\rm \Lambda M$ και $\rm KM$,}} \LT{step13}{\textgreek{και τα $\upsilon_{\beta}$ και $\upsilon_{\gamma}$ ανήκουν στις μεσοκαθέτους των $\rm \Lambda M$ και $\rm KM$.}}
+\end{itemize}
+\LT{step14}{\textgreek{Συνεπώς, καταλήγουμε ότι τα ύψη διέρχονται από το περίκεντρο του $\rm K\Lambda M$.}}
+};
+
+\end{tikzpicture}}
+\end{document}
