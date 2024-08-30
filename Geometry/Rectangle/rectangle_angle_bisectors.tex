@@ -1,0 +1,61 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+\usepackage{fp}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/D,3.5/0/C,1/2/A,4.5/2/B}
+
+\tkzInterLL(A,C)(B,D) \tkzGetPoint{O}
+
+\tkzDefLine[bisector,normed](B,A,D) \tkzGetPoint{x}
+\tkzDefLine[bisector,normed](B,C,D) \tkzGetPoint{y}
+\tkzDefLine[bisector,normed](C,D,A) \tkzGetPoint{z}
+\tkzDefLine[bisector,normed](A,B,C) \tkzGetPoint{w}
+
+\tkzInterLL(A,x)(C,D) \tkzGetPoint{DA}
+\tkzInterLL(B,w)(C,D) \tkzGetPoint{DB}
+\tkzInterLL(C,y)(A,B) \tkzGetPoint{DC}
+\tkzInterLL(D,z)(A,B) \tkzGetPoint{DD}
+
+\tkzInterLL(A,DA)(B,DB) \tkzGetPoint{I1}
+\tkzInterLL(B,DB)(C,DC) \tkzGetPoint{I2}
+\tkzInterLL(C,DC)(D,DD) \tkzGetPoint{I3}
+\tkzInterLL(D,DD)(A,DA) \tkzGetPoint{I4}
+
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](D,A,DA DA,A,B B,C,DC DC,C,D)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](D,A,DA DA,A,B B,C,DC DC,C,D)
+\tkzMarkAngles[mark=s,mksize=2,line width=1pt,size=.4,color=AngleClr](D,A,DA DA,A,B B,C,DC DC,C,D)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](A,B,DB DB,B,C DD,D,A C,D,DD)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](A,B,DB DB,B,C DD,D,A C,D,DD)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](A,B,DB DB,B,C DD,D,A C,D,DD)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,I1,B DC,I2,DB C,I3,D DA,I4,DD)
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,DA B,DB C,DC D,DD)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPoints[size=3](A,B,C,D)
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[below left](D){$\rm \Delta$}
+
+\end{tikzpicture}
+\end{document}
