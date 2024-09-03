@@ -53,16 +53,16 @@
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 28.964469 -10.544656 C 28.26525 -12.470438 28.081656 -14.552469 28.437125 -16.572 " transform="matrix(1,0,0,-1,46.766,56.303)"/>
 <path style="fill:none;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 28.304312 -13.521219 C 28.304312 -13.521219 30.464469 -11.712625 30.116812 -15.681375 M 28.304312 -13.521219 C 28.304312 -13.521219 26.148062 -15.333719 26.495719 -11.364969 " transform="matrix(1,0,0,-1,46.766,56.303)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="25.509" y="68.554"/>
+  <use xlink:href="#glyph0-1" x="23.381" y="71.206"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="42.53" y="35.858"/>
+  <use xlink:href="#glyph0-1" x="43.482" y="32.593"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-2" x="31.629" y="75.471"/>
+  <use xlink:href="#glyph0-2" x="28.547" y="76.908"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-2" x="63.706" y="69.815"/>
+  <use xlink:href="#glyph0-2" x="67.094" y="70.111"/>
 </g>
 <path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 5.198844 42.357687 C 5.198844 43.181906 4.530875 43.849875 3.706656 43.849875 C 2.878531 43.849875 2.210562 43.181906 2.210562 42.357687 C 2.210562 41.529562 2.878531 40.861594 3.706656 40.861594 C 4.530875 40.861594 5.198844 41.529562 5.198844 42.357687 Z M 5.198844 42.357687 " transform="matrix(1,0,0,-1,46.766,56.303)"/>
 <path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M -31.074594 -27.329813 C -31.074594 -26.505594 -31.746469 -25.833719 -32.570688 -25.833719 C -33.394906 -25.833719 -34.066781 -26.505594 -34.066781 -27.329813 C -34.066781 -28.154031 -33.394906 -28.825906 -32.570688 -28.825906 C -31.746469 -28.825906 -31.074594 -28.154031 -31.074594 -27.329813 Z M -31.074594 -27.329813 " transform="matrix(1,0,0,-1,46.766,56.303)"/>

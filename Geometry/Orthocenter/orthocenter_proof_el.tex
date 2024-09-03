@@ -1,0 +1,65 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\usepackage{fp}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,1.1/3.3/A,5/0/C}
+
+\tkzDefTriangleCenter[ortho](A,B,C)
+\tkzGetPoint{H}
+
+\tkzDefPointBy[projection=onto B--C](H)\tkzGetPoint{D}
+\tkzDefPointBy[projection=onto A--C](H)\tkzGetPoint{E}
+\tkzDefPointBy[projection=onto A--B](H)\tkzGetPoint{Z}
+
+\tkzDefTriangleCenter[circum](A,E,Z) \tkzGetPoint{O1}
+\tkzDefTriangleCenter[circum](B,E,Z) \tkzGetPoint{O2}
+
+\tkzDrawCircles[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O1,A O2,B)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,D,B H,E,C H,Z,A B,Z,H)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](Z,A,H Z,E,H Z,C,D)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](Z,A,H Z,E,H Z,C,D)
+\tkzLabelAngles[scale=0.4,pos=1.5](Z,A,H){$\omega$}
+\tkzLabelAngles[scale=0.55,pos=1.3](Z,E,H){$\omega$}
+\tkzLabelAngles[scale=0.55,pos=1.3](Z,C,D){$\omega$}
+
+\tkzFillAngles[fill=BlueClr,size=.25,fill opacity=0.1](A,H,Z D,H,C)
+\tkzMarkAngles[line width=1pt,color=BlueClr,size=.25](A,H,Z D,H,C)
+\tkzLabelAngles[scale=0.55,pos=0.7](A,H,Z){$\phi$}
+\tkzLabelAngles[scale=0.55,pos=0.7](D,H,C){$\phi$}
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,D B,E C,Z)
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](E,Z)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+
+\tkzDrawPoints[size=3](A,B,C,H)
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+
+\tkzDrawPoints[size=2](D,E,Z)
+\tkzLabelPoint[right](H){$\rm H$}
+\tkzLabelPoint[below](D){$\rm \Delta$}
+\tkzLabelPoint[above right](E){$\rm E$}
+\tkzLabelPoint[above left](Z){$\rm Z$}
+
+\end{tikzpicture}
+\end{document}

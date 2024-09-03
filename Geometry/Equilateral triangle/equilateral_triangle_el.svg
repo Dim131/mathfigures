@@ -82,25 +82,25 @@
 <path style="fill:none;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 43.448531 2.9885 L 43.448531 -2.988062 M 39.464156 2.9885 L 39.464156 -2.988062 " transform="matrix(1,0,0,-1,14.196,85.801)"/>
 <path style="fill:none;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 58.624313 36.1135 L 63.804 39.101781 M 60.6165 32.660375 L 65.792281 35.648656 " transform="matrix(1,0,0,-1,14.196,85.801)"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph1-1" x="27.152" y="77.741"/>
-  <use xlink:href="#glyph1-2" x="30.887975" y="77.741"/>
+  <use xlink:href="#glyph1-1" x="22.55" y="80.399"/>
+  <use xlink:href="#glyph1-2" x="26.285975" y="80.399"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph2-1" x="34.62425" y="75.02975"/>
+  <use xlink:href="#glyph2-1" x="30.0215" y="77.68775"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph1-1" x="73.242" y="77.741"/>
-  <use xlink:href="#glyph1-2" x="76.977975" y="77.741"/>
+  <use xlink:href="#glyph1-1" x="77.842" y="80.399"/>
+  <use xlink:href="#glyph1-2" x="81.577975" y="80.399"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph2-1" x="80.7135" y="75.02975"/>
+  <use xlink:href="#glyph2-1" x="85.31425" y="77.68775"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph1-1" x="50.197" y="37.779"/>
-  <use xlink:href="#glyph1-2" x="53.932975" y="37.779"/>
+  <use xlink:href="#glyph1-1" x="50.196" y="32.465"/>
+  <use xlink:href="#glyph1-2" x="53.931975" y="32.465"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph2-1" x="57.66925" y="35.06775"/>
+  <use xlink:href="#glyph2-1" x="57.66825" y="29.75375"/>
 </g>
 </g>
 </svg>
