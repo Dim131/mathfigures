@@ -22,21 +22,22 @@
 \tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
 
 
-\tkzDefMidPoint(A,C) \tkzGetPoint{M1}
-\tkzDefMidPoint(B,D) \tkzGetPoint{M2}
+\tkzDefMidPoint(A,C) \tkzGetPoint{M}
+\tkzDefMidPoint(B,D) \tkzGetPoint{N}
 
 \tkzDrawSegments[line width=0.75pt,color=black](A,C B,D)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
-\tkzDrawPoints[size=3](A,B,C,D,M1,M2)
+\tkzDrawPoints[size=3](A,B,C,D)
+\tkzDrawPoints[size=2](M,N)
 \tkzLabelPoint[above left](A){$\rm A$}
 \tkzLabelPoint[above right](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[below left](D){$\rm \Delta$}
-\tkzLabelPoint[scale=0.85,right](M1){$\rm M_1$}
-\tkzLabelPoint[scale=0.85,left](M2){$\rm M_2$}
+\node[scale=0.85,yshift=0.09cm, xshift=0.25cm] at (M) {$\rm M$};
+\node[scale=0.85,yshift=0.09cm, xshift=-0.23cm] at (N) {$\rm N$};
 
-\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](M1,M2)
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](M,N)
 
 \end{tikzpicture}
 
