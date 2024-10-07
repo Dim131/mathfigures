@@ -1,0 +1,41 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O}
+
+\tkzDefPoint(167:2){A}
+\tkzDefPoint(70:2){B}
+\tkzDefPoint(-150:2){C}
+\tkzDefPoint(-30:2){D}
+
+\tkzInterLL(A,B)(C,D)\tkzGetPoint{P}
+
+\tkzDrawCircle[fill=white,draw=black,line width=0.5pt](O,A)
+
+\tkzDrawSegments[line width=0.5pt,color=black,add=0 and .3](P,B P,D)
+
+\tkzDrawPoints[size=3](O,A,B,C,D,P)
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[above](B){$\rm B$}
+\tkzLabelPoint[below left](C){$\rm \Gamma$}
+\tkzLabelPoint[below right](D){$\rm \Delta$}
+\tkzLabelPoint[below](O){$\rm O$}
+\tkzLabelPoint[left](P){$\rm P$}
+
+\end{tikzpicture}
+\end{document}
