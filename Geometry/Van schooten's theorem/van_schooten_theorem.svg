@@ -26,10 +26,10 @@
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 89.339156 23.966063 C 89.339156 50.415281 67.89775 71.856688 41.448531 71.856688 C 15.003219 71.856688 -6.438187 50.415281 -6.438187 23.966063 C -6.438187 -2.483156 15.003219 -23.920656 41.448531 -23.920656 C 67.89775 -23.920656 89.339156 -2.483156 89.339156 23.966063 Z M 89.339156 23.966063 " transform="matrix(1,0,0,-1,14.196,85.802)"/>
 </g>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(59.999084%,19.999695%,0%);fill-opacity:0.1;" d="M 55.652344 13.945313 L 14.195313 85.800781 L 97.105469 85.800781 Z M 55.652344 13.945313 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 14.195313 85.800781 L 22.699219 85.800781 C 22.699219 82.761719 21.078125 79.953125 18.445313 78.4375 Z M 14.195313 85.800781 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 97.109375 85.800781 L 92.855469 78.4375 C 90.222656 79.953125 88.601563 82.761719 88.601563 85.800781 Z M 97.109375 85.800781 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 55.652344 13.945313 L 51.402344 21.3125 C 54.03125 22.828125 57.269531 22.828125 59.902344 21.3125 Z M 55.652344 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 55.652344 13.945313 L 14.195313 85.800781 L 97.105469 85.800781 Z M 55.652344 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 14.195313 85.800781 L 22.699219 85.800781 C 22.699219 82.761719 21.078125 79.953125 18.445313 78.4375 Z M 14.195313 85.800781 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 97.109375 85.800781 L 92.855469 78.4375 C 90.222656 79.953125 88.601563 82.761719 88.601563 85.800781 Z M 97.109375 85.800781 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 55.652344 13.945313 L 51.402344 21.3125 C 54.03125 22.828125 57.269531 22.828125 59.902344 21.3125 Z M 55.652344 13.945313 "/>
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 8.503219 0.00121875 C 8.503219 3.040281 6.882125 5.848875 4.249313 7.3645 " transform="matrix(1,0,0,-1,14.196,85.802)"/>
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 78.659469 7.3645 C 76.026656 5.848875 74.405563 3.040281 74.405563 0.00121875 " transform="matrix(1,0,0,-1,14.196,85.802)"/>
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 37.206344 64.4895 C 39.83525 62.973875 43.073531 62.973875 45.706344 64.4895 " transform="matrix(1,0,0,-1,14.196,85.802)"/>
@@ -42,13 +42,13 @@
   <use xlink:href="#glyph0-1" x="51.914" y="10.129"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-2" x="3.32" y="89.206"/>
+  <use xlink:href="#glyph0-2" x="3.32" y="96.428"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-3" x="100.923" y="89.206"/>
+  <use xlink:href="#glyph0-3" x="100.923" y="96.428"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-4" x="70.833" y="116.592"/>
+  <use xlink:href="#glyph0-4" x="70.833" y="116.591"/>
 </g>
 <path style="fill:none;stroke-width:0.74721;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 41.456344 71.856688 L 60.026656 -20.162844 " transform="matrix(1,0,0,-1,14.196,85.802)"/>
 <path style="fill:none;stroke-width:0.74721;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M -0.0006875 0.00121875 L 60.026656 -20.162844 " transform="matrix(1,0,0,-1,14.196,85.802)"/>
