@@ -16,29 +16,25 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/B,2.2/0/C}
-
-\tkzDefPoint(-110:2.55){A}
+\tkzDefPoints{0/0/A,4/0/B,0.7/2.5/C}
 
 \tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
 \tkzDrawCircle[black,line width=1.0pt](O,A)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](A,B,C)
-\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](A,B,C)
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](B,A,C)
+\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](B,A,C)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,A O,B O,C)
 
 \tkzDrawPoints[size=3](A,B,C,O)
-\tkzLabelPoint[left](A){$\rm \Gamma$}
-\tkzLabelPoint[above left](B){$\rm A$}
-\tkzLabelPoint[above right](C){$\rm B$}
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[left](B){$\rm B$}
+\tkzLabelPoint[right](C){$\rm \Gamma$}
 \tkzLabelPoint[below right](O){$\rm O$}
-
-\tkzDrawSegments[line width=0.75pt](A,B B,C)
 
 \end{tikzpicture}
 

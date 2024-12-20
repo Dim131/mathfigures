@@ -24,10 +24,11 @@
 \tkzDefMidPoint(B,C) \tkzGetPoint{M2}
 \tkzDefMidPoint(A,C) \tkzGetPoint{M3}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,A O,B O,C)
 
+\tkzMarkRightAngles[line width=0.7pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,C,B)
 \tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](O,M1,A O,M2,B O,M3,C)
 
 
@@ -36,10 +37,10 @@
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,O)
-\tkzLabelPoint[left](A){$\rm A$}
-\tkzLabelPoint[right](B){$\rm B$}
-\tkzLabelPoint[above](C){$\rm \Gamma$}
-\tkzLabelPoint[below right](O){$\rm O$}
+\tkzLabelPoint[above](C){$\rm A$}
+\tkzLabelPoint[left](A){$\rm B$}
+\tkzLabelPoint[right](B){$\rm \Gamma$}
+\tkzLabelPoint[below](O){$\rm O$}
 
 \tkzMarkSegments[mark=s||,size=2.5](O,A O,B O,C)
 
