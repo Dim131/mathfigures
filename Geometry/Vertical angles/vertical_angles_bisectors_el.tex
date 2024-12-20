@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\usepackage{fp}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\definecolor{SecondAngleClr}{RGB}{166, 7, 7}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{-3/1.25/A,3/-1.25/AA,-3/-1.25/B,3/1.25/BB,-3/0/C,3/0/CC}
+
+\tkzInterLL(A,AA)(B,BB) \tkzGetPoint{O}
+
+\tkzFillAngles[fill=AngleClr,size=.55,fill opacity=0.1](A,O,B AA,O,BB)
+\tkzMarkAngles[line width=1pt,size=.55,color=AngleClr](A,O,B AA,O,BB)
+
+\tkzLabelAngles[pos=1.2,scale=0.75](A,O,C C,O,B AA,O,CC CC,O,BB){$\omega$}
+
+\tkzDrawSegments[color=ShapeClr,line width=0.75pt](C,CC)
+
+\tkzDrawPoints[size=3](O)
+\tkzLabelPoint[left](A){$x$}
+\tkzLabelPoint[right](AA){$x'$}
+\tkzLabelPoint[left](B){$y$}
+\tkzLabelPoint[right](BB){$y'$}
+\tkzLabelPoint[left](C){$\delta$}
+\tkzLabelPoint[right](CC){$\varepsilon$}
+\tkzLabelPoint[below=2.5pt](O){$\rm O$}
+
+\tkzDrawSegments[line width=0.75pt](A,AA B,BB)
+
+\end{tikzpicture}
+
+\end{document}
