@@ -24,11 +24,11 @@
 \tkzDefPointBy[projection = onto B--C](A) \tkzGetPoint{HA}
 
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A A,C,B B,A,C)
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A A,C,B B,A,C)
 \tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B B,A,C)
 
-\tkzMarkRightAngles[line width=0.7pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](P,PA,B P,PB,A P,PC,A A,HA,B)
+\tkzMarkRightAngles[line width=0.7pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](P,PA,B P,PB,A P,PC,A A,HA,B)
 
 \tkzDrawSegments[line width=0.55pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,HA A,P)
 \tkzDrawSegments[line width=0.7pt,color=black](P,PA P,PB P,PC)
@@ -36,14 +36,14 @@
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,P)
 \tkzLabelPoint[above](A){$\rm A$}
-\tkzLabelPoint[left](B){$\rm B$}
-\tkzLabelPoint[right](C){$\rm\Gamma$};
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm\Gamma$};
 \tkzLabelPoint[below](P){$\rm P$};
 
 
 \tkzLabelSegment[above](P,PB){\scalebox{0.75}{$d_1$}}
 \tkzLabelSegment[above](P,PC){\scalebox{0.75}{$d_2$}}
-\tkzLabelSegment[left](A,HA){\scalebox{0.75}{$~~~~u$}}
+\tkzLabelSegment[left](A,HA){\scalebox{0.75}{$~~~~\upsilon$}}
 
 \end{tikzpicture}
 \end{document}

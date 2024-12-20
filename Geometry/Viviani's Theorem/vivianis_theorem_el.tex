@@ -24,11 +24,11 @@
 \tkzDefPointBy[projection = onto B--C](P) \tkzGetPoint{PA}
 \tkzDefPointBy[projection = onto B--C](A) \tkzGetPoint{HA}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A A,C,B B,A,C)
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A A,C,B B,A,C)
 \tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B B,A,C)
 
-\tkzMarkRightAngles[line width=0.7pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](P,PA,B P,PB,C P,PC,A A,HA,B)
+\tkzMarkRightAngles[line width=0.7pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](P,PA,B P,PB,C P,PC,A A,HA,B)
 
 
 \tkzDrawSegment[line width=0.55pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,HA)
@@ -46,7 +46,7 @@
 \tkzLabelSegment[scale=0.75,below](P,PB){$~~d_2$}
 \tkzLabelSegment[scale=0.75,above](P,PC){$d_3$}
 
-\tkzLabelSegment[scale=0.75,left, pos=0.8](A,HA){$~~~~u$}
+\tkzLabelSegment[scale=0.75,left, pos=0.8](A,HA){$~~~~\upsilon$}
 \end{tikzpicture}
 
 \end{document}
