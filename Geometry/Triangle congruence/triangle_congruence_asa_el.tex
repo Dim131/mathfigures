@@ -23,21 +23,14 @@
 
 \tkzDefPointOnLine[pos=0.2](A,B)\tkzGetPoint{H}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](D,E,Z)
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzFillPolygon[fill=white](D,E,Z)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A)
-\tkzMarkAngle[mark=||,mksize=2,line width=1pt,color=AngleClr,size=.4](C,B,A)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A Z,E,D)
+\tkzMarkAngles[mark=||,mksize=2,line width=1pt,color=AngleClr,size=.4](C,B,A Z,E,D)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](Z,E,D)
-\tkzMarkAngle[mark=||,mksize=2,line width=1pt,color=AngleClr,size=.4](Z,E,D)
-
-\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.1](A,C,B)
-\tkzMarkAngle[mark=|,mksize=2,line width=1pt,color=BlueSqr,size=.4](A,C,B)
-
-\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.1](D,Z,E)
-\tkzMarkAngle[mark=|,mksize=2,line width=1pt,color=BlueSqr,size=.4](D,Z,E)
-
+\tkzFillAngles[fill=BlueSqr,size=.4,fill opacity=0.2](A,C,B D,Z,E)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,color=BlueSqr,size=.4](A,C,B D,Z,E)
 
 \tkzDrawSegments[line width=0.75pt,color=black](C,H)
 

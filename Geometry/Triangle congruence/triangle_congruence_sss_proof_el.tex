@@ -23,20 +23,14 @@
 \tkzDefPointBy[reflection = over E--Z](D)\tkzGetPoint{H}
 \tkzDefPointOnLine[pos=1.35](E,H)\tkzGetPoint{x}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](D,E,Z)
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](E,Z,H)
+\tkzFillPolygon[fill=white](D,E,Z)
+\tkzFillPolygon[fill=white](E,Z,H)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](E,D,H)
-\tkzMarkAngle[mark=|,mksize=2,line width=1pt,color=AngleClr,size=.4](E,D,H)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](E,D,H D,H,E)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,color=AngleClr,size=.4](E,D,H D,H,E)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](D,H,E)
-\tkzMarkAngle[mark=|,mksize=2,line width=1pt,color=AngleClr,size=.4](D,H,E)
-
-\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.1](H,D,Z)
-\tkzMarkAngle[mark=s,mksize=2,line width=1pt,color=BlueSqr,size=.4](H,D,Z)
-
-\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.1](Z,H,D)
-\tkzMarkAngle[mark=s,mksize=2,line width=1pt,color=BlueSqr,size=.4](Z,H,D)
+\tkzFillAngles[fill=BlueSqr,size=.4,fill opacity=0.2](H,D,Z Z,H,D)
+\tkzMarkAngles[mark=s,mksize=2,line width=1pt,color=BlueSqr,size=.4](H,D,Z Z,H,D)
 
 \tkzDrawSegments[line width=0.75pt,color=black](D,H)
 
