@@ -18,19 +18,24 @@
 
 \tkzDefPoints{0/0/B,4.05/0/C}
 
-\tkzDefPoint(125:2.45){A}
+\tkzDefPoint(40:2){A}
+\tkzDefPoint(75:2.45){AA}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A B,A,C A,C,B)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A B,A,C A,C,B)
 \tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A B,A,C A,C,B)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 
 \tkzDrawPoints[size=3](A,B,C)
-\tkzLabelPoint[above left](A){$\rm \Gamma$}
-\tkzLabelPoint[below left](B){$\rm A$}
-\tkzLabelPoint[below right](C){$\rm B$}
+
+% Dummy point to match dimensions of the other figures.
+\tkzDrawPoints[size=3,opacity=0.0](AA)
+
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 
 \end{tikzpicture}
 

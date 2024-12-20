@@ -44,10 +44,10 @@
 </clipPath>
 </defs>
 <g id="surface1">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(59.999084%,19.999695%,0%);fill-opacity:0.1;" d="M 47.039063 13.945313 L 14.195313 115.03125 L 79.886719 115.03125 Z M 47.039063 13.945313 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 14.195313 115.03125 L 22.699219 115.03125 C 22.699219 111.347656 20.328125 108.082031 16.824219 106.945313 Z M 14.195313 115.03125 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 79.886719 115.03125 L 77.257813 106.945313 C 73.753906 108.082031 71.382813 111.347656 71.382813 115.03125 Z M 79.886719 115.03125 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 47.039063 13.941406 L 44.414063 22.03125 C 46.121094 22.585938 47.960938 22.585938 49.667969 22.03125 Z M 47.039063 13.941406 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 47.039063 13.945313 L 14.195313 115.03125 L 79.886719 115.03125 Z M 47.039063 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 14.195313 115.03125 L 22.699219 115.03125 C 22.699219 111.347656 20.328125 108.082031 16.824219 106.945313 Z M 14.195313 115.03125 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 79.886719 115.03125 L 77.257813 106.945313 C 73.753906 108.082031 71.382813 111.347656 71.382813 115.03125 Z M 79.886719 115.03125 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 47.039063 13.941406 L 44.414063 22.03125 C 46.121094 22.585938 47.960938 22.585938 49.667969 22.03125 Z M 47.039063 13.941406 "/>
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M -24.341781 0.00075 C -24.341781 3.684344 -26.712875 6.949969 -30.216781 8.086687 " transform="matrix(1,0,0,-1,47.041,115.032)"/>
 </g>

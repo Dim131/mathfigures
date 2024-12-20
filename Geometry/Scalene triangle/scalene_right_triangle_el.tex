@@ -18,21 +18,25 @@
 
 \tkzDefPoints{0/0/B,4.05/0/C}
 
-\tkzDefPoint(90:2.45){A}
+\tkzDefPoint(60:2.025){A}
+\tkzDefPoint(75:2.45){AA}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](B,A,C A,C,B)
-\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](B,A,C A,C,B)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A A,C,B)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B)
 
-\tkzMarkRightAngle[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,B,C)
+\tkzMarkRightAngle[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,A,C)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 
+% Dummy point to match dimensions of the other figures.
+\tkzDrawPoints[size=3,opacity=0.0](AA)
+
 \tkzDrawPoints[size=3](A,B,C)
-\tkzLabelPoint[above left](A){$\mathrm{\Gamma}$}
-\tkzLabelPoint[below left](B){$\mathrm{A}$}
-\tkzLabelPoint[below right](C){$\mathrm{B}$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 
 \end{tikzpicture}
 

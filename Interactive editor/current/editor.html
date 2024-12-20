@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>SVG geometry editor</title>
+
+<script>
+MathJax = {
+   svg: {
+      displayAlign: 'left',
+      skipAttributes: {
+         "data-mml-node": true // TODO: This does not seem to be working. Investigate more.
+      },
+   },
+   options: {
+      renderActions: {
+         assistiveMml: [],  // disable assistive mathml
+      },
+      enableMenu: false,
+      menuOptions: {
+         settings: {
+            assistiveMml: false,
+            explorer: false,
+            texHints: false,
+         }
+      }
+   },
+};
+</script>
+<!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script> -->
+  <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+.selected_point {
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)) !important;
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)) !important;
+}
+.selectable_point:hover {
+  -webkit-filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+  filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+}
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+</style>
+
+<script type="text/javascript" src="compgeo.js"></script>
+<script type="text/javascript" src="dynageo.js"></script>
+<script type="text/javascript" src="gif.js"></script>
+<script type="text/javascript" src="gif.worker.js"></script>
+
+<script>
+
+// Ideally this should be handled by skipAttributes.
+function removeAttrs(elem) {
+   elem.removeAttribute("data-mml-node");
+   elem.removeAttribute("data-c");
+   for (let i = 0; i < elem.children.length; ++i) {
+      removeAttrs(elem.children[i]);
+   }
+}
+
+const TEXT_LEVEL = 500;
+class ShapeAggregator {
+
+   constructor() {
+      this.s = {};
+   }
+   
+   addAt(depth, obj) {
+      if (!(depth in this.s)) {
+         this.s[depth] = [];
+      }
+      this.s[depth].push(obj);
+   }
+   
+   add(obj) {
+      this.addAt(0, obj);
+   }
+   
+   generateSVG() {
+      let ans = [];
+      let keys = Object.keys(this.s).sort();
+      keys.forEach(k => {
+         if (k != TEXT_LEVEL) {
+            ans.push(this.s[k].join(" "));
+         }
+      });
+      return ans.join(" ");
+   }
+   
+   generateText(elem) {
+      if (TEXT_LEVEL in this.s) {
+         let texts = this.s[TEXT_LEVEL];
+         for (let i = 0; i < texts.length; ++i) {
+            elem.appendChild(texts[i]);
+         }
+      }
+   }
+
+};
+
+function getProps(shape) {
+   if (shape instanceof Point) return Point.PROPS;
+   if (shape instanceof Midpoint) return Midpoint.PROPS;
+   if (shape instanceof Centroid) return Centroid.PROPS;
+   if (shape instanceof Projection) return Projection.PROPS;
+   if (shape instanceof LineLineIntersection) return LineLineIntersection.PROPS;
+   if (shape instanceof Circumcenter) return Circumcenter.PROPS;
+   if (shape instanceof Polygon) return Polygon.PROPS;
+   if (shape instanceof Circle) return Circle.PROPS;
+   if (shape instanceof CircleThroughPoint) return Circle.PROPS;
+   if (shape instanceof LabelPoint) return LabelPoint.PROPS;
+   if (shape instanceof LabelAngle) return LabelAngle.PROPS;
+   if (shape instanceof Segment) return Segment.PROPS;
+   if (shape instanceof MarkRightAngle) return MarkRightAngle.PROPS;
+   if (shape instanceof MarkAngle) return MarkAngle.PROPS;
+   return null;
+}
+
+function applyEditor() {
+   let id = current_editor_id;
+   let editor_container = document.getElementById('editor-container');
+   let shape = instance.id_to_shape[id];
+   let props = getProps(shape);
+   let s = "<table>";
+   Object.entries(props).forEach(([k,v]) => {
+      let val = document.getElementById(k).value;
+      let prev_val = shape.props[k];
+      shape.props[k] = val;
+      if (k == "text" && prev_val != val) {
+         // This is a bit hacky. 
+         let math_svg = MathJax.tex2svg(val).children[0];
+         math_svg.setAttribute("id", id);
+         removeAttrs(math_svg);
+         document.getElementById("plane").replaceChild(math_svg, document.getElementById(id));
+            
+      }   
+   });
+   shape.sync(instance);
+}
+
+let current_editor_id = null;
+
+function launchEditor(id) {
+   if (current_editor_id != null) applyEditor();
+   let editor_container = document.getElementById('editor-container');
+   current_editor_id = id;
+   let shape = instance.id_to_shape[id];
+   let props = getProps(shape);
+   let s = "<table>";
+   Object.entries(props).forEach(([k,v]) => {
+      s += "<tr><td>" + k + "</td><td><input id='" + k + "' type='text size='10' value='" + shape.props[k] + "' /> </td></tr>";
+   });
+   s += "</table>";
+   s += "<button onclick='applyEditor()'>Apply</button>";
+   editor_container.innerHTML = s;
+}
+
+class DynaGeoInstance {
+
+   constructor() {
+      this.id_to_shape = {};
+      this.shape_aggregator = new ShapeAggregator();
+      this.topo = [];
+      this.seenIds = {};
+      this.gid = 0;
+      this.added_plane_listener = false;
+      this.t = 1;
+   }
+
+   addObjects(objs) {
+      if (!this.added_plane_listener) {
+         this.added_plane_listener = true;
+         document.getElementById("geom-area").addEventListener("click", (e) => {
+            if (editor_mode != MOVE_MODE) {
+               e = window.event || e; 
+               if(document.getElementById("geom-area") === e.target) {
+                  var rect = e.target.getBoundingClientRect();
+                  extendIfPossible(new Point(new CoordinateVal({"val": e.clientX - rect.left }), new CoordinateVal({"val": e.clientY - rect.top }), get_point_props()));
+               }
+            }
+         });
+      }
+      for (let i = 0; i < this.topo.length; ++i) {
+         this.id_to_shape[this.topo[i]].rst();
+      }
+      this.id_to_shape = {};
+      this.shape_aggregator = new ShapeAggregator();
+      this.topo = [];
+      this.seenIds = {};
+      this.gid = 0;
+      for (let i = 0; i < objs.length; ++i) {
+         objs[i].rst();
+      }
+      for (let i = 0; i < objs.length; ++i) {
+         objs[i].init(this);
+      }
+      // console.log(s.generate());
+      let plane_elem = document.getElementById("plane");
+      plane_elem.innerHTML = this.shape_aggregator.generateSVG();
+      this.shape_aggregator.generateText(plane_elem);
+      // document.getElementById("text-plane").innerHTML = this.shape_aggregator.generateText();
+      // for (let i = 0; i < objs.length; ++i) {
+         Object.entries(this.id_to_shape).forEach(([k,v]) => {
+            if (v.isMoveable()) registerMoveableShape(k);
+            /* if (v.isEditable()) */
+            if (v.isMoveable()) {
+               document.getElementById(k).addEventListener("dblclick", (e) => {
+                  if (editor_mode == MOVE_MODE) launchEditor(k);
+               });
+               
+               document.getElementById(k).addEventListener("click", (e) => {
+                  if (editor_mode != MOVE_MODE) {
+                     extendIfPossible(v);
+                  }
+               });
+            }
+         });
+      for (let i = 0; i < objs.length; ++i) {
+         this.dfs(objs[i].id);
+      }
+      this.syncAll();
+      
+      let s = "";
+      for (let i = 0; i < this.topo.length; ++i) {
+         let obj = this.id_to_shape[this.topo[i]];
+         s += '<option onclick="launchEditor(\'' + obj.id + '\')"' + " value='" + obj.id + "'>" + obj.getName() + "</option>\n";
+      }
+      document.getElementById("shapes_list").innerHTML = s;  
+   }
+   
+   dfs(id) {
+      if (id in this.seenIds) return;
+      this.seenIds[id] = true;
+      let deps = this.id_to_shape[id].getDeps();
+      for (let i = 0; i < deps.length; ++i) {
+         this.dfs(deps[i].id);
+      }
+      this.topo.push(id);
+   }
+
+   syncAll() {
+      for (let i = 0; i < this.topo.length; ++i) {
+         this.id_to_shape[this.topo[i]].sync(this);
+      }
+   }
+   
+   deleteObj(id) {
+      console.log(id);
+      let deleted = new Set();
+      deleted.add(id);
+      let new_array = [];
+      for (let i = 0; i < this.topo.length; ++i) {
+         let deps = this.id_to_shape[this.topo[i]].deps;
+         console.log(this.topo[i]);
+         for (let j = 0; j < deps.length; ++j) {
+            if (deleted.has(deps[j].id)) {
+               deleted.add(this.topo[i]);
+               break;
+            }
+         }
+         if (!deleted.has(this.topo[i])) new_array.push(this.id_to_shape[this.topo[i]]);
+      }
+      all_objs = new_array;
+      console.log(deleted);
+      this.addObjects(all_objs);
+   }
+   
+   setTime(t) {
+      this.t = t;
+      this.syncAll();
+      updateVis(document.getElementById("text-container"));
+   }
+   
+   inInterval(time_intervals) {
+      if (time_intervals == "*") return true;
+      let all = time_intervals.split(",");
+      for (let i = 0; i < all.length; ++i) {
+         let interval = all[i].split("-");
+         let start = parseFloat(interval[0]);
+         let end = parseFloat(interval[1]);
+         if (start <= this.t && this.t <= end) {
+            return true;
+         }
+      }
+      return false;
+   }
+   
+   getNextShapeId() {
+      let shape_id = "shape_" + this.gid;
+      this.gid += 1;
+      return shape_id;
+   }
+   
+   renderPoint(id, pt, props) {
+      this.shape_aggregator.addAt(1,"<circle id='" + id + "' cx='" + pt.x + "' cy='" + pt.y + "' r='" + props["size"] + "' fill='" + props["stroke_color"] + "'/>");
+   }
+   
+   renderCircle(id, gp, radius, props) {
+      this.shape_aggregator.add("<circle id='" + id + "' cx='" + gp.x + "' cy='" + gp.y + "' r='" + radius + "' fill='none' stroke='" + props["stroke_color"] + "' stroke-width='" + props["line_width"] + "' stroke-dasharray='" + props.dasharray + "'/>");
+   }
+   
+   renderSegment(id, gp1, gp2, props) {
+      // TODO: Add props.
+      this.shape_aggregator.add("<line id=" + id + " x1='" + gp1.x + "' y1='" + gp1.y + "' x2='" + gp2.x + "' y2='" + gp2.y + "' stroke-width='" + props["line_width"] + "' stroke='" + props.stroke_color + "' stroke-dasharray='" + props.dasharray + "' />");
+   }
+   
+   renderPolygon(id, perimeter_id, area_id, pts, props, pos) {
+      // TODO: Decide how to pass depth here.
+      this.shape_aggregator.addAt(-2,"<polygon id='" + area_id + "' fill='" + props["fill_color"] + "' points='" + pts + "' />");
+      this.shape_aggregator.addAt(pos, "<g id=" + id + " >");
+      this.shape_aggregator.addAt(pos, "<polygon id='" + perimeter_id + "' fill='none' stroke-width='" + props["line_width"] + "' stroke='" + props["stroke_color"] + "' points='" + pts + "' />");
+      this.shape_aggregator.addAt(pos, "</g>");
+   }
+   
+   renderSector(id, triangle_id, circ_segment_id, center, start, end, props) {
+      this.shape_aggregator.addAt(-2, "<g id='" + id + "'>");
+      this.shape_aggregator.addAt(-2, "<polygon id='" + triangle_id + "' stroke='none' fill='" + props["fill_color"] + "' points='" + center.x + " " + center.y + " " + start.x + " " + start.y + " " + end.x + " " + end.y + "' />");
+      this.shape_aggregator.addAt(-2, "<path id='" + circ_segment_id + "' stroke='black' stroke-width='1' fill='" + props["fill_color"] + "' d='M " + start.x + " " + start.y + " A " + props.ell + " " + props.ell + " 0 0 0 " + end.x + " " + end.y + "' />");
+      this.shape_aggregator.addAt(-2, "</g>");
+   }
+   
+   renderText(id, gp, props) {
+      let math_svg = MathJax.tex2svg(props.text).children[0];
+      removeAttrs(math_svg);
+      math_svg.setAttribute("id", id);
+      math_svg.setAttribute("x", gp.x);
+      math_svg.setAttribute("y", gp.y);
+      math_svg.children[1].classList.add("selectable_point");
+      // this.shape_aggregator.addAt(TEXT_LEVEL, "<text class='prevent-select' id=" + id + " style='position: absolute; top:" + gp.y + "px; left:" + gp.x + "px; color:" + props.color + "' >" + props.text + "</text>");
+      this.shape_aggregator.addAt(TEXT_LEVEL, math_svg);
+   }
+   
+   updatePoint(id, gp, props) {
+      let elem = document.getElementById(id);
+      elem.setAttribute('cx', gp.x);
+      elem.setAttribute('cy', gp.y);
+      elem.setAttribute('r', props["size"]);
+      elem.setAttribute('fill', props["stroke_color"]);
+      elem.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+   }
+   
+   updateSegment(id, gp1, gp2, props) {
+      let elem = document.getElementById(id);
+      elem.setAttribute('x1', gp1.x);
+      elem.setAttribute('y1', gp1.y);
+      elem.setAttribute('x2', gp2.x);
+      elem.setAttribute('y2', gp2.y);
+      elem.setAttribute('stroke-dasharray', props.dasharray);
+      elem.setAttribute('stroke-width', props.line_width);
+      elem.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+   }
+   
+   updateCircle(id, gp, radius, props) {
+      let elem = document.getElementById(id);
+      elem.setAttribute("cx", gp.x);
+      elem.setAttribute("cy", gp.y);
+      elem.setAttribute("r", radius);
+      elem.setAttribute("stroke", props["stroke_color"]);
+      elem.setAttribute('stroke-dasharray', props.dasharray);
+      elem.setAttribute("stroke-width", props["line_width"]);
+      elem.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+   }
+   
+   updatePolygon(perimeter_id, area_id, pts, props) {
+      let perimeter = document.getElementById(perimeter_id);
+      perimeter.setAttribute("points", pts);
+      perimeter.setAttribute("stroke", props["stroke_color"]);
+      perimeter.setAttribute("stroke-width", props["line_width"]);
+      perimeter.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+      let area = document.getElementById(area_id);
+      area.setAttribute("points", pts)
+      area.setAttribute("fill", props["fill_color"]);
+      area.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+   }
+   
+   updateSector(id, triangle_id, circ_segment_id, center, start, end, props) {
+      let circ_segment = document.getElementById(circ_segment_id);
+      circ_segment.setAttribute("stroke", props["stroke_color"]);
+      circ_segment.setAttribute("stroke-width", props["line_width"]);
+      circ_segment.setAttribute("fill", props["fill_color"]);
+      circ_segment.setAttribute("d", "M " + start.x + " " + start.y + " A " + props.ell + " " + props.ell + " 0 0 0 " + end.x + " " + end.y);
+      circ_segment.setAttribute("fill", props["fill_color"]);
+      circ_segment.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+      
+      let triangle = document.getElementById(triangle_id);
+      triangle.setAttribute("fill", props["fill_color"]);
+      triangle.setAttribute("points",  center.x + " " + center.y + " " + start.x + " " + start.y + " " + end.x + " " + end.y);
+      triangle.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+   }
+   
+   updateText(id, gp, props) {
+      let elem = document.getElementById(id);
+      // TODO: Do these two steps only if the text has changed.
+      // elem.innerHTML = props.text;
+      // renderMathInElement(elem);
+      let w = elem.getBoundingClientRect().width / 2;
+      let h = elem.getBoundingClientRect().height / 2;
+      let x = gp.x - w + (props.offset_x != null ? parseFloat(props.offset_x) : "0");
+      let y = gp.y - h + (props.offset_y != null ? parseFloat(props.offset_y) : "0");
+      if (props.offset != null) {
+         let offset = parseFloat(props.offset);
+         if (props.position.includes("above")) y -= (h + offset); 
+         else if (props.position.includes("below")) y += offset;
+         if (props.position.includes("left")) x -= (w + offset); 
+         else if (props.position.includes("right")) x += w + offset;
+      }
+      elem.setAttribute('x', x);
+      elem.setAttribute('y', y);
+      elem.setAttribute('visibility', this.inInterval(props["show"]) ? "visible" : "hidden");
+      // elem.setAttribute("style", "position: absolute; top:" + y + "px; left:" + x + "px; color:" + props.color + "; visibility:" + (this.inInterval(props["show"]) ? "visible" : "hidden"));
+      //elem.replaceChild(math_svg, elem.children[0]);
+      // katex.renderMathInElement(elem);
+   }
+};
+
+/* TODO: Not very nice that the following is not a class, 
+         but it gets messy with binds and this. */
+         
+const MOVE_MODE = "MOVE_MODE";
+const ADD_POINT = "ADD_POINT";
+const ADD_SEGMENT = "ADD_SEGMENT";
+const ADD_MIDPOINT = "ADD_MIDPOINT";
+const ADD_PROJECTION = "ADD_PROJECTION";
+const ADD_LL_INTERSECTION = "ADD_LL_INTERSECTION";
+const ADD_POLYGON = "ADD_POLYGON";
+const ADD_LABEL_POINT = "ADD_LABEL_POINT";
+const ADD_LABEL_ANGLE = "ADD_LABEL_ANGLE";
+const ADD_CENTROID = "ADD_CENTROID";
+const ADD_CIRCUMCENTER = "ADD_CIRCUMCENTER";
+const ADD_CIRCLE_THROUGH_POINT = "ADD_CIRCLE_THROUGH_POINT";
+const MARK_RIGHT_ANGLE = "MARK_RIGHT_ANGLE";
+const MARK_ANGLE = "MARK_ANGLE";
+const COPY_STYLE = "COPY_STYLE";
+
+let editor_mode = MOVE_MODE;
+let has_received = [];
+let matching_indices = [];
+
+const SHAPE_SELECTION = "POINT_SELECTION";
+const POINT_SELECTION = "POINT_SELECTION";
+const TEXT_INSERTION = "TEXT_INSERTION";
+const ANGLE_SELECTION = "ANGLE_SELECTION";
+const SEGMENT_SELECTION = "SEGMENT_SELECTION";
+
+const operations = {
+   ADD_POINT : {
+      "expects": [ [POINT_SELECTION] ], 
+      "generate": function(ls) {
+         return ls[0];
+      }
+   },
+   ADD_CIRCLE_THROUGH_POINT : {
+      "expects": [ [POINT_SELECTION, POINT_SELECTION] ], 
+      "generate": function(ls) {
+         return new CircleThroughPoint(ls[0], ls[1], get_circle_props());
+      }
+   },
+   ADD_SEGMENT : {
+      "expects": [
+         [POINT_SELECTION, POINT_SELECTION],
+      ],
+      "generate": function(ls) {
+         return new Segment(ls[0], ls[1], get_segment_props());
+      }
+   },
+   ADD_MIDPOINT : {
+      "expects": [
+         [POINT_SELECTION, POINT_SELECTION],
+      ],
+      "generate": function(ls) {
+         return new Midpoint(ls[0], ls[1], get_point_props());
+      }
+   },
+   ADD_PROJECTION : {
+      "expects": [
+         [POINT_SELECTION, POINT_SELECTION, POINT_SELECTION],
+      ],
+      "generate": function(ls) {
+         return new Projection(ls[0], ls[1], ls[2], get_point_props());
+      }
+   },
+   ADD_LL_INTERSECTION : {
+      "expects": [
+         [SEGMENT_SELECTION, SEGMENT_SELECTION],
+      ],
+      "generate": function(ls) {
+         return new LineLineIntersection(ls[0], ls[1], get_point_props());
+      }
+   },
+   ADD_CIRCUMCENTER : {
+      "expects": [
+         [POINT_SELECTION, POINT_SELECTION, POINT_SELECTION],
+      ],
+      "generate": function(ls) {
+         return new Circumcenter(ls[0], ls[1], ls[2], get_point_props());
+      }
+   },
+   ADD_CENTROID : {
+      "expects": POINT_SELECTION,
+      "should_generate": function(ls) {
+         return ls.length > 1 && ls[0] == ls[ls.length - 1];
+      },
+      "generate": function(ls) {
+         ls.pop();
+         return new Centroid(new Polygon(ls, get_hidden_polygon_props()), get_point_props());
+      }
+   },
+   ADD_POLYGON : {
+      "expects": POINT_SELECTION,
+      "should_generate": function(ls) {
+         return ls.length > 1 && ls[0] == ls[ls.length - 1];
+      },
+      "generate": function(ls) {
+         ls.pop();
+         return new Polygon(ls, get_polygon_props());
+      }
+   },
+   ADD_LABEL_POINT : {
+      "expects": [ [ POINT_SELECTION, TEXT_INSERTION ] ], 
+      "generate": function(ls) {
+         return new LabelPoint(ls[0], {"color": "black", "text": ls[1], "position": "above", "offset": 5, "show": "*", "offset_x": 0, "offset_y": 0});
+      }
+   },
+   ADD_LABEL_ANGLE : {
+      "expects": [ [ ANGLE_SELECTION, TEXT_INSERTION ] ], 
+      "generate": function(ls) {
+         return new LabelAngle(ls[0].p1, ls[0].p2, ls[0].p3, {"color": "black", "text": ls[1], "ell": 25, "show": "*"});
+      }
+   },
+   MARK_RIGHT_ANGLE : {
+      "expects": [ [ POINT_SELECTION, POINT_SELECTION, POINT_SELECTION ] ], 
+      "generate": function(ls) {
+         return new MarkRightAngle(ls[0], ls[1], ls[2], get_right_angle_props());
+      }
+   },
+   MARK_ANGLE : {
+      "expects": [ [ POINT_SELECTION, POINT_SELECTION, POINT_SELECTION ] ], 
+      "generate": function(ls) {
+         return new MarkAngle(ls[0], ls[1], ls[2], get_angle_props());
+      }
+   },
+   COPY_STYLE : {
+      "expects": [ [ SHAPE_SELECTION, SHAPE_SELECTION ] ], 
+      "apply": function(ls) {
+         console.log("Applying function");
+         Object.entries(ls[0].props).forEach(([k,v]) => {
+            if (k in ls[1].props) {
+               ls[1].props[k] = JSON.parse(JSON.stringify(v));
+            }
+         });
+      }
+   }
+};
+
+function enter(mode) {
+   editor_mode = mode;
+   has_received = [];
+   if (MOVE_MODE) return;
+   matching_indices = new Set();
+   for (let i = 0; i < operations[editor_mode].expects.length; ++i) {
+      matching_indices.add(i);
+   }
+}
+let all_objs = [];
+
+function undo() {
+   if (all_objs.length == 0) return;
+   all_objs.pop();
+   instance.addObjects(all_objs);
+}
+
+function matches(shape, type) {
+   if (type == SHAPE_SELECTION) return true;
+   if (type == POINT_SELECTION 
+      && (shape instanceof Point 
+       || shape instanceof Midpoint
+       || shape instanceof Centroid
+       || shape instanceof Circumcenter
+       || shape instanceof Projection
+       || shape instanceof LineLineIntersection)) return true;
+   if (type == TEXT_INSERTION && typeof shape === "string") return true;
+   if (type == ANGLE_SELECTION && shape instanceof MarkAngle) return true;
+   if (type == SEGMENT_SELECTION && shape instanceof Segment) return true;
+   return false;
+}
+
+function generateNewShape() {
+   if ("generate" in operations[editor_mode]) {
+      console.log("generating!");
+      let new_shape = operations[editor_mode].generate(has_received);
+      console.log(new_shape);
+      all_objs.push(new_shape);
+      instance.addObjects(all_objs);
+   } else {
+      operations[editor_mode].apply(has_received);
+      instance.syncAll();
+   }
+   enter(editor_mode);
+}
+
+
+function extendIfPossible(shape) {
+   let idx = has_received.length;
+   let matching_idx = 0;// matching_indices[0];
+   if (operations[editor_mode].expects instanceof Array) {
+      let expected = operations[editor_mode].expects[matching_idx][idx];
+      if (matches(shape, expected)) {
+         has_received.push(shape);
+         if (has_received.length == operations[editor_mode].expects[matching_idx].length) {
+            generateNewShape();
+         } else if (operations[editor_mode].expects[matching_idx][idx+1] == TEXT_INSERTION) {
+            let txt = prompt("Enter label (Use \\( .. \\) for math:", "Text");
+            extendIfPossible(txt);
+         }
+      }
+   } else {
+      let expected = operations[editor_mode].expects;
+      if (matches(shape, expected)) {
+         has_received.push(shape);
+         if (operations[editor_mode].should_generate(has_received)) {
+            generateNewShape();
+         }
+      }
+   }
+}
+         
+const buttonNames = ["left", "right", "wheel", "back", "forward"];
+function mouseButtonPressed(event, buttonName) {
+  // Use binary `&` with the relevant power of 2 to check if a given button is pressed
+  return Boolean(event.buttons & (1 << buttonNames.indexOf(buttonName)));
+}
+var instance = new DynaGeoInstance();
+var currentlyMovingObj = null;
+var currentlyMovingId = null;
+var offsetX = null;
+var offsetY = null;
+   
+function move(e){
+   if (!mouseButtonPressed(e, "left")) {
+      mouseUp(e);
+      return;
+   }
+   if (editor_mode == MOVE_MODE) {
+      var deltaX = e.clientX - offsetX;
+      var deltaY = e.clientY - offsetY;
+      offsetX = e.clientX;
+      offsetY = e.clientY;
+      // TODO: Change this to a global seen array with timestamp.
+      let seen = {};
+      instance.id_to_shape[currentlyMovingId].shiftBy(seen, deltaX, deltaY);
+      instance.syncAll(instance); // TODO: Maybe we can do this more efficiently.
+   }
+}
+
+function mouseUp(e) {
+   console.log("Mouse up");
+   document.removeEventListener("mousemove", move);
+   currentlyMovingObj.removeEventListener("mouseup", mouseUp);
+   currentlyMovingObj.classList.remove("selected_point");
+   currentlyMovingObj = null;
+}
+
+function registerMoveableShape(id) {
+   var curElement = document.getElementById(id);
+   curElement.classList.add("selectable_point");
+   curElement.addEventListener("mousedown", (e) => {
+      console.log("Mouse down");
+      
+      currentlyMovingObj = document.getElementById(id);
+      currentlyMovingId = id;
+      currentlyMovingObj.addEventListener("mouseup", mouseUp, false);
+      offsetX = e.clientX;
+      offsetY = e.clientY;
+      currentlyMovingObj.classList.add("selected_point");
+
+      document.addEventListener("mousemove", move, false);
+   }, false);
+}
+
+function wikiConstruct(elem, stats) {
+   const node_name = elem.nodeName.toLowerCase();
+   if (node_name == "a") {
+      let url = elem.getAttribute("href");
+      let wiki_name = url.substring(url.lastIndexOf("/") + 1);
+      return "[[" + wiki_name + "|" + elem.innerText + "]]";
+   }
+   let ans = "";
+   if (elem.getAttribute("start") != null) {
+      stats["max_step"] = Math.max(stats["max_step"], elem.getAttribute("start"));
+      ans = "{{calculator-hideifzero||element=" + node_name + "|class=calculatorgadget-fallback|formula=ifgreaterorequal(curstep," + elem.getAttribute("start") + ",1,0)|text=";
+   } else {
+      let attrs = "";
+      for (const attr of elem.attributes) {
+         attrs += " " + attr.name + "='" + attr.value + "'";
+      }
+      ans += "<" + node_name + attrs + ">";
+   }
+   for (let i = 0; i < elem.childNodes.length; ++i) {
+      let child =elem.childNodes[i];
+      console.log("Processing: " + child.nodeName);
+      if (child.nodeName == "#text") ans += child.nodeValue;
+      else ans += wikiConstruct(child, stats);
+   }
+   if (elem.getAttribute("start") != null) {
+      ans += "}}";
+   } else {
+      ans += "</" + node_name + ">";
+   }
+   return ans;
+}
+
+function imagesAsWiki(start, end) {
+   let ans = "<div id='proof-image'>\n";
+   let file_prefix = document.getElementById("filename").value;
+   ans += "{{Calculator-hideifzero|class=calculatorgadget-enabled|style=display:none|formula=ifequal(curstep,1)|text=[[File:" + file_prefix + start + ".svg|center]]}}";
+   for (let i = start + 1; i <= end; ++i) {
+      ans += "{{Calculator-hideifzero|formula=ifequal(curstep," + i + ")|starthidden=1|text=[[File:" + file_prefix + i + ".svg|center]]}}";
+   }
+   ans += "\n</div>\n"
+   return ans;
+}
+
+function exportAsWiki() {
+   const head_div = document.createElement("div");
+   head_div.setAttribute("id", "proof-body");
+   head_div.innerHTML = document.getElementById("story").value;
+   let stats = {"max_step": 0};
+   let out = wikiConstruct(head_div, stats);
+   out += "\n{{calculator-hideifzero|formula=ifless(curstep," + stats["max_step"] + ",1,0)|text={{calculator button|type=progressive|class=calculatorgadget-enabled|style=display:none|contents=Skip to end|for=curstep|formula=" + stats["max_step"] + "}}}}\n";
+   document.getElementById("wiki_export").value = imagesAsWiki(1, stats["max_step"]) + out;
+}
+
+
+function updateTime() {
+   let time = document.getElementById("time_value").value;
+   instance.setTime(time);
+}
+
+function incrementTime(delta) {
+   const new_time = instance.t + delta;
+   document.getElementById("time_value").value = new_time;
+   instance.setTime(new_time);
+}
+
+function generateSequenceSVG(filename, start_value, end_value) {
+   for (let i = start_value; i <= end_value; ++i) {
+      instance.setTime(i);
+      const a = document.createElement('a');
+      const content = document.getElementById("geom-container").innerHTML;
+      const blob = new Blob([content], {type: "image/svg+xml"});
+      const url = URL.createObjectURL(blob);
+      a.setAttribute('href', url);
+      a.setAttribute('download', filename + i + ".svg");
+      a.click();
+   }
+}
+
+function generateImageChain(filename, i, end_value, format) {
+   if (i > end_value) return;
+   instance.setTime(i);
+      
+   var svg = document.getElementById('geom-area');
+   var img = document.getElementById('my_img');
+   var canvas = document.querySelector('canvas');
+
+   var xml = new XMLSerializer().serializeToString(svg);
+   var svg64 = btoa(xml);
+   var b64Start = 'data:image/svg+xml;base64,';
+
+   var image64 = b64Start + svg64;
+
+   img.onload = function() {
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      const a = document.createElement('a');
+      const url = canvas.toDataURL('image/' + format);
+      a.setAttribute('href', url);
+      a.setAttribute('download', filename + i + "." + format);
+      a.click();
+      generateImageChain(filename, i+1, end_value, format);
+   }
+   img.src = image64;
+}
+function generateSequence() {
+   let start_value = parseInt(document.getElementById("start_value").value);
+   let end_value = parseInt(document.getElementById("end_value").value);
+   let filename = document.getElementById("filename").value;
+   let format = document.getElementById("image_format").value;
+   if (format == 'svg') generateSequenceSVG(filename, start_value, end_value);
+   else if (format == 'jpg') generateImageChain(filename, start_value, end_value, 'jpeg');
+}
+
+function updateVis(elem) {
+   const start = elem.getAttribute("start");
+   if (start != null) elem.style.visibility = ((instance.t >= start) ? "visible" : "hidden");
+   for (let i = 0; i < elem.children.length; ++i) {
+      updateVis(elem.children[i]);
+   }
+}
+
+function renderText() {
+   document.getElementById("text-container").innerHTML =  document.getElementById("story").value.replaceAll("<math>", "\\(").replaceAll("</math>", "\\)");
+   MathJax.typeset();
+   updateVis(document.getElementById("text-container"));
+}
+
+function exportJson() {
+   let json_objs = [];
+   for (let i = 0; i < instance.topo.length; ++i) {
+      json_objs.push(instance.id_to_shape[instance.topo[i]].toJson());
+   }
+   let json_obj = {"text": document.getElementById("story").value, "time": instance.t, "objs": json_objs };
+   document.getElementById("json_export").value = JSON.stringify(json_obj);
+}
+
+function importJson() {
+   const json_obj = JSON.parse(document.getElementById("json_export").value)
+   const time = parseInt(json_obj["time"]);
+   const objs_list = json_obj["objs"];
+   const text = json_obj["text"];
+   all_objs = [];
+   let id_to_obj = {};
+   for (let i = 0; i < objs_list.length; ++i) {
+      constructObj(objs_list[i], all_objs, id_to_obj);
+   }
+   instance.addObjects(all_objs);
+   document.getElementById("time_value").value = time;
+   document.getElementById("story").value = text;
+   renderText();
+   instance.setTime(time);
+}
+
+function deleteSelected() {
+   instance.deleteObj(document.getElementById("shapes_list").value);
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="top-editor">
+  <button onclick="enter(MOVE_MODE)">Edit</button>
+  <button onclick="enter(ADD_POINT)">Add<br>Point</button>
+  <button onclick="enter(ADD_MIDPOINT)">Add<br>Midpoint</button>
+  <button onclick="enter(ADD_PROJECTION)">Add<br>Projection</button>
+  <button onclick="enter(ADD_LL_INTERSECTION)">Line-Line<br>Intersection</button>
+  <button onclick="enter(ADD_CENTROID)">Add<br>Centroid</button>
+  <button onclick="enter(ADD_CIRCUMCENTER)">Add<br>Circumcenter</button>
+  <button onclick="enter(ADD_SEGMENT)">Add<br>Segment</button>
+  <button onclick="enter(ADD_POLYGON)">Add<br>Polygon</button>
+  <button onclick="enter(ADD_CIRCLE_THROUGH_POINT)">Add<br>Circle</button>
+  <button onclick="enter(ADD_LABEL_POINT)">Label<br>Point</button>
+  <button onclick="enter(ADD_LABEL_ANGLE)">Label<br>Angle</button>
+  <button onclick="enter(MARK_RIGHT_ANGLE)">Mark<br>Right angle</button>
+  <button onclick="enter(MARK_ANGLE)">Mark<br>Angle</button>
+  <button onclick="enter(COPY_STYLE)">Copy<br>Style</button>
+  <button onclick="undo()">Undo</button>
+</div>
+
+<!--<div id="text-plane"></div>-->
+<div id="geom-container" style="width: 750px; display: inline-block">
+<svg xmlns="http://www.w3.org/2000/svg" id="geom-area" version="1.1" width="700" height="500" style="background-color:#fffeeb;">
+  <g id="plane">
+    
+  </g>
+</svg>
+</div>
+<div id="text-container" style="width: 400px; display: inline-block">
+
+</div>
+
+<div id="editor">
+  <input id="time_value" type="text" value="1" size="3"/>
+  <button onclick="incrementTime(-1)"><</button>
+  <button onclick="incrementTime(1)">></button>
+  <button onclick="updateTime()">Update Time</button><br>
+  <div id="details-editor">
+<span style="display:inline-block; vertical-align: top;">
+Shapes list:<br>
+<select id="shapes_list" size="8">  
+    
+</select><br>
+<button onclick="deleteSelected()">Delete</button>
+</span>
+<span id="editor-container" style="display: inline-block; vertical-align: top;">
+  
+</span>
+</div>
+  <strong>Export images:</strong>
+  <label for="filename">File prefix: </label>
+  <input id="filename" type="text" value="shape_"/>
+  <label for="start_value">Start time: </label>
+  <input id="start_value" type="text" value="1" size="3"/>
+  <label for="end_value">End time: </label>
+  <input id="end_value" type="text" value="10" size="3"/>
+  <select id="image_format">
+   <option value="svg">SVG</option>
+   <option value="png">PNG</option>
+   <option value="jpg">JPG</option>
+  </select>
+  <button onclick="generateSequence()">Export Images</button><br>
+</div>
+
+<div id="slidecontainer">
+  
+</div>
+
+<script>
+
+/* 
+var p1 = new Point(new CoordinateVal({"val": 240.0}), new CoordinateVal({"val": 40.0}), addShow(get_point_props(), "1-10"));
+var p2 = new Point(new CoordinateVal({"val": 120.0}), new CoordinateVal({"val": 350.0}), addShow(get_point_props(), "1-10"));
+var p3 = new Point(new CoordinateVal({"val": 540.0}), new CoordinateVal({"val": 350.0}), addShow(get_point_props(), "1-10"));
+
+var m1 = new Midpoint(p2, p3, addShow(get_point_props(), "2-10"));
+var m2 = new Midpoint(p3, p1, addShow(get_point_props(), "2-10"));
+var m3 = new Midpoint(p1, p2, addShow(get_point_props(), "2-10"));
+
+var lp1 = new LabelPoint(p1, {"color": "black", "text": "\\rm A", "position": "above", "offset_x": 0, "offset_y": 0, "offset": 12, "show": "1-10"});
+var lp2 = new LabelPoint(p2, {"color": "black", "text": "\\rm B", "position": "below left", "offset_x": 0, "offset_y": 0, "offset": 12, "show": "1-10"});
+var lp3 = new LabelPoint(p3, {"color": "black", "text": "\\Gamma", "position": "below right", "offset_x": 0, "offset_y": 0, "offset": 12, "show": "1-10"});
+
+var lm1 = new LabelPoint(m1, {"color": "black", "text": "\\rm M_A", "position": "below", "offset_x": 0, "offset_y": 0, "offset": 18, "show": "2-10"});
+var lm2 = new LabelPoint(m2, {"color": "black", "text": "\\rm M_B", "position": "above right", "offset_x": 0, "offset_y": 0, "offset": 12, "show": "2-10"});
+var lm3 = new LabelPoint(m3, {"color": "black", "text": "\\rm M_\\Gamma", "position": "above left", "offset_x": 0, "offset_y": 0, "offset": 12, "show": "2-10"});
+
+var triangle = new Polygon([p1, p2, p3], addShow(get_polygon_props(), "1-10"));
+var centroid = new Centroid(triangle, get_point_props());
+var circum = new Circumcenter(p1,p2,p3, get_point_props());
+
+var median1 = new Segment(p1, m1, addShow(get_segment_props(), "4-10"));
+var median2 = new Segment(p2, m2, addShow(get_segment_props(), "4-10"));
+var median3 = new Segment(p3, m3, addShow(get_segment_props(), "4-10"));
+
+var median_intersection = new LineLineIntersection(median1, median2, addShow(get_point_props(), "5-10"));
+var g = new LabelPoint(median_intersection, {"color": "black", "text": "\\rm G", "position": "below", "offset_x": -5, "offset_y": 15, "offset": 2, "show": "5-10"});
+
+var seg = new Segment(p1, circum, get_segment_props());
+var proj = new Projection(centroid, p2, p3, get_point_props());
+var seg2 = new Segment(proj, centroid, get_dashed_segment_props());
+var right_angle = new MarkRightAngle(centroid, proj, p2, get_right_angle_props());
+
+var median_triangle = new Polygon([m1, m2, m3], addShow(get_shaded_polygon_props(), "3-10"));
+// createObjects([centroid]);
+// instance.addObjects([triangle]);
+var all_objs = [
+   triangle, 
+   lp1, lp2, lp3,
+   m1, m2, m3,
+   lm1, lm2, lm3,
+   median_triangle,
+   median1, median2, median3,
+   median_intersection,
+   g
+];
+
+instance.addObjects(all_objs); */
+
+</script>
+
+<textarea id="story" rows="10" cols="100">
+
+
+
+</textarea>
+<button onclick="renderText()">Update Text</button>
+
+<textarea id="json_export" rows="10" cols="100">
+{"text":"<span>Let <math>\\rm AB\\Gamma</math> be a triangle.</span> \n<span start=\"2\">The altitudes <math>\\rm BE</math> and <math>\\rm \\Gamma Z</math> intersect at <math>\\rm H</math>.</span> <span start=\"3\">We will show that also <math>\\rm AH</math> is perpendicular to <math>\\rm B\\Gamma</math>, i.e. an altitude of <math>\\rm AB\\Gamma</math>.</span>\n\n<ul>\n <li start=\"4\">The quadrilateral <math>\\rm BZE\\Gamma</math> is <a href=\"https://en.wikipedia.org/wiki/Cyclic_quadrilateral\">cyclic</a>, because <math>\\widehat{\\rm BZ\\Gamma} = \\widehat {\\rm \\Gamma EB} = 90^\\circ</math>. <span start=\"5\">So, also <math>\\widehat{\\rm ZEB} = \\widehat {\\rm Z\\Gamma B} = \\omega</math> (subtended by the same arc).</span></li>\n <li start=\"6\">The quadrilateral <math>\\rm AZHE</math> is cyclic because opposite angles <math>\\widehat{\\rm AEH}</math> and <math>\\widehat{\\rm AZH}</math> are <a href=\"https://en.wikipedia.org/wiki/Supplementary_angles\">supplementary</a> (<math>\\widehat{\\rm AEH} + \\widehat{\\rm AZH} = 90^\\circ + 90^\\circ = 180^\\circ</math>). <span start=\"7\">So, angles <math>\\widehat{\\rm ZAH}</math> and <math>\\widehat{\\rm ZEH} = \\omega</math> are equal.</span></li>\n <li start=\"8\">The angles <math>\\widehat{\\rm AHZ}</math> and <math>\\widehat{\\rm \\Delta H\\Gamma}</math> are equal as <a href=\"https://en.wikipedia.org/wiki/Angle#Vertical_and_adjacent_angle_pairs\">vertical angles</a>, i.e. <math>\\widehat{\\rm AHZ} = \\widehat{\\rm \\Delta H\\Gamma} = \\varphi</math>. <span start=\"9\">In the right triangle <math>\\rm AHZ</math>, we have that <math>\\varphi + \\omega = 90^\\circ</math>, therefore in the triangle <math>\\rm H\\Delta\\Gamma</math> it holds that <math>\\widehat {\\rm A\\Delta\\Gamma} = 90^\\circ</math>.</span></li>\n</ul>\n<span start=\"10\">We conclude that, ...</span>","time":8,"objs":[{"id":"shape_0","type":"CoordinateVal","deps":[],"props":{"val":240}},{"id":"shape_1","type":"CoordinateVal","deps":[],"props":{"val":40}},{"id":"shape_2","type":"Point","deps":["shape_0","shape_1"],"props":{"stroke_color":"black","size":"5","show":"1-10"}},{"id":"shape_3","type":"CoordinateVal","deps":[],"props":{"val":120}},{"id":"shape_4","type":"CoordinateVal","deps":[],"props":{"val":350}},{"id":"shape_5","type":"Point","deps":["shape_3","shape_4"],"props":{"stroke_color":"black","size":"5","show":"1-10"}},{"id":"shape_6","type":"CoordinateVal","deps":[],"props":{"val":540}},{"id":"shape_7","type":"CoordinateVal","deps":[],"props":{"val":350}},{"id":"shape_8","type":"Point","deps":["shape_6","shape_7"],"props":{"stroke_color":"black","size":"5","show":"1-10"}},{"id":"shape_9","type":"Polygon","deps":["shape_2","shape_5","shape_8"],"props":{"stroke_color":"#993300","fill_color":"white","line_width":"3","show":"1-10"}},{"id":"shape_10","type":"LabelPoint","deps":["shape_2"],"props":{"color":"black","text":"\\rm A","position":"above","offset_x":0,"offset_y":0,"offset":12,"show":"1-10"}},{"id":"shape_11","type":"LabelPoint","deps":["shape_5"],"props":{"color":"black","text":"\\rm B","position":"below left","offset_x":0,"offset_y":0,"offset":12,"show":"1-10"}},{"id":"shape_12","type":"LabelPoint","deps":["shape_8"],"props":{"color":"black","text":"\\Gamma","position":"below right","offset_x":0,"offset_y":0,"offset":12,"show":"1-10"}},{"id":"shape_13","type":"Projection","deps":["shape_8","shape_2","shape_5"],"props":{"stroke_color":"black","size":"4","show":"2-10"}},{"id":"shape_14","type":"LabelPoint","deps":["shape_13"],"props":{"color":"black","text":"\\rm Z","position":"above left","offset":"7","show":"2-10","offset_x":"0","offset_y":"0"}},{"id":"shape_15","type":"Segment","deps":["shape_8","shape_13"],"props":{"stroke_color":"black","line_width":"2","dasharray":"0","show":"2-10"}},{"id":"shape_16","type":"MarkRightAngle","deps":["shape_8","shape_13","shape_5"],"props":{"stroke_color":"green","fill_color":"#b8d9b0","line_width":"2","ell":"10","show":"2-10"}},{"id":"shape_17","type":"Projection","deps":["shape_5","shape_2","shape_8"],"props":{"stroke_color":"black","size":"4","show":"2-10"}},{"id":"shape_18","type":"Segment","deps":["shape_5","shape_17"],"props":{"stroke_color":"black","line_width":"2","dasharray":"0","show":"2-10"}},{"id":"shape_19","type":"MarkRightAngle","deps":["shape_5","shape_17","shape_8"],"props":{"stroke_color":"green","fill_color":"#b8d9b0","line_width":"2","ell":"10","show":"2-10"}},{"id":"shape_20","type":"LabelPoint","deps":["shape_17"],"props":{"color":"black","text":"\\rm E","position":"above right","offset":"7","show":"2-10","offset_x":"0","offset_y":"0"}},{"id":"shape_21","type":"LineLineIntersection","deps":["shape_15","shape_18"],"props":{"stroke_color":"black","size":"4","show":"2-10"}},{"id":"shape_22","type":"LabelPoint","deps":["shape_21"],"props":{"color":"black","text":"\\rm H","position":"right","offset":"10","show":"2-10","offset_x":"0","offset_y":"-4"}},{"id":"shape_23","type":"Projection","deps":["shape_2","shape_5","shape_8"],"props":{"stroke_color":"black","size":"4","show":"3-10"}},{"id":"shape_24","type":"Segment","deps":["shape_2","shape_23"],"props":{"stroke_color":"black","line_width":"2","dasharray":"0","show":"3-10"}},{"id":"shape_25","type":"MarkRightAngle","deps":["shape_2","shape_23","shape_8"],"props":{"stroke_color":"green","fill_color":"#b8d9b0","line_width":"2","ell":"10","show":"9-10"}},{"id":"shape_26","type":"LabelPoint","deps":["shape_23"],"props":{"color":"black","text":"\\rm \\Delta","position":"below","offset":"12","show":"3-10","offset_x":"0","offset_y":"0"}},{"id":"shape_27","type":"Polygon","deps":["shape_5","shape_13","shape_17","shape_8"],"props":{"stroke_color":"none","fill_color":"#9933001a","line_width":"3","show":"4-5"}},{"id":"shape_28","type":"Circumcenter","deps":["shape_5","shape_13","shape_17"],"props":{"stroke_color":"red","size":"6","show":"none"}},{"id":"shape_29","type":"CircleThroughPoint","deps":["shape_28","shape_17"],"props":{"stroke_color":"black","fill_color":"none","line_width":"2","show":"4-10","dasharray":"3"}},{"id":"shape_30","type":"Segment","deps":["shape_13","shape_17"],"props":{"stroke_color":"black","line_width":"2","dasharray":"3","show":"4-10"}},{"id":"shape_31","type":"MarkAngle","deps":["shape_13","shape_17","shape_5"],"props":{"stroke_color":"green","fill_color":"#b8d9b0","line_width":"2","ell":"30","show":"5-10"}},{"id":"shape_32","type":"MarkAngle","deps":["shape_13","shape_8","shape_5"],"props":{"stroke_color":"green","fill_color":"#b8d9b0","line_width":"2","ell":"30","show":"5-10"}},{"id":"shape_33","type":"LabelAngle","deps":["shape_13","shape_17","shape_5"],"props":{"color":"black","text":"\\omega","ell":"45","show":"5-10"}},{"id":"shape_34","type":"LabelAngle","deps":["shape_13","shape_8","shape_5"],"props":{"color":"black","text":"\\omega","ell":"45","show":"5-10"}},{"id":"shape_35","type":"Circumcenter","deps":["shape_13","shape_21","shape_2"],"props":{"stroke_color":"red","size":"6","show":"none"}},{"id":"shape_36","type":"CircleThroughPoint","deps":["shape_35","shape_13"],"props":{"stroke_color":"black","fill_color":"none","line_width":"2","dasharray":"3","show":"6-10"}},{"id":"shape_37","type":"Polygon","deps":["shape_13","shape_21","shape_17","shape_2"],"props":{"stroke_color":"none","fill_color":"#9933001a","line_width":"3","show":"6-7"}},{"id":"shape_38","type":"MarkAngle","deps":["shape_13","shape_2","shape_21"],"props":{"stroke_color":"green","fill_color":"#b8d9b0","line_width":"2","ell":"30","show":"7-10"}},{"id":"shape_39","type":"LabelAngle","deps":["shape_13","shape_2","shape_21"],"props":{"color":"black","text":"\\omega","ell":"45","show":"7-10"}},{"id":"shape_40","type":"MarkAngle","deps":["shape_2","shape_21","shape_13"],"props":{"stroke_color":"#003c79","fill_color":"#bbccdd","line_width":"2","ell":"20","show":"8-10"}},{"id":"shape_41","type":"MarkAngle","deps":["shape_23","shape_21","shape_8"],"props":{"stroke_color":"#003c79","fill_color":"#bbccdd","line_width":"2","ell":"20","show":"8-10"}},{"id":"shape_42","type":"LabelAngle","deps":["shape_2","shape_21","shape_13"],"props":{"color":"black","text":"\\varphi","ell":"30","show":"8-10"}},{"id":"shape_43","type":"LabelAngle","deps":["shape_23","shape_21","shape_8"],"props":{"color":"black","text":"\\varphi","ell":"30","show":"8-10"}},{"id":"shape_44","type":"Polygon","deps":["shape_2","shape_13","shape_21"],"props":{"stroke_color":"none","fill_color":"#9933001a","line_width":"3","show":"9-9"}}]}
+</textarea>
+<button onclick="exportJson()">Export JSON</button>
+<button onclick="importJson()">Import JSON</button>
+
+<textarea id="wiki_export" rows="10" cols="100">
+
+</textarea>
+<button onclick="exportAsWiki()">Export as Wiki</button>
+
+<script> 
+importJson();
+</script>
+
+
+<canvas width="800px" height="500px" style="visibility: hidden">
+
+</canvas>
+<img id='my_img' style="visibility: hidden"/>
+</body>
+</html>

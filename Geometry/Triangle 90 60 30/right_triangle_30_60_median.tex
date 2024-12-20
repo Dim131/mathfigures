@@ -15,28 +15,28 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,0/2.4/B,4.8/0/C}
+\tkzDefPoints{0/0/A,0/2.4/C,4.8/0/B}
 
 \tkzDefMidPoint(B,C) \tkzGetPoint{M}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzMarkRightAngle[line width=1pt, size=.3,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,A,C)
-\tkzFillAngles[fill=AngleClr,size=.45,fill opacity=0.1](A,B,C B,C,A)
-\tkzMarkAngles[line width=1pt,size=.45,color=AngleClr](A,B,C B,C,A)
+\tkzMarkRightAngle[line width=1pt, size=.3,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,A,C)
+\tkzFillAngles[fill=AngleClr,size=.45,fill opacity=0.2](C,B,A A,C,B)
+\tkzMarkAngles[line width=1pt,size=.45,color=AngleClr](C,B,A A,C,B)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,M)
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,M)
-\tkzLabelPoint[left](A){$\rm A$}
-\tkzLabelPoint[left](B){$\rm B$}
-\tkzLabelPoint[right](C){$\rm \Gamma$}
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above left](C){$\rm \Gamma$}
 \tkzLabelPoint[above right](M){$\rm M$}
 
-\tkzMarkSegments[mark=s||,size=3](A,B A,M B,M M,C)
+\tkzMarkSegments[mark=s||,size=3](A,C A,M B,M M,C)
 
-\tkzLabelAngle[pos=0.75](A,B,C){\scalebox{0.75}{$60^\circ$}}
-\tkzLabelAngle[pos=0.95](B,C,A){\scalebox{0.75}{$30^\circ$}}
+\tkzLabelAngle[pos=0.75](A,C,B){\scalebox{0.75}{$60^\circ$}}
+\tkzLabelAngle[pos=0.95](C,B,A){\scalebox{0.75}{$30^\circ$}}
 
 \end{tikzpicture}
 
