@@ -1,0 +1,47 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{KnownLabelClr}{RGB}{65, 143, 20}
+\definecolor{UnknownLabelClr}{RGB}{176, 60, 37}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,6.25/0/B,1.953125/2.34375/C}
+
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzDefPointBy[projection=onto A--B](C)\tkzGetPoint{H}
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](C,H,B)
+
+\tkzDrawSegments[line width=0.5pt,color=black](C,H)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=3](A,B,C)
+\tkzLabelPoint[below left](A){$\rm B$}
+\tkzLabelPoint[below right](B){$\rm \Gamma$}
+\tkzLabelPoint[above](C){$\rm A$}
+
+\tkzLabelSegment[above right,KnownLabelClr](B,C){$\beta$}
+\tkzLabelSegment[above left,KnownLabelClr](A,C){$\gamma$}
+\tkzLabelSegment[KnownLabelClr](A,B){$\alpha$}
+
+\tkzLabelSegment[right,scale=0.6](C,H){$\beta \sin \hat{\rm \Gamma}$}
+
+\tkzLabelSegment[above,scale=0.6](B,H){$\beta \cos \hat{\rm \Gamma}$}
+\tkzLabelSegment[above,scale=0.6](A,H){$\alpha - \beta \cos \hat{\rm \Gamma}$}
+% \tkzMarkSegments[mark=s||,size=2.5](O,A O,B O,C)
+
+\end{tikzpicture}
+
+\end{document}
