@@ -18,21 +18,23 @@
 
 \tkzDefPoints{0/0/B,2.25/3/A,6.25/0/C,2.25/0/H}
 
+\tkzLabelSegment[right](A,H){$\upsilon_{\rm \alpha}$}
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzMarkRightAngles[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,A,C)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A A,C,B)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B)
+
+\tkzMarkRightAngles[line width=1pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](A,H,C)
 \tkzDrawSegment[color=black](H,A)
-\tkzMarkRightAngles[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,A,C A,H,C)
-
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A A,C,B)
-\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,H)
 \tkzLabelPoint[above](A){$\rm A$}
 \tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below](H){$\rm A'$}
-\tkzLabelSegment[right](A,H){$\upsilon_{\rm A}$}
+\tkzLabelPoint[below](H){$\rm \Delta$}
 
 \end{tikzpicture}
 \end{document}

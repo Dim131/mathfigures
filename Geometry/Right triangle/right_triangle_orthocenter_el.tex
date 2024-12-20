@@ -16,29 +16,31 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,2.2/0/B,0/3.1/C}
+\tkzDefPoints{0/0/B,4.05/0/C}
+\tkzDefPoint(60:2.025){A}
 
 \tkzDefTriangleCenter[ortho](A,B,C) \tkzGetPoint{H}
 
 \tkzDefPointBy[projection=onto B--C](H)\tkzGetPoint{HA}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](H,A)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0 and 0.3](B,A C,A A,HA)
 
-\tkzMarkRightAngles[line width=1pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](C,A,B H,HA,C)
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HA,C)
+\tkzMarkRightAngles[line width=0.75pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.1](C,A,B)
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](H,A)
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 
 
 
 \tkzDrawPoints[size=3](A,B,C,H)
-\tkzLabelPoint[below left](A){$\rm A$}
-\tkzLabelPoint[below right](B){$\rm B$}
-\tkzLabelPoint[above left](C){$\rm \Gamma$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 
-\tkzLabelPoint[above right](H){$\rm H$}
+\tkzLabelPoint[scale=0.75,left](H){$\rm H$}
 
 \end{tikzpicture}
 
