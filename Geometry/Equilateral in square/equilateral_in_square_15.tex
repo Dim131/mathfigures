@@ -25,7 +25,7 @@
 \tkzInterLL(A,B)(D,y) \tkzGetPoint{E}
 \tkzInterLL(B,C)(D,x) \tkzGetPoint{Z}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 \tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](D,E,Z)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
@@ -33,14 +33,14 @@
 
 \tkzDrawPoints[size=3](A,B,C,D,E,Z)
 
-\tkzFillAngles[fill=AngleClr,size=1.25,fill opacity=0.1](C,D,Z E,D,A)
+\tkzFillAngles[fill=AngleClr,size=1.25,fill opacity=0.2](C,D,Z E,D,A)
 \tkzMarkAngles[line width=1pt,size=1.25,color=AngleClr](C,D,Z E,D,A)
 \tkzLabelAngles[scale=0.6,pos=2.6](C,D,Z E,D,A){$15^\circ$}
 
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[above right](B){$\rm \Delta$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
+\tkzLabelPoint[below left](D){$\rm B$}
 \tkzLabelPoint[above](E){$\rm E$}
 \tkzLabelPoint[right](Z){$\rm Z$}
 
