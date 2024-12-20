@@ -23,9 +23,9 @@
 </clipPath>
 </defs>
 <g id="surface1">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(59.999084%,19.999695%,0%);fill-opacity:0.1;" d="M 43.957031 13.945313 L 14.195313 77.722656 L 120.492188 77.722656 Z M 43.957031 13.945313 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 43.960938 13.945313 L 40.363281 21.652344 C 42.0625 22.445313 43.980469 22.652344 45.8125 22.246094 Z M 43.960938 13.945313 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 43.960938 13.945313 L 45.808594 22.246094 C 47.640625 21.835938 49.289063 20.832031 50.492188 19.390625 Z M 43.960938 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 43.957031 13.945313 L 14.195313 77.722656 L 120.492188 77.722656 Z M 43.957031 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 43.960938 13.945313 L 40.363281 21.652344 C 42.0625 22.445313 43.980469 22.652344 45.8125 22.246094 Z M 43.960938 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 43.960938 13.945313 L 45.808594 22.246094 C 47.640625 21.835938 49.289063 20.832031 50.492188 19.390625 Z M 43.960938 13.945313 "/>
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 26.167281 56.070656 C 27.8665 55.277687 29.784469 55.070656 31.6165 55.476906 " transform="matrix(1,0,0,-1,14.196,77.723)"/>
 <path style="fill:none;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 29.163375 58.293312 L 28.518844 52.351906 " transform="matrix(1,0,0,-1,14.196,77.723)"/>
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 31.612594 55.476906 C 33.444625 55.887062 35.093063 56.890969 36.296188 58.332375 " transform="matrix(1,0,0,-1,14.196,77.723)"/>

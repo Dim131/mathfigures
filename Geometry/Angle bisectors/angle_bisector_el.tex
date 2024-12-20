@@ -21,9 +21,9 @@
 \tkzDefLine[bisector](B,A,C) \tkzGetPoint{x}
 \tkzInterLL(A,x)(B,C) \tkzGetPoint{D}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](B,A,D D,A,C)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](B,A,D D,A,C)
 \tkzMarkAngles[line width=1pt,size=.4,color=AngleClr,mark=|,mksize=3](B,A,D D,A,C)
 
 \tkzDrawSegment[line width=1pt](A,D)
