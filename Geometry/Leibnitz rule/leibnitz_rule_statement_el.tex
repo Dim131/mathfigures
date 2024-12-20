@@ -15,19 +15,19 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,6/0/B,1.05/3.75/C,4.275/4.5/D}
+\tkzDefPoints{0/0/B,6/0/C,1.05/3.75/A,4.275/4.5/D}
 
 \tkzDefTriangleCenter[centroid](A,B,C) \tkzGetPoint{G}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](D,A D,B D,C D,G)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,D,G)
-\tkzLabelPoint[below left](A){$\rm \Gamma$}
-\tkzLabelPoint[below right](B){$\rm B$}
-\tkzLabelPoint[above](C){$\rm A$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[right](D){$\rm M$}
 \tkzLabelPoint[below](G){$\rm G$}
 
