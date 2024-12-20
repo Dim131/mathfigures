@@ -23,7 +23,8 @@
 
 \tkzDrawCircle[color=black,line width=0.5pt,fill=white](O,X)
 \tkzDrawSegments[line width=0.5pt,color=black](O,A O,B)
-\tkzDrawSegments[line width=0.7pt,color=red](A,B)
+\tkzDrawArc[blue,line width=1pt](O,A)(B)
+\tkzDrawArc[red,line width=1pt](O,B)(A)
 
 \tkzDrawPoints[size=3](A,B,O)
 \tkzLabelPoint[above](A){$\rm A$}

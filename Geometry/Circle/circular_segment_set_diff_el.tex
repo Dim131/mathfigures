@@ -16,19 +16,16 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/O,2/0/X}
+\node at (0,0) {\includegraphics{circular_segment_el.pdf}};
 
-\tkzDefPoint(30:2){B}
-\tkzDefPoint(70:2){A}
+\node[scale=4] at (3,-0.2) {$\mathbf{=}$};
 
-\tkzDrawCircle[color=black,line width=0.5pt,fill=white](O,X)
-\tkzDrawSegments[line width=0.5pt,color=black](O,A O,B)
-\tkzDrawSegments[line width=0.7pt,color=red](A,B)
+\node at (6,0) {\includegraphics{circular_segment_set_diff_1_el.pdf}};
 
-\tkzDrawPoints[size=3](A,B,O)
-\tkzLabelPoint[above](A){$\rm A$}
-\tkzLabelPoint[right](B){$\rm B$}
-\tkzLabelPoint[below](O){$\rm O$}
+\node[scale=4] at (9,-0.2) {$\mathbf{-}$};
+
+\node at (12,0) {\includegraphics{circular_segment_set_diff_2_el.pdf}};
 
 \end{tikzpicture}
+
 \end{document}

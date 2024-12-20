@@ -19,16 +19,23 @@
 \tkzDefPoints{0/0/O,2/0/X}
 
 \tkzDefPoint(30:2){B}
-\tkzDefPoint(70:2){A}
+\tkzDefPoint(130:2){A}
 
-\tkzDrawCircle[color=black,line width=0.5pt,fill=white](O,X)
-\tkzDrawSegments[line width=0.5pt,color=black](O,A O,B)
-\tkzDrawSegments[line width=0.7pt,color=red](A,B)
+\tkzDrawCircle[fill=white](O,X)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](B,O,A)
+
+\tkzDrawSegments[line width=1.25pt,color=black](O,A O,B A,B)
+
+\tkzDrawCircle[color=black,line width=0.5pt](O,X)
+
+\tkzFillAngle[fill=AngleClr,size=.55,fill opacity=0.1](B,O,A)
+\tkzMarkAngle[line width=1pt,size=.55,color=AngleClr](B,O,A)
 
 \tkzDrawPoints[size=3](A,B,O)
-\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[above left](A){$\rm A$}
 \tkzLabelPoint[right](B){$\rm B$}
 \tkzLabelPoint[below](O){$\rm O$}
 
 \end{tikzpicture}
+
 \end{document}

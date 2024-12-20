@@ -21,13 +21,18 @@
 \tkzDefPoint(30:2){B}
 \tkzDefPoint(70:2){A}
 
-\tkzDrawCircle[color=black,line width=0.5pt,fill=white](O,X)
-\tkzDrawSegments[line width=0.5pt,color=black](O,A O,B)
-\tkzDrawSegments[line width=0.7pt,color=red](A,B)
+\tkzDefPoint(-20:2){C}
+\tkzDefPoint(160:2){D}
 
-\tkzDrawPoints[size=3](A,B,O)
+\tkzDrawCircle[color=black,line width=0.5pt,fill=white](O,X)
+\tkzDrawSegments[line width=0.7pt,color=red](A,B)
+\tkzDrawSegments[line width=0.7pt,color=blue](C,D)
+
+\tkzDrawPoints[size=3](A,B,C,D,O)
 \tkzLabelPoint[above](A){$\rm A$}
 \tkzLabelPoint[right](B){$\rm B$}
+\tkzLabelPoint[right](C){$\rm \Gamma$}
+\tkzLabelPoint[left](D){$\rm \Delta$}
 \tkzLabelPoint[below](O){$\rm O$}
 
 \end{tikzpicture}

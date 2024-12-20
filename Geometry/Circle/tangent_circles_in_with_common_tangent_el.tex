@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O1,2.5/0/O2,4/0/A,4/3/B,4/-3/C}
+
+
+\tkzDrawCircle[line width=1.0pt,fill=white](O1,A)
+\tkzDrawCircle[line width=1.0pt,fill=white](O2,A)
+
+\tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,A,O1)
+
+\tkzDrawSegments[line width=1pt,color=black](O1,A)
+
+\tkzDrawCircle[line width=1.0pt,color=black](O1,A)
+\tkzDrawCircle[line width=1.0pt,color=black](O2,A)
+
+\tkzDrawSegments[line width=1pt,color=black](B,C)
+
+
+\tkzDrawPoints[size=3](O1,O2,A)
+\tkzLabelPoint[below](O1){$\rm O_1$}
+\tkzLabelPoint[below](O2){$\rm O_2$}
+\tkzLabelPoint[right](A){$\rm A$}
+
+\end{tikzpicture}
+\end{document}
