@@ -27,11 +27,11 @@
 \tkzDefPointBy[projection=onto A--B](O)\tkzGetPoint{K}
 \tkzDefPointBy[projection=onto C--D](O)\tkzGetPoint{L}
 
+\tkzDrawCircle[draw=black,line width=0.5pt,fill=white](O,X)
+
 \tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](O,K,A O,L,C)
 
 \tkzDrawSegments[line width=0.75pt,color=black](O,A O,C A,B C,D O,K O,L)
-
-\tkzDrawCircle[color=black,line width=0.5pt](O,X)
 
 \tkzDrawPoints[size=3](A,B,O,C,D)
 \tkzDrawPoints[size=2](K,L)

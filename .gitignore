@@ -1,4 +1,6 @@
 constructions/
+interactive proofs/
+Geometry/compile.py
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
