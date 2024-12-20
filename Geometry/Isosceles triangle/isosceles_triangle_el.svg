@@ -29,10 +29,10 @@
 </clipPath>
 </defs>
 <g id="surface1">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(59.999084%,19.999695%,0%);fill-opacity:0.1;" d="M 56.714844 13.945313 L 14.195313 120.238281 L 99.230469 120.238281 Z M 56.714844 13.945313 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 14.195313 120.238281 L 22.699219 120.238281 C 22.699219 116.761719 20.582031 113.636719 17.355469 112.34375 Z M 14.195313 120.238281 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 99.234375 120.238281 L 96.074219 112.34375 C 92.847656 113.636719 90.726563 116.761719 90.726563 120.238281 Z M 99.234375 120.238281 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.1;" d="M 56.714844 13.941406 L 53.554688 21.839844 C 55.582031 22.652344 57.84375 22.652344 59.871094 21.839844 Z M 56.714844 13.941406 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 56.714844 13.945313 L 14.195313 120.238281 L 99.230469 120.238281 Z M 56.714844 13.945313 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 14.195313 120.238281 L 22.699219 120.238281 C 22.699219 116.761719 20.582031 113.636719 17.355469 112.34375 Z M 14.195313 120.238281 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 99.234375 120.238281 L 96.074219 112.34375 C 92.847656 113.636719 90.726563 116.761719 90.726563 120.238281 Z M 99.234375 120.238281 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,39.213562%,0%);fill-opacity:0.2;" d="M 56.714844 13.941406 L 53.554688 21.839844 C 55.582031 22.652344 57.84375 22.652344 59.871094 21.839844 Z M 56.714844 13.941406 "/>
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,39.213562%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 8.503219 0.00171875 C 8.503219 3.478281 6.386031 6.603281 3.159469 7.89625 " transform="matrix(1,0,0,-1,14.196,120.24)"/>
 </g>
