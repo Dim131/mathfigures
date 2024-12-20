@@ -22,16 +22,16 @@
 \FPeval{\D}{5 * \Scale}
 \FPeval{\Rr}{(\By + \Cx - \D) / 2}
 
-\tkzDefPoints{0/0/A,0/\By/B,\Cx/0/C,\Rr/\Rr/R,0/\Rr/Rx,\Rr/0/Ry}
+\tkzDefPoints{0/0/A,0/\By/C,\Cx/0/B,\Rr/\Rr/R,0/\Rr/Rx,\Rr/0/Ry}
 
 \tkzDefPointBy[projection=onto B--C](R)\tkzGetPoint{H}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 \tkzMarkRightAngle[line width=1pt, size=.3,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,A,C)
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](A,B,C B,C,A)
-\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](A,B,C B,C,A)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A A,C,B)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B)
 
-\tkzMarkRightAngles[line width=0.6pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](R,H,B A,Rx,R C,Ry,R)
+\tkzMarkRightAngles[line width=0.6pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](R,H,C A,Rx,R B,Ry,R)
 
 \tkzDrawCircle[color=black,line width=1pt](R,Rx)
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](R,Rx R,Ry R,H)
@@ -40,9 +40,13 @@
 
 \tkzDrawPoints[size=3](A,B,C,R)
 \tkzLabelPoint[below left](A){$\rm A$}
-\tkzLabelPoint[above left](B){$\rm B$}
-\tkzLabelPoint[below right](C){$\rm \Gamma$};
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above left](C){$\rm \Gamma$};
 \tkzLabelPoint[below right](R){$\rm I$}
+\tkzLabelPoint[left](Rx){$\rm \Delta$}
+\tkzLabelPoint[below](Ry){$\rm Z$}
+\tkzLabelPoint[above right](H){$\rm E$}
+
 \tkzLabelSegment[above](R,Rx){$\rho$}
 \tkzLabelSegment[left](R,Ry){$\rho$}
 \tkzLabelSegment[above](R,H){$\rho$}
