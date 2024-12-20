@@ -23,7 +23,7 @@
 \tkzDefMidPoint(A,C) \tkzGetPoint{MB}
 \tkzDefMidPoint(A,B) \tkzGetPoint{MC}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzInterLL(B,MB)(C,MC)
 \tkzGetPoint{G}
@@ -42,13 +42,13 @@
 
 
 \tkzLabelPoint[above](A){$\rm A$}
-\tkzLabelPoint[right](MB){$\rm M_B$}
-\tkzLabelPoint[left](MC){$\rm M_\Gamma$}
+\tkzLabelPoint[scale=0.85,right](MB){$\rm M_B$}
+\tkzLabelPoint[scale=0.85,left](MC){$\rm M_\Gamma$}
 \tkzLabelPoint[below](G){$\rm G'$}
-\tkzLabelPoint[below](B){$\rm B$}
-\tkzLabelPoint[below](C){$\rm \Gamma$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[below](A'){$\rm A'$}
-\tkzLabelPoint[below left](M){$\rm M$}
+\tkzLabelPoint[scale=0.85,below left](M){$\rm M'$}
 
 \tkzMarkSegments[mark=s|,size=2](A,MC MC,B)
 \tkzMarkSegments[mark=s||,size=2](A,MB MB,C)
