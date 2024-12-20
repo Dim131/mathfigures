@@ -19,7 +19,7 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\def\Scale{2.5}
+\def\Scale{3}
 \def\La{1 * \Scale}
 \def\Lb{2 * \Scale}
 \def\Lc{\fpeval{sqrt(\La * \La + \Lb * \Lb)}}
@@ -34,7 +34,7 @@
 
 \tkzDefPointsBy[symmetry=center H](B){}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B',C)
+\tkzFillPolygon[fill=white](A,B',C)
 \tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](C,B',A)
 \tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](C,B',A)
 
@@ -56,7 +56,7 @@
 \tkzLabelPoint[above](A){$\rm A$}
 \tkzLabelPoint[below left](B){$\rm B'$}
 \tkzLabelPoint[below](B'){$\rm B$}
-\tkzLabelPoint[below](H){$\rm A'$}
+\tkzLabelPoint[below](H){$\rm \Delta$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
 
 \end{tikzpicture}

@@ -19,7 +19,7 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\def\Scale{2.5}
+\def\Scale{3}
 \def\La{1 * \Scale}
 \def\Lb{2 * \Scale}
 \def\Lc{\fpeval{sqrt(\La * \La + \Lb * \Lb)}}
@@ -34,21 +34,21 @@
 
 \tkzDefPointsBy[symmetry=center H](B){}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B',C)
+\tkzFillPolygon[fill=white](A,B',C)
 
 \tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B',A A,C,B B',A,C)
 \tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B',A A,C,B B',A,C)
-\tkzMarkRightAngle[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,H,B')
+\tkzMarkRightAngle[line width=0.75pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,H,B')
 
 \tkzDrawPolygon[color=ShapeClr](A,B',C)
 
-\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,H H,B')
+\tkzDrawSegments[line width=0.75pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,H H,B')
 
 \tkzDrawPoints[size=3](A,C,B',H)
 
 \tkzLabelPoint[above left](A){$\rm A$}
 \tkzLabelPoint[below](B'){$\rm B$}
-\tkzLabelPoint[below](H){$\rm A'$}
+\tkzLabelPoint[below](H){$\rm \Delta$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
 
 \end{tikzpicture}
