@@ -30,6 +30,8 @@
 \tkzDefTriangleCenter[circum](A,E,Z) \tkzGetPoint{O1}
 \tkzDefTriangleCenter[circum](B,E,Z) \tkzGetPoint{O2}
 
+\tkzFillPolygon[fill=white](A,B,C)
+
 \tkzDrawCircles[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O1,A O2,B)
 
 \tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,D,B H,E,C H,Z,A B,Z,H)

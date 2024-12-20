@@ -16,9 +16,8 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,2.2/0/B}
-
-\tkzDefPoint(-115:3.1){C}
+\tkzDefPoints{0/0/B,4.05/0/C}
+\tkzDefPoint(40:2){A}
 
 \tkzDefTriangleCenter[ortho](A,B,C)
 \tkzGetPoint{H}
@@ -27,25 +26,25 @@
 \tkzDefPointBy[projection=onto A--C](H)\tkzGetPoint{HB}
 \tkzDefPointBy[projection=onto A--B](H)\tkzGetPoint{HC}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](A,B,C)
-\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](A,B,C)
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](B,A,C)
+\tkzMarkAngle[line width=1pt,size=.4,color=AngleClr](B,A,C)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HA,B H,HB,C H,HC,A)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
-
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](H,HA H,B H,C)
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.85 and 0](A,B)
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.55 and 0](A,C)
 
-\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0 and 0.45](C,A)
-\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.65 and 0](A,B)
 
-\tkzMarkRightAngles[line width=1pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](H,HA,B H,HB,C H,HC,A)
 
 \tkzDrawPoints[size=3](A,B,C,H)
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[right](B){$\rm B$}
-\tkzLabelPoint[below left](C){$\rm \Gamma$}
-\tkzLabelPoint[above left](H){$\rm H$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[above](H){$\rm H$}
 
 \tkzDrawSegments[line width=0.75pt](B,A A,C)
 

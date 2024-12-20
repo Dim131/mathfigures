@@ -19,6 +19,7 @@
 
 \tkzDefPoints{0/0/L,0.8/-3.7/M,5/0/K}
 
+
 \tkzDefMidPoint(M,L) \tkzGetPoint{B}
 \tkzDefMidPoint(L,K) \tkzGetPoint{A}
 \tkzDefMidPoint(K,M) \tkzGetPoint{C}
@@ -28,6 +29,8 @@
 \tkzDefPointBy[projection=onto C--B](H)\tkzGetPoint{HA}
 \tkzDefPointBy[projection=onto A--C](H)\tkzGetPoint{HB}
 \tkzDefPointBy[projection=onto A--B](H)\tkzGetPoint{HC}
+
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.15 and 0.15](L,K)
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.15 and 0.15](K,M)

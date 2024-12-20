@@ -47,6 +47,7 @@
 </clipPath>
 </defs>
 <g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 37.582031 13.945313 L 14.195313 84.101563 L 120.492188 84.101563 Z M 37.582031 13.945313 "/>
 <path style="fill:none;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-dasharray:0.99628,1.74348;stroke-miterlimit:10;" d="M 44.643844 48.890063 C 44.643844 60.636156 35.124313 70.155688 23.378219 70.155688 C 11.636031 70.155688 2.112594 60.636156 2.112594 48.890063 C 2.112594 37.143969 11.636031 27.624438 23.378219 27.624438 C 35.124313 27.624438 44.643844 37.143969 44.643844 48.890063 Z M 44.643844 48.890063 " transform="matrix(1,0,0,-1,14.196,84.101)"/>
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-dasharray:0.99628,1.74348;stroke-miterlimit:10;" d="M 106.280563 -0.0005625 C 106.280563 29.347094 82.487594 53.140063 53.139938 53.140063 C 23.792281 53.140063 -0.0006875 29.347094 -0.0006875 -0.0005625 C -0.0006875 -29.348219 23.792281 -53.141187 53.139938 -53.141187 C 82.487594 -53.141187 106.280563 -29.348219 106.280563 -0.0005625 Z M 106.280563 -0.0005625 " transform="matrix(1,0,0,-1,14.196,84.101)"/>
