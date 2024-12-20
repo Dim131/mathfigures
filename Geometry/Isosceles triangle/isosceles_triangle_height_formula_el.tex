@@ -1,0 +1,42 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,2/5/A,4/0/C,2/0/M}
+
+
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,M)
+
+\tkzMarkRightAngle[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.2](A,M,B)
+
+\tkzDrawSegment[line width=1pt,color=black](A,M)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=3](A,B,C,M)
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[below](M){$\rm H$}
+
+\tkzLabelSegment[below](B,M){$\frac{\alpha}{2}$}  
+\tkzLabelSegment[below](C,M){$\frac{\alpha}{2}$}
+
+\tkzLabelSegment[left](A,B){$\beta$}  
+\tkzLabelSegment[right](A,C){$\beta$}  
+
+\end{tikzpicture}
+\end{document}
