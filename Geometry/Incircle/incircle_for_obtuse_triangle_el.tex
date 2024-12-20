@@ -15,16 +15,17 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,7.5/0/B,1.3125/2.15625/C}
+% \tkzDefPoints{0/0/A,7.5/0/B,1.3125/2.15625/C}
+\tkzDefPoints{0/0/B,7.5/0/C,1.3125/1.96875/A}
 
 \tkzInCenter(A,B,C)\tkzGetPoint{I}
 \tkzDefPointBy[projection=onto A--B](I)\tkzGetPoint{IC}
 \tkzDefPointBy[projection=onto B--C](I)\tkzGetPoint{IA}
 \tkzDefPointBy[projection=onto A--C](I)\tkzGetPoint{IB}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzMarkRightAngles[line width=0.8pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](I,IC,A I,IB,C I,IA,B)
+\tkzMarkRightAngles[line width=0.8pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](I,IC,A I,IB,C I,IA,B)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](I,IA I,IB I,IC)
 
@@ -35,14 +36,14 @@
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,I)
-\tkzLabelPoint[below left](A){$\rm A$}
-\tkzLabelPoint[below right](B){$\rm B$}
-\tkzLabelPoint[above](C){$\rm \Gamma$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[below right](I){$\rm I$}
 
 \tkzLabelSegment[right,scale=0.5,pos=0.5](A,I){$\delta_\alpha$}
-\tkzLabelSegment[below=-3pt,scale=0.5](B,I){$\delta_\beta$}
-\tkzLabelSegment[right=-2pt,scale=0.5,pos=0.4](C,I){$\delta_\gamma$}
+\tkzLabelSegment[left](B,I){\scalebox{0.5}{$\delta_\beta$}}
+\tkzLabelSegment[above=-0.1cm](C,I){\scalebox{0.5}{$\delta_\gamma$}}
 
 \end{tikzpicture}
 
