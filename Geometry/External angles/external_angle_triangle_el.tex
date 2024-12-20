@@ -30,25 +30,25 @@
 \tkzDefPointOnLine[pos=-0.2](C,A)\tkzGetPoint{C2}
 
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A)
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A)
 \tkzMarkAngle[line width=0.8pt,size=.4,color=AngleClr](C,B,A)
 
-\tkzFillAngle[fill=SecondAngleClr,size=.4,fill opacity=0.1](B,A,C)
+\tkzFillAngle[fill=SecondAngleClr,size=.4,fill opacity=0.2](B,A,C)
 \tkzMarkAngle[line width=0.8pt,size=.4,color=SecondAngleClr](B,A,C)
 
-\tkzFillAngle[fill=SecondAngleClr,size=.4,fill opacity=0.1](x,C,A)
+\tkzFillAngle[fill=SecondAngleClr,size=.4,fill opacity=0.2](x,C,A)
 \tkzMarkAngle[line width=0.8pt,size=.4,color=SecondAngleClr](x,C,A)
 
 \tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](B1,C,x)
 \tkzMarkAngle[line width=0.8pt,size=.4,color=AngleClr](B1,C,x)
 
-\tkzLabelAngle[pos=0.65](C,B,A){\scalebox{0.75}{\textcolor{AngleClr}{$\beta$}}}
-\tkzLabelAngle[pos=0.65](B,A,C){\scalebox{0.75}{\textcolor{SecondAngleClr}{$\gamma$}}}
+\tkzLabelAngle[pos=0.65](C,B,A){\scalebox{0.75}{\textcolor{AngleClr}{$\gamma$}}}
+\tkzLabelAngle[pos=0.65](B,A,C){\scalebox{0.75}{\textcolor{SecondAngleClr}{$\beta$}}}
 
-\tkzLabelAngle[pos=0.65](B1,C,x){\scalebox{0.75}{\textcolor{AngleClr}{$\beta$}}}
-\tkzLabelAngle[pos=0.65](x,C,A){\scalebox{0.75}{\textcolor{SecondAngleClr}{$\gamma$}}}
+\tkzLabelAngle[pos=0.65](B1,C,x){\scalebox{0.75}{\textcolor{AngleClr}{$\gamma$}}}
+\tkzLabelAngle[pos=0.65](x,C,A){\scalebox{0.75}{\textcolor{SecondAngleClr}{$\beta$}}}
 
 
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0 and 0.3](B,C)
@@ -57,8 +57,8 @@
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 
 \tkzDrawPoints[size=3](A,B,C)
-\tkzLabelPoint[above](A){$\rm \Gamma$}
-\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[above](A){$\rm B$}
+\tkzLabelPoint[below left](B){$\rm \Gamma$}
 \tkzLabelPoint[below right](C){$\rm A$}
 
 
