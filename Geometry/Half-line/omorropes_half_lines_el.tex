@@ -1,0 +1,34 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O,5/0/x,-2/-2/O',3/-2/x'}
+
+\tkzDrawSegments[line width=1pt](O,x O',x')
+\tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=1.5cm and 1.5cm](O,O')
+
+\tkzDrawPoints[size=3](O,O')
+\tkzLabelPoint[left](O){$\rm O$}
+\tkzLabelPoint[left](O'){$\rm O'$}
+\tkzLabelPoint[right](x){$\rm x$}
+\tkzLabelPoint[right](x'){$\rm x'$}
+
+
+\end{tikzpicture}
+
+\end{document}
