@@ -8,6 +8,7 @@
 
 \definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
 \definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
 
 \begin{document}
 
@@ -15,31 +16,34 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,3.2/2.4/B,5/0/C,2.5/0/O}
+\tkzDefPoints{0/0/B,1.8/2.4/A,5/0/C,2.5/0/O,2.5/0/M}
 
-\tkzDefPointBy[projection=onto B--A](O)\tkzGetPoint{D}
-\tkzDefPointBy[projection=onto B--C](O)\tkzGetPoint{E}
+\tkzDefPointBy[projection=onto A--B](O)\tkzGetPoint{D}
+\tkzDefPointBy[projection=onto A--C](O)\tkzGetPoint{E}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,A,B C,O,E B,C,A D,O,A)
-\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](C,A,B C,O,E)
-\tkzMarkAngles[mark=||,mksize=2,line width=1pt,size=.4,color=AngleClr](B,C,A D,O,A)
+\tkzFillPolygon[fill=white](A,B,C)
 
-\tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,B,C O,D,B O,E,B)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](M,B,A C,M,E)
+\tkzMarkAngles[mark=||,mksize=2,line width=1pt,size=.4,color=AngleClr](M,B,A C,M,E)
+
+\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.2](D,M,B E,C,M)
+\tkzMarkAngles[mark=|,mksize=1.5,line width=1pt,color=BlueClr,size=.4](D,M,B E,C,M)
+
+\tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,A,C O,D,A O,E,A)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,B O,D O,E)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,D,E,O)
-\tkzLabelPoint[below left](A){$\mathrm{A}$}
-\tkzLabelPoint[above](B){$\mathrm{B}$}
-\tkzLabelPoint[below right](C){$\mathrm{\Gamma}$}
-\tkzLabelPoint[below](O){$\mathrm{M}$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[below](O){$\rm M$}
 \tkzLabelPoint[above left](D){$\mathrm{\Delta}$}
 \tkzLabelPoint[above right](E){$\mathrm{E}$}
 
-\tkzMarkSegments[mark=s|,size=3](O,A O,C)
-\tkzMarkSegments[mark=s||,size=3](O,E B,D B,D)
+\tkzMarkSegments[mark=s|,size=2](O,B O,C)
+\tkzMarkSegments[mark=s||,size=2](O,E A,D A,D)
 
 
 \end{tikzpicture}

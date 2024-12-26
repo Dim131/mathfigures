@@ -22,16 +22,16 @@
 \tkzDefPoint(40:2){A}
 \tkzDefPoint(160:2){B}
 
+\tkzDrawCircle[color=black,fill=white,line width=0.5pt](O,X)
+
 \tkzDrawSegments[line width=0.75pt,color=black](A,B C,B)
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,C A,C O,A)
-
-\tkzDrawCircle[color=black,line width=0.5pt](O,X)
 
 \tkzDefLine[tangent at=C](O)
 \tkzGetPoint{h}
 
-\tkzFillAngles[fill=AngleClr,size=.55,fill opacity=0.1](C,B,A h,C,A)
-\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.55,color=AngleClr](C,B,A h,C,A)
+\tkzFillAngles[fill=AngleClr,size=.45,fill opacity=0.2](C,B,A h,C,A)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.45,color=AngleClr](C,B,A h,C,A)
 
 
 \tkzDrawSegments[line width=0.75pt,color=black,add=2 and 1](C,h)
@@ -41,7 +41,7 @@
 \tkzLabelPoint[left](B){$\rm B$}
 \tkzLabelPoint[below](C){$\rm A$}
 \tkzLabelPoint[above](O){$\rm O$}
-\tkzLabelPoint[right=0.75cm](h){$\rm z$}
+\tkzLabelPoint[right=0.75cm](h){$z$}
 
 \end{tikzpicture}
 \end{document}

@@ -16,7 +16,7 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,4.86/0.27/C,2.446875/3.54375/B,-1.0125/2.3625/A}
+\tkzDefPoints{0/0/B,4.86/0.27/C,2.446875/3.54375/D,-1.0125/2.3625/A}
 
 \tkzDefMidPoint(A,B) \tkzGetPoint{M1}
 \tkzDefMidPoint(B,C) \tkzGetPoint{M2}
@@ -24,21 +24,21 @@
 \tkzDefMidPoint(D,A) \tkzGetPoint{M4}
 
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 \tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](M1,M2,M3,M4)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPolygon[color=ShapeClr](M1,M2,M3,M4)
 \tkzDrawPoints[size=3](A,B,C,D,M1,M2,M3,M4)
-\tkzLabelPoint[left](A){$\rm A$}
-\tkzLabelPoint[above](B){$\rm B$}
-\tkzLabelPoint[right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[above right](D){$\rm \Delta$}
 
-\tkzLabelPoint[above](M1){$\rm M_1$}
-\tkzLabelPoint[right](M2){$\rm M_2$}
-\tkzLabelPoint[below](M3){$\rm M_3$}
-\tkzLabelPoint[left](M4){$\rm M_4$}
+\tkzLabelPoint[left](M1){$\rm M_1$}
+\tkzLabelPoint[below](M2){$\rm M_2$}
+\tkzLabelPoint[right](M3){$\rm M_3$}
+\tkzLabelPoint[above](M4){$\rm M_4$}
 
 \tkzMarkSegments[mark=||,size=3](M1,M2 M3,M4)
 \tkzMarkSegments[mark=|,size=3](M2,M3 M1,M4)

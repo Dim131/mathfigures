@@ -15,25 +15,25 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,3.5/0/C,1/2/A,4.5/2/B}
+\tkzDefPoints{0/0/B,3.5/0/C,1/2/A,4.5/2/D}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
 
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](A,B,D C,D,B)
-\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](A,B,D C,D,B)
-\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](A,B,D C,D,B)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](D,B,A B,D,C)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](D,B,A B,D,C)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](D,B,A B,D,C)
 
-\tkzFillAngles[fill=AngleClr,size=.45,fill opacity=0.1](B,D,A D,B,C)
-\tkzMarkAngles[line width=1pt,color=AngleClr,size=.35](B,D,A D,B,C)
-\tkzMarkAngles[line width=1pt,color=AngleClr,size=.45](B,D,A D,B,C)
+\tkzFillAngles[fill=AngleClr,size=.45,fill opacity=0.2](A,D,B C,B,D)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.35](A,D,B C,B,D)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.45](A,D,B C,B,D)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$};
-\tkzLabelPoint[below left](D){$\rm \Delta$};
+\tkzLabelPoint[above right](D){$\rm \Delta$};
 
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](B,D)
 

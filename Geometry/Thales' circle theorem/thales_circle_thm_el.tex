@@ -15,19 +15,19 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/B,3.2/2.4/A,5/0/C,2.5/0/O}
+\tkzDefPoints{0/0/B,1.8/2.4/A,5/0/C,2.5/0/O}
 \tkzDrawCircle[line width=1pt,color=black](O,A)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
-\tkzMarkRightAngle[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,A,C)
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,B,A A,C,B)
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzMarkRightAngle[line width=1pt, size=.35,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,A,C)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](C,B,A A,C,B)
 \tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](C,B,A A,C,B)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,O)
-\tkzLabelPoint[above](A){$\rm B$}
-\tkzLabelPoint[left](B){$\rm A$}
-\tkzLabelPoint[right](C){$\rm \Gamma$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[below](O){$\rm O$}
 
 

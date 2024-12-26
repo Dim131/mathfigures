@@ -21,9 +21,9 @@
 
 \tkzDefPoint(140:2){A}
 
-\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,A)
+\tkzDrawCircle[color=black,fill=white,line width=0.5pt](O,X)
 
-\tkzDrawCircle[color=black,line width=0.5pt](O,X)
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,A)
 
 \tkzDefLine[tangent at=A](O) \tkzGetPoint{h}
 
@@ -34,7 +34,7 @@
 \tkzDrawPoints[size=3](A,O)
 \tkzLabelPoint[above left](A){$\rm A$}
 \tkzLabelPoint[above](O){$\rm O$}
-\tkzLabelPoint(E){$\rm \epsilon$}
+\tkzLabelPoint(E){$\rm \varepsilon$}
 
 \end{tikzpicture}
 \end{document}

@@ -15,40 +15,40 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,6/0/C,1.05/1.5/B}
+\tkzDefPoints{0/0/A,6/0/C,1.05/1.5/D}
 
-\tkzDefCircle[circum](A,B,C)
+\tkzDefCircle[circum](A,C,D)
 \tkzGetPoint{O}
 \tkzDrawCircle[line width=1.0pt, color=black](O,A)
 
 % Find the fourth point of the quadrilateral.
-\tkzDefLine[orthogonal=through B](C,A) \tkzGetPoint{X_1}
-\tkzInterLC(B,X_1)(O,A) \tkzGetSecondPoint{D}
+\tkzDefLine[orthogonal=through D](C,A) \tkzGetPoint{X_1}
+\tkzInterLC(D,X_1)(O,A) \tkzGetSecondPoint{B}
 
 % Find the intersection of the diagonals.
 \tkzInterLL(B,D)(A,C) \tkzGetPoint{I}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
-\tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,I,A)
+\tkzMarkRightAngle[line width=0.5pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](B,I,A)
 
 \tkzDefMidPoint(A,D) \tkzGetPoint{M}
 \tkzInterLL(M,I)(B,C) \tkzGetPoint{H}
 
 
-\tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](I,H,C)
+\tkzMarkRightAngle[line width=0.5pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](I,H,C)
 
 \tkzDrawSegments[line width=0.5pt,color=black](A,C B,D H,M)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D,I,M,H)
 \tkzLabelPoint[left](A){$\rm A$}
-\tkzLabelPoint[above](B){$\rm B$}
+\tkzLabelPoint[below](B){$\rm B$}
 \tkzLabelPoint[right](C){$\rm \Gamma$}
-\tkzLabelPoint[below](D){$\rm \Delta$}
-\tkzLabelPoint[below right](I){$\rm I$}
-\tkzLabelPoint[above right](H){$\rm H$}
-\tkzLabelPoint[left](M){$\rm M$}
+\tkzLabelPoint[above](D){$\rm \Delta$}
+\tkzLabelPoint[above right](I){$\rm I$}
+\tkzLabelPoint[below right](H){$\rm H$}
+\tkzLabelPoint[above left](M){$\rm M$}
 
 \tkzMarkSegments[mark=s||,size=2.5](A,M D,M)
 

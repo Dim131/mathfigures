@@ -15,7 +15,7 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,4/0/C,0/4/A,4/4/B}
+\tkzDefPoints{0/0/B,4/0/C,0/4/A,4/4/D}
 
 \tkzDefMidPoint(A,B) \tkzGetPoint{M1}
 \tkzDefMidPoint(C,D) \tkzGetPoint{M2}
@@ -23,14 +23,14 @@
 \tkzDefMidPoint(B,C) \tkzGetPoint{M4}
 \tkzDefMidPoint(D,A) \tkzGetPoint{M3}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
+\tkzLabelPoint[above right](D){$\rm \Delta$}
 
 
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.2 and 0.2](M1,M2)

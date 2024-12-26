@@ -15,23 +15,25 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,3.5/0/C,1/2/A,4.5/2/B}
+\tkzDefPoints{0/0/B,3.5/0/C,1/2/A,4.5/2/D}
 
 \tkzInterLL(A,C)(B,D) \tkzGetPoint{O}
-\tkzDefPointBy[projection = onto C--D](A) \tkzGetPoint{H}
+\tkzDefPointBy[projection = onto C--B](A) \tkzGetPoint{H}
 
-\tkzMarkRightAngle[line width=0.7pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,H,C)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzMarkRightAngle[line width=0.7pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.2](A,H,C)
+
+
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzDrawPoints[size=2](H)
 
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm\Gamma$}
-\tkzLabelPoint[below left](D){$\rm\Delta$}
+\tkzLabelPoint[above right](D){$\rm\Delta$}
 \tkzLabelPoint[below](H){$\rm H$}
 
 \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,H)

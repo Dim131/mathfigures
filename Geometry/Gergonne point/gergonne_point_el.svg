@@ -38,7 +38,7 @@
 </g>
 </defs>
 <g id="surface1">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(59.999084%,19.999695%,0%);fill-opacity:0.1;" d="M 37.28125 13.648438 L 13.898438 83.800781 L 120.191406 83.800781 Z M 37.28125 13.648438 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 37.28125 13.648438 L 13.898438 83.800781 L 120.191406 83.800781 Z M 37.28125 13.648438 "/>
 <path style="fill:none;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-dasharray:0.99628,1.74348;stroke-miterlimit:10;" d="M 61.630344 25.813719 C 61.630344 40.071531 50.07175 51.626219 35.813938 51.626219 C 21.560031 51.626219 10.001438 40.071531 10.001438 25.813719 C 10.001438 11.555906 21.560031 0.00121875 35.813938 0.00121875 C 50.07175 0.00121875 61.630344 11.555906 61.630344 25.813719 Z M 61.630344 25.813719 " transform="matrix(1,0,0,-1,13.897,83.802)"/>
 <path style="fill:none;stroke-width:0.99628;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(59.999084%,19.999695%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 23.38425 70.153563 L 0.0014375 0.00121875 L 106.294406 0.00121875 Z M 23.38425 70.153563 " transform="matrix(1,0,0,-1,13.897,83.802)"/>
 <path style="fill:none;stroke-width:0.49814;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-dasharray:0.99628,1.74348;stroke-miterlimit:10;" d="M 23.38425 70.153563 L 35.813938 0.00121875 " transform="matrix(1,0,0,-1,13.897,83.802)"/>

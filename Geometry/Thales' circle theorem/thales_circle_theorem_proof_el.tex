@@ -9,6 +9,7 @@
 
 \definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
 \definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
 
 \begin{document}
 
@@ -16,22 +17,25 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,3.2/2.4/B,5/0/C,2.5/0/O}
+\tkzDefPoints{0/0/B,1.8/2.4/A,5/0/C,2.5/0/O}
 \tkzDrawCircle[line width=1pt,color=black](O,A)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](B,A,C)
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](C,A,B A,B,O B,C,A O,B,C)
-\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](C,A,B A,B,O)
-\tkzMarkAngles[mark=||,mksize=2,line width=1pt,color=AngleClr,size=.4](B,C,A O,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](O,B,A B,A,O)
+\tkzMarkAngles[mark=||,mksize=2,line width=1pt,size=.4,color=AngleClr](O,B,A B,A,O)
+
+\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.2](O,A,C A,C,O)
+\tkzMarkAngles[mark=|,mksize=1.5,line width=1pt,color=BlueClr,size=.4](O,A,C A,C,O)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPoints[size=3](A,B,C,O)
-\tkzLabelPoint[left](A){$\rm A$}
-\tkzLabelPoint[above](B){$\rm B$}
-\tkzLabelPoint[right](C){$\rm \Gamma$}
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[below](O){$\rm O$}
 
-\tkzDrawSegment(O,B)
+\tkzDrawSegment(O,A)
 
 \tkzMarkSegments[mark=s||,size=3](O,A O,B O,C)
 

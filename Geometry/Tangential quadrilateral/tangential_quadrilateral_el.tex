@@ -21,10 +21,10 @@
 \tkzDefPoints{0/0/I}
 
 % Define the points where the circle touches the quadrilateral.
-\tkzDefPoint(45:3){Ia}
-\tkzDefPoint(-20:3){Ib}
-\tkzDefPoint(-110:3){Ic}
-\tkzDefPoint(140:3){Id}
+\tkzDefPoint(45:3){Id}
+\tkzDefPoint(-20:3){Ic}
+\tkzDefPoint(-110:3){Ib}
+\tkzDefPoint(140:3){Ia}
 
 % Find the lines containing the sides of the quadrilateral.
 \tkzDefLine[tangent at=Ia](I) \tkzGetPoint{h1}
@@ -41,30 +41,31 @@
 \tkzInterLL(Ib,h2)(Ic,h3)\tkzGetPoint{C}
 \tkzInterLL(Ic,h3)(Id,h4)\tkzGetPoint{D}
 
-\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](I,Ia,B I,Ib,C I,Ic,D I,Id,A)
+\tkzMarkRightAngles[line width=0.5pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.1](I,Ia,B I,Ib,C I,Ic,D I,Id,A)
+
+\tkzFillPolygon[fill=white](A,B,C,D)
 
 \tkzDrawCircle[line width=0.75](I,Ia)
 
 
 
 % Draw the quadrilateral.
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 
 % \tkzDrawSegments[line width=1pt,color=ShapeClr]()
 
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzDrawPoints[size=2](Ia,Ib,Ic,Id,I)
-\tkzLabelPoint[above right](Ia){${\rm I}_\alpha$}
-\tkzLabelPoint[below right](Ib){${\rm I}_\beta$}
-\tkzLabelPoint[below left](Ic){${\rm I}_\gamma$}
-\tkzLabelPoint[above left](Id){${\rm I}_\delta$}
+\tkzLabelPoint[above left](Ia){${\rm I}_\alpha$}
+\tkzLabelPoint[below left](Ib){${\rm I}_\beta$}
+\tkzLabelPoint[below right](Ic){${\rm I}_\gamma$}
+\tkzLabelPoint[above right](Id){${\rm I}_\delta$}
 \tkzLabelPoint[below](I){$\rm I$}
 
 \tkzLabelPoint[above](A){$\rm A$}
-\tkzLabelPoint[right](B){$\rm B$}
+\tkzLabelPoint[left](B){$\rm B$}
 \tkzLabelPoint[below left](C){$\rm \Gamma$}
-\tkzLabelPoint[left](D){$\rm \Delta$}
+\tkzLabelPoint[right](D){$\rm \Delta$}
 
 \end{tikzpicture}
 

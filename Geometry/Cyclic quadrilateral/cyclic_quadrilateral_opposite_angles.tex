@@ -18,28 +18,29 @@
 \tkzSetUpPoint[fill=black]
 
 \tkzDefPoint(140:3){A}
-\tkzDefPoint(35:3){B}
+\tkzDefPoint(-105:3){B}
 \tkzDefPoint(-25:3){C}
-\tkzDefPoint(-105:3){D}
+\tkzDefPoint(35:3){D}
 
 \tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
 
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](D,A,B B,C,D)
-\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](D,A,B B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
-\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.1](A,B,C C,D,A)
-\tkzMarkAngles[line width=1pt,color=BlueClr,size=.4](A,B,C C,D,A)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](B,A,D D,C,B)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](B,A,D D,C,B)
+
+\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.2](C,B,A A,D,C)
+\tkzMarkAngles[line width=1pt,color=BlueClr,size=.4](C,B,A A,D,C)
 
 \tkzDrawCircle[line width=0.75](O,A)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
+\tkzLabelPoint[above right](D){$\rm \Delta$}
 
 \end{tikzpicture}
 

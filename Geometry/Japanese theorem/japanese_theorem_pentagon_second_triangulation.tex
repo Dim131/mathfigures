@@ -29,6 +29,8 @@
 \tkzDefCircle[in](A,B,E) \tkzGetPoints{I1}{i1}
 \tkzDefCircle[in](C,D,E) \tkzGetPoints{I2}{i2}
 \tkzDefCircle[in](B,C,E) \tkzGetPoints{I3}{i3}
+
+\tkzFillPolygon[fill=white](A,B,C,D,E)
 \tkzDrawCircles[color=AngleClr,fill=AngleClr,fill opacity=0.2,line width=0.75](I1,i1 I2,i2 I3,i3)
 
 
@@ -36,20 +38,19 @@
 
 \tkzDrawSegments[line width=0.5pt,color=black](B,E C,E)
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D,E)
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D,E)
 
 
 \tkzDrawPoints[size=3](A,B,C,D,I1,I2,I3)
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
-\tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
-\tkzLabelPoint[left](E){$\rm E$}
+\tkzLabelPoint[above right](B){$\rm E$}
+\tkzLabelPoint[below right](C){$\rm \Delta$}
+\tkzLabelPoint[below left](D){$\rm \Gamma$}
+\tkzLabelPoint[left](E){$\rm B$}
 
 \tkzLabelPoint[above right](I1){$\rm I_1$}
-\tkzLabelPoint[below right](I2){$\rm I_2$}
-\tkzLabelPoint[below](I3){$\rm I_3$}
+\tkzLabelPoint[below right](I2){$\rm I_3$}
+\tkzLabelPoint[below](I3){$\rm I_2$}
 
 
 \end{tikzpicture}

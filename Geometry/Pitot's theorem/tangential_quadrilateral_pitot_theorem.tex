@@ -5,7 +5,6 @@
 \usetikzlibrary{arrows,calc}
 \usepackage{tkz-euclide}
 
-\usepackage{fp}
 \pagestyle{empty}
 
 \definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
@@ -21,10 +20,10 @@
 \tkzDefPoints{0/0/I}
 
 % Define the points where the circle touches the quadrilateral.
-\tkzDefPoint(45:3){Ia}
-\tkzDefPoint(-20:3){Ib}
-\tkzDefPoint(-110:3){Ic}
-\tkzDefPoint(140:3){Id}
+\tkzDefPoint(45:3){Id}
+\tkzDefPoint(-20:3){Ic}
+\tkzDefPoint(-110:3){Ib}
+\tkzDefPoint(140:3){Ia}
 
 % Find the lines containing the sides of the quadrilateral.
 \tkzDefLine[tangent at=Ia](I) \tkzGetPoint{h1}
@@ -33,41 +32,48 @@
 \tkzDefLine[tangent at=Id](I) \tkzGetPoint{h4}
 
 
-\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](I,Ia I,Ib I,Ic I,Id)
-
 % Find the vertices of the quadrilateral.
 \tkzInterLL(Id,h4)(Ia,h1)\tkzGetPoint{A}
 \tkzInterLL(Ia,h1)(Ib,h2)\tkzGetPoint{B}
 \tkzInterLL(Ib,h2)(Ic,h3)\tkzGetPoint{C}
 \tkzInterLL(Ic,h3)(Id,h4)\tkzGetPoint{D}
 
-\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](I,Ia,B I,Ib,C I,Ic,D I,Id,A)
+\tkzFillPolygon[fill=white](A,B,C,D)
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](I,Ia I,Ib I,Ic I,Id)
+
+% Draw angle bisectors.
+% \tkzDrawSegments[line width=0.5pt,color=black](I,A I,B I,C I,D)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](I,Ia,B I,Ib,C I,Ic,D I,Id,A)
 
 \tkzDrawCircle[line width=0.75](I,Ia)
 
+
 % Draw the quadrilateral.
-\tkzFillPolygon[fill=white,fill opacity=0.1](A,B,C,D)
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzDrawPoints[size=2](Ia,Ib,Ic,Id,I)
-\tkzLabelPoint[above right](Ia){${\rm I}_\alpha$}
-\tkzLabelPoint[below right](Ib){${\rm I}_\beta$}
-\tkzLabelPoint[below left](Ic){${\rm I}_\gamma$}
-\tkzLabelPoint[above left](Id){${\rm I}_\delta$}
+\tkzLabelPoint[above left](Ia){${\rm I}_\alpha$}
+\tkzLabelPoint[below left](Ib){${\rm I}_\beta$}
+\tkzLabelPoint[below right](Ic){${\rm I}_\gamma$}
+\tkzLabelPoint[above right](Id){${\rm I}_\delta$}
 \tkzLabelPoint[below](I){$\rm I$}
 
 \tkzLabelPoint[above](A){$\rm A$}
-\tkzLabelPoint[right](B){$\rm B$}
-\tkzLabelPoint[below](C){$\rm \Gamma$}
-\tkzLabelPoint[left](D){$\rm \Delta$}
+\tkzLabelPoint[left](B){$\rm B$}
+\tkzLabelPoint[below left](C){$\rm \Gamma$}
+\tkzLabelPoint[right](D){$\rm \Delta$}
 
-\tkzLabelSegments[above,sloped](A,Id A,Ia){$w$}
-\tkzLabelSegments[above,sloped](B,Ia){$x$}
-\tkzLabelSegments[below,sloped](B,Ib){$x$}
-\tkzLabelSegments[below,sloped](C,Ib C,Ic){$y$}
-\tkzLabelSegments[below,sloped](D,Ic){$z$}
-\tkzLabelSegments[above,sloped](D,Id){$z$}
+\tkzLabelSegments[above right](A,Id){$x$}
+\tkzLabelSegments[above left](B,Ia){$y$}
+\tkzLabelSegments[below left](C,Ib){$z$}
+\tkzLabelSegments[below right](D,Ic){$w$}
+
+\tkzLabelSegments[above left](A,Ia){$x$}
+\tkzLabelSegments[below left](B,Ib){$y$}
+\tkzLabelSegments[below right](C,Ic){$z$}
+\tkzLabelSegments[above right](D,Id){$w$}
 
 \end{tikzpicture}
 

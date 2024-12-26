@@ -16,18 +16,18 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,4/0/C,0/4/A,4/4/B,2/1.5/O}
+\tkzDefPoints{0/0/B,4/0/C,0/4/A,4/4/D,2/1.5/O}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
 \tkzMarkRightAngles[line width=1pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,B,C B,C,D C,D,A D,A,B)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D)
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$};
-\tkzLabelPoint[below left](D){$\rm \Delta$};
+\tkzLabelPoint[above right](D){$\rm \Delta$};
 
 \tkzMarkSegments[mark=s||,size=3](A,B C,D B,C A,D)
 

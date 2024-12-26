@@ -17,7 +17,7 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/A,6/0/C,2/1.5/B,2/-4/D}
+\tkzDefPoints{0/0/A,6/0/C,2/1.5/D,2/-4/B}
 
 % Find the intersection of the diagonals.
 \tkzInterLL(B,D)(A,C) \tkzGetPoint{I}
@@ -35,7 +35,7 @@
 \tkzDefPointsBy[projection=onto D--A](M2){Z4}
 
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 \tkzFillPolygon[fill=BlueClr,fill opacity=0.1,inner sep=1cm](M1,M2,M3,M4)
 
 \tkzMarkRightAngle[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](B,I,C)
@@ -48,7 +48,7 @@
 \tkzDrawSegment[line width=0.5pt,color=black](A,C)
 \tkzDrawSegment[line width=0.5pt,color=black](B,D)
 
-\tkzMarkRightAngles[line width=0.25pt, size=.1,color=black,fill=black,fill opacity=0.1](M1,Z3,D M2,Z4,A M3,Z1,B M4,Z2,C)
+\tkzMarkRightAngles[line width=0.25pt, size=.1,color=black,fill=black,fill opacity=0.2](M1,Z3,D M2,Z4,A M3,Z1,B M4,Z2,C)
 
 % Draw maltitudes.
 \tkzDrawSegments[line width=0.25pt,color=black,dashed,dash pattern=on 1pt off 1.45pt](M1,Z3 M2,Z4 M3,Z1 M4,Z2)
@@ -59,21 +59,21 @@
 \tkzDrawPoints[size=1.5](Z1,Z2,Z3,Z4)
 
 \tkzLabelPoint[left](A){$\rm A$}
-\tkzLabelPoint[above](B){$\rm B$}
+\tkzLabelPoint[below](B){$\rm B$}
 \tkzLabelPoint[right](C){$\rm \Gamma$}
-\tkzLabelPoint[below](D){$\rm \Delta$}
+\tkzLabelPoint[above](D){$\rm \Delta$}
 
 \tkzLabelPoint[below](O){$\rm O$}
 
-\tkzLabelPoint[above left](M1){$\rm M_1$}
-\tkzLabelPoint[above right](M2){$\rm M_2$}
-\tkzLabelPoint[below right](M3){$\rm M_3$}
-\tkzLabelPoint[below left](M4){$\rm M_4$}
+\tkzLabelPoint[below left](M1){$\rm M_1$}
+\tkzLabelPoint[below right](M2){$\rm M_2$}
+\tkzLabelPoint[above right](M3){$\rm M_3$}
+\tkzLabelPoint[above left](M4){$\rm M_4$}
 
-\tkzLabelPoint[scale=0.75,above left](Z1){$\rm Z_1$}
-\tkzLabelPoint[scale=0.75,above right](Z2){$\rm Z_2$}
-\tkzLabelPoint[scale=0.75,xshift=0.085cm,below](Z3){$\rm Z_3$}
-\tkzLabelPoint[scale=0.75,below left](Z4){$\rm Z_4$}
+\tkzLabelPoint[scale=0.75,below left](Z1){$\rm Z_1$}
+\tkzLabelPoint[scale=0.75,xshift=0.085cm,below](Z2){$\rm Z_2$}
+\tkzLabelPoint[scale=0.75,above right](Z3){$\rm Z_3$}
+\tkzLabelPoint[scale=0.75,above left](Z4){$\rm Z_4$}
 
 \end{tikzpicture}
 
