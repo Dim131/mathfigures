@@ -18,11 +18,12 @@
 
 \tkzDefPoints{0/0/B,0.8/3.7/A,5/0/C}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
-
 \tkzDefMidPoint(A,B) \tkzGetPoint{MC}
 \tkzDefMidPoint(B,C) \tkzGetPoint{MA}
 \tkzDefMidPoint(C,A) \tkzGetPoint{MB}
+
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](MA,MB,MC)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
 \tkzDrawPolygon[color=ShapeClr](MA,MB,MC)

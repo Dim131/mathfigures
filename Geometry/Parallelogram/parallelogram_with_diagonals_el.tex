@@ -8,8 +8,7 @@
 
 \definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
 \definecolor{ShapeClr}{rgb}{0.6,0.2,0}
-\definecolor{BlueSqr}{RGB}{5,81,163}
-\definecolor{RedSqr}{RGB}{0, 156, 0}
+\definecolor{BlueClr}{RGB}{5,81,163}
 
 \begin{document}
 
@@ -17,22 +16,20 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/B,3.5/0/C,0.95/1.8/A,2.75/2.25/D}
+\tkzDefPoints{0/0/B,3.5/0/C,1/2/A,4.5/2/D}
+
 
 \tkzFillPolygon[fill=white](A,B,C,D)
+\tkzDrawSegments[line width=0.75pt,color=BlueClr](A,C B,D)
+\tkzInterLL(A,C)(B,D) \tkzGetPoint{O}
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
-\tkzDrawPoints[size=3](A,B,C,D)
-\tkzLabelPoint[above left](A){$\mathrm{A}$}
+\tkzDrawPoints[size=3](A,B,C,D,O)
+\tkzLabelPoint[above left](A){$\rm A$}
 \tkzLabelPoint[below left](B){$\rm B$}
 \tkzLabelPoint[below right](C){$\rm \Gamma$}
 \tkzLabelPoint[above right](D){$\rm \Delta$}
-
-\tkzLabelSegment[left, scale=0.75](A,B){$\alpha$}
-\tkzLabelSegment[below, scale=0.75](B,C){$\beta$}
-\tkzLabelSegment[right, scale=0.75](C,D){$\gamma$}
-\tkzLabelSegment[above, scale=0.75](D,A){$\delta$}
+\tkzLabelPoint[below](O){$\rm O$}
 
 \end{tikzpicture}
-
 \end{document}

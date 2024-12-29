@@ -15,32 +15,32 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,5/0/C,1/2/A,4/2/B}
+\tkzDefPoints{0/0/A,5/0/B,1/2/D,4/2/C}
 
 \tkzDefPointBy[projection=onto C--D](A)\tkzGetPoint{A'}
 \tkzDefPointBy[projection=onto A--B](D)\tkzGetPoint{D'}
 \tkzInterLL(A,C)(B,D) \tkzGetPoint{O}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
-\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,A' D,D' A,D')
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,A' D,D' A',D)
 
-\tkzMarkRightAngles[line width=1pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,A',C D,D',A)
+\tkzMarkRightAngles[line width=1pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](C,A',A A,D',D)
 
-\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](A,B,D A,C,D C,A,B C,D,B)
-\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](A,B,D A,C,D C,A,B C,D,B)
-\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](A,B,D A,C,D C,A,B C,D,B)
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](D,B,A D,C,A B,A,C B,D,C)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](D,B,A D,C,A B,A,C B,D,C)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](D,B,A D,C,A B,A,C B,D,C)
 
 \tkzDrawSegments[line width=0.5pt,color=black](A,C B,D)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D,A',D',O)
-\tkzLabelPoint[above](A){$\rm A$}
-\tkzLabelPoint[above](B){$\rm B$}
-\tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
-\tkzLabelPoint[below](A'){$\rm A'$}
-\tkzLabelPoint[above left](D'){$\rm \Delta'$}
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above](C){$\rm \Gamma$}
+\tkzLabelPoint[above](D){$\rm \Delta$}
+\tkzLabelPoint[above left](A'){$\rm A'$}
+\tkzLabelPoint[below](D'){$\rm \Delta'$}
 \tkzLabelPoint[below](O){$\rm O$}
 
 \tkzMarkSegments[mark=|,size=3](A,O B,O)

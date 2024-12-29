@@ -15,25 +15,25 @@
 \tkzSetUpLine[line width=1pt,color=black]
 \tkzSetUpPoint[fill=black]
 
-\tkzDefPoints{0/0/D,5/0/C,1/2/A,4/2/B}
+\tkzDefPoints{0/0/A,5/0/B,1/2/D,4/2/C}
 
-\tkzDefPointBy[projection=onto C--D](A)\tkzGetPoint{A'}
-\tkzDefPointBy[projection=onto C--D](B)\tkzGetPoint{B'}
+\tkzDefPointBy[projection=onto A--B](C)\tkzGetPoint{C'}
+\tkzDefPointBy[projection=onto A--B](D)\tkzGetPoint{D'}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1,inner sep=1cm](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
-\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,A' B,B')
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](C,C' D,D')
 
-\tkzMarkRightAngles[line width=1pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,A',C B,B',C)
+\tkzMarkRightAngles[line width=1pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](C,C',B D,D',A)
 
 \tkzDrawPolygon[color=ShapeClr](A,B,C,D)
 \tkzDrawPoints[size=3](A,B,C,D,A',B')
-\tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
-\tkzLabelPoint[below right](C){$\rm \Gamma$}
-\tkzLabelPoint[below left](D){$\rm \Delta$}
-\tkzLabelPoint[below](A'){$\rm A'$}
-\tkzLabelPoint[below](B'){$\rm B'$}
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above right](C){$\rm \Gamma$}
+\tkzLabelPoint[above left](D){$\rm \Delta$}
+\tkzLabelPoint[below](C'){$\rm \Gamma'$}
+\tkzLabelPoint[below](D'){$\rm \Delta'$}
 
 \end{tikzpicture}
 \end{document}

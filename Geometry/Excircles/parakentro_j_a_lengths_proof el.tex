@@ -35,27 +35,27 @@
 \tkzDefPointBy[projection=onto A--C](IC)\tkzGetPoint{H2}
 \tkzDefPointBy[projection=onto A--B](IC)\tkzGetPoint{H3}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzFillCircle[color=ParacircleClr, fill opacity=0.1](IC,H)
 \tkzDrawCircle[color=ParacircleClr,line width=1pt](IC,H)
 
-\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.1](D,A,B)
+\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.2](D,A,B)
 \tkzMarkAngle[line width=1pt,size=.3,color=AngleClr,mark=|,mksize=2](D,A,B)
 
-\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.1](C',A,D)
+\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.2](C',A,D)
 \tkzMarkAngle[line width=1pt,size=.3,color=AngleClr,mark=|,mksize=2](C',A,D)
 
-\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.1](A,B,IC)
+\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.2](A,B,IC)
 \tkzMarkAngle[line width=1pt,size=.3,color=AngleClr,mark=||,mksize=2](A,B,IC)
 
-\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.1](IC,B,H)
+\tkzFillAngle[fill=AngleClr,size=.3,fill opacity=0.2](IC,B,H)
 \tkzMarkAngle[line width=1pt,size=.3,color=AngleClr,mark=||,mksize=2](IC,B,H)
 
-\tkzFillAngle[fill=AngleClr,size=.6,fill opacity=0.1](A,C,IC)
+\tkzFillAngle[fill=AngleClr,size=.6,fill opacity=0.2](A,C,IC)
 \tkzMarkAngle[line width=1pt,size=.6,color=AngleClr,mark=s,mksize=2](A,C,IC)
 
-\tkzFillAngle[fill=AngleClr,size=.6,fill opacity=0.1](IC,C,B)
+\tkzFillAngle[fill=AngleClr,size=.6,fill opacity=0.2](IC,C,B)
 \tkzMarkAngle[line width=1pt,size=.6,color=AngleClr,mark=s,mksize=2](IC,C,B)
 
 \tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](IC,H,B IC,H2,A IC,H3,A)
@@ -71,22 +71,22 @@
 \tkzDrawPoints[size=3](A,B,C,IC)
 \tkzDrawPoints[size=2](H,H2,H3)
 
-\tkzLabelPoint[above right](A){$\rm \Gamma$}
-\tkzLabelPoint[below](B){$\rm B$}
+\tkzLabelPoint[above right](A){$\rm B$}
+\tkzLabelPoint[below](B){$\rm \Gamma$}
 \tkzLabelPoint[below right](C){$\rm A$}
 \tkzLabelPoint[left](IC){$\rm J_A$}
 
 \tkzLabelPoint[right](H3){$\rm I_A'$}
-\tkzLabelPoint[below](H){$\rm I_A''$}
-\tkzLabelPoint[above right](H2){$\rm I_A'''$}
+\tkzLabelPoint[below](H){$\rm I_A'''$}
+\tkzLabelPoint[above right](H2){$\rm I_A''$}
 
-\tkzLabelSegment[below](B,H){\scalebox{0.75}{$x$}}
-\tkzLabelSegment[right](B,H3){\scalebox{0.75}{$x$}}
+\tkzLabelSegment[below](B,H){\scalebox{0.75}{$y$}}
+\tkzLabelSegment[right](B,H3){\scalebox{0.75}{$y$}}
 
-\tkzLabelSegment[right](A,H3){\scalebox{0.75}{$y$}}
-\tkzLabelSegment[above](A,H2){\scalebox{0.75}{$y$}}
-\tkzLabelSegment[below](B,C){\scalebox{0.75}{$\gamma$}}
-\tkzLabelSegment[above](C,A){\scalebox{0.75}{$\beta$}}
+\tkzLabelSegment[right](A,H3){\scalebox{0.75}{$x$}}
+\tkzLabelSegment[above](A,H2){\scalebox{0.75}{$x$}}
+\tkzLabelSegment[below](B,C){\scalebox{0.75}{$\beta$}}
+\tkzLabelSegment[above](C,A){\scalebox{0.75}{$\gamma$}}
 
 \end{tikzpicture}
 \end{document}

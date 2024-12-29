@@ -20,59 +20,58 @@
 \tkzSetUpPoint[fill=black]
 
 
-\tkzDefPoint(50:2.5){B}
+\tkzDefPoint(200:2.5){B}
 \tkzDefPoint(125:2.5){A}
-\tkzDefPoint(205:2.5){D}
-\tkzDefPoint(0:2.5){C}
+\tkzDefPoint(45:2.5){D}
+\tkzDefPoint(250:2.5){C}
 
 
 \tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
 \tkzDefPointBy[symmetry=center O](B) \tkzGetPoint{B'}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C,D)
+\tkzFillPolygon[fill=white](A,B,C,D)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,B' B,B')
 
 \tkzMarkRightAngle[line width=0.75pt, size=.18,color=black](B,A,B')
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](B,B',A)
-\tkzMarkAngle[line width=1pt,color=AngleClr,size=.4](B,B',A)
-\tkzLabelAngle[pos=0.8](B,B',A){\scalebox{0.75}{$\theta_1$}}
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.2](A,B',B)
+\tkzMarkAngle[line width=1pt,color=AngleClr,size=.4](A,B',B)
+\tkzLabelAngle[pos=0.7](A,B',B){\scalebox{0.65}{$\theta_1$}}
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](B,D,A)
-\tkzMarkAngle[line width=1pt,color=AngleClr,size=.4](B,D,A)
-\tkzLabelAngle[pos=0.8](B,D,A){\scalebox{0.75}{$\theta_1$}}
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.2](A,D,B)
+\tkzMarkAngle[line width=1pt,color=AngleClr,size=.4](A,D,B)
+\tkzLabelAngle[pos=0.7](A,D,B){\scalebox{0.65}{$\theta_1$}}
 
-\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.1](B,C,A)
-\tkzMarkAngle[line width=1pt,color=AngleClr,size=.4](B,C,A)
-\tkzLabelAngle[pos=0.8](B,C,A){\scalebox{0.75}{$\theta_1$}}
-
-
-\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.1](C,D,B)
-\tkzMarkAngle[line width=1pt,color=BlueSqr,size=.4](C,D,B)
-\tkzLabelAngle[pos=0.8](C,D,B){\scalebox{0.75}{$\theta_2$}}
-
-\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.1](C,A,B)
-\tkzMarkAngle[line width=1pt,color=BlueSqr,size=.4](C,A,B)
-\tkzLabelAngle[pos=0.8](C,A,B){\scalebox{0.75}{$\theta_2$}}
+\tkzFillAngle[fill=AngleClr,size=.4,fill opacity=0.2](A,C,B)
+\tkzMarkAngle[line width=1pt,color=AngleClr,size=.4](A,C,B)
+\tkzLabelAngle[pos=0.7](A,C,B){\scalebox{0.65}{$\theta_1$}}
 
 
-\tkzFillAngle[fill=RedSqr,size=.4,fill opacity=0.1](D,A,C)
-\tkzMarkAngle[line width=1pt,color=RedSqr,size=.4](D,A,C)
-\tkzLabelAngle[pos=0.8](D,A,C){\scalebox{0.75}{$\theta_3$}}
+\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.2](B,D,C)
+\tkzMarkAngle[line width=1pt,color=BlueSqr,size=.4](B,D,C)
+\tkzLabelAngle[pos=0.7](B,D,C){\scalebox{0.65}{$\theta_2$}}
 
-\tkzFillAngle[fill=RedSqr,size=.4,fill opacity=0.1](D,B,C)
-\tkzMarkAngle[line width=1pt,color=RedSqr,size=.4](D,B,C)
-\tkzLabelAngle[pos=0.8](D,B,C){\scalebox{0.75}{$\theta_3$}}
+\tkzFillAngle[fill=BlueSqr,size=.4,fill opacity=0.2](B,A,C)
+\tkzMarkAngle[line width=1pt,color=BlueSqr,size=.4](B,A,C)
+\tkzLabelAngle[pos=0.7](B,A,C){\scalebox{0.65}{$\theta_2$}}
+
+\tkzFillAngle[fill=RedSqr,size=.4,fill opacity=0.2](C,A,D)
+\tkzMarkAngle[line width=1pt,color=RedSqr,size=.4](C,A,D)
+\tkzLabelAngle[pos=0.7](C,A,D){\scalebox{0.65}{$\theta_3$}}
+
+\tkzFillAngle[fill=RedSqr,size=.4,fill opacity=0.2](C,B,D)
+\tkzMarkAngle[line width=1pt,color=RedSqr,size=.4](C,B,D)
+\tkzLabelAngle[pos=0.7](C,B,D){\scalebox{0.65}{$\theta_3$}}
 
 
-\tkzFillAngle[fill=YellowClr,size=.4,fill opacity=0.1](A,C,D)
-\tkzMarkAngle[line width=1pt,color=YellowClr,size=.4](A,C,D)
-\tkzLabelAngle[pos=0.8](A,C,D){\scalebox{0.75}{$\theta_4$}}
+\tkzFillAngle[fill=YellowClr,size=.4,fill opacity=0.2](D,C,A)
+\tkzMarkAngle[line width=1pt,color=YellowClr,size=.4](D,C,A)
+\tkzLabelAngle[pos=0.7](D,C,A){\scalebox{0.65}{$\theta_4$}}
 
-\tkzFillAngle[fill=YellowClr,size=.4,fill opacity=0.1](A,B,D)
-\tkzMarkAngle[line width=1pt,color=YellowClr,size=.4](A,B,D)
-\tkzLabelAngle[pos=0.8](A,B,D){\scalebox{0.75}{$\theta_4$}}
+\tkzFillAngle[fill=YellowClr,size=.4,fill opacity=0.2](D,B,A)
+\tkzMarkAngle[line width=1pt,color=YellowClr,size=.4](D,B,A)
+\tkzLabelAngle[pos=0.7](D,B,A){\scalebox{0.65}{$\theta_4$}}
 
 
 \tkzDrawSegments[line width=0.5pt,color=black](A,C B,D)
@@ -85,14 +84,14 @@
 \tkzDrawPoints[size=3](A,B,C,D,B',O)
 
 \tkzLabelPoint[above left](A){$\rm A$}
-\tkzLabelPoint[above right](B){$\rm B$}
-\tkzLabelPoint[right](C){$\rm \Gamma$}
-\tkzLabelPoint[below](D){$\rm \Delta$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below](C){$\rm \Gamma$}
+\tkzLabelPoint[above right](D){$\rm \Delta$}
 \tkzLabelPoint[below](O){$\rm O$}
-\tkzLabelPoint[below](B'){$\rm B'$}
+\tkzLabelPoint[right](B'){$\rm B'$}
 
 \tkzLabelSegments[above=-0.05cm,sloped](A,B){\scalebox{0.75}{$\alpha$}}
-\tkzLabelSegments[above=-0.05cm,sloped](B,C){\scalebox{0.75}{$\beta$}}
+\tkzLabelSegments[below=-0.05cm,sloped](B,C){\scalebox{0.75}{$\beta$}}
 \tkzLabelSegments[below,sloped](C,D){\scalebox{0.75}{$\gamma$}}
 \tkzLabelSegments[above,sloped](D,A){\scalebox{0.75}{$\delta$}}
 

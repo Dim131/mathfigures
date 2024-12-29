@@ -24,6 +24,8 @@
 
 \tkzDefPointBy[projection=onto A--B](O)\tkzGetPoint{M}
 
+\tkzDrawCircle[color=black,fill=white,line width=0.5pt](O,X)
+
 \tkzMarkRightAngle[line width=1pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](O,M,A)
 
 \tkzFillAngle[fill=AngleClr,size=.55,fill opacity=0.1](B,O,A)
@@ -31,7 +33,7 @@
 
 \tkzDrawSegments[line width=0.75pt,color=black](O,A O,B A,B O,N)
 
-\tkzDrawCircle[color=black,line width=0.5pt](O,X)
+
 
 \tkzDrawPoints[size=3](A,B,O,M,N)
 
