@@ -23,17 +23,14 @@
 
 \tkzDefPointOnLine[pos=-0.4](A,B)\tkzGetPoint{eps}
 
-
+\tkzDrawCircle[color=black,fill=white,line width=0.5pt](O,A)
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=.45 and .45](A,B)
-
-\tkzDrawCircle[color=black,line width=0.5pt](O,A)
-
 
 \tkzDrawPoints[size=3](O,A,B)
 \tkzLabelPoint[above left](A){$\rm A$}
 \tkzLabelPoint[above](B){$\rm B$}
 \tkzLabelPoint[below](O){$\rm O$}
-\tkzLabelPoint[below](eps){$\rm \epsilon$}
+\tkzLabelPoint[below](eps){$\rm \varepsilon$}
 
 \end{tikzpicture}
 
