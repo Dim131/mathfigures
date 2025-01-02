@@ -1,0 +1,41 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O}
+
+\tkzDefPoint(30:2){x'}
+\tkzDefPoint(-150:2.5){x}
+\tkzDefPoint(-60:1.75){y}
+\tkzDefPoint(120:3.5){y'}
+
+\tkzDefPointOnLine[pos=-0.4](A,B)\tkzGetPoint{eps}
+
+\tkzDrawSegments[line width=1pt,color=black](x,x' y,y')
+
+\tkzMarkRightAngle[line width=1pt, size=.3,color=AngleClr,fill=AngleClr,fill opacity=0.1](y',O,x')
+
+\tkzDrawPoints[size=3](O)
+\tkzLabelPoint[yshift=-0.125cm,xshift=-0.04cm](O){$\rm O$}
+\tkzLabelPoint[above right](x'){$x'$}
+\tkzLabelPoint[below left](x){$x$}
+\tkzLabelPoint[below right](y){$y$}
+\tkzLabelPoint[above left](y'){$y'$}
+
+\end{tikzpicture}
+
+\end{document}

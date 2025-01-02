@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O}
+
+\tkzDefPoint(30:3){x'}
+\tkzDefPoint(-150:3.5){x}
+\tkzDefPoint(-60:1.75){y}
+\tkzDefPoint(120:2.5){y'}
+
+\tkzDefPointOnLine[pos=-0.4](A,B)\tkzGetPoint{eps}
+
+\tkzDrawSegments[line width=1pt,color=black](x,x')
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](y',O)
+
+\tkzMarkRightAngle[line width=1pt, size=.3,color=AngleClr,fill=AngleClr,fill opacity=0.1](y',O,x')
+
+\tkzDrawPoints[size=3](P,O)
+\tkzLabelPoint[below right](O){$\rm P'$}
+\tkzLabelPoint[above right](x'){$\varepsilon$}
+\tkzLabelPoint[above left](y'){$\rm P$}
+
+\end{tikzpicture}
+
+\end{document}
