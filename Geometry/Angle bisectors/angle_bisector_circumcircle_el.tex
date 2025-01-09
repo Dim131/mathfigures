@@ -1,0 +1,49 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,1.4/3/A,5/0/C}
+
+\tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
+\tkzDefLine[bisector](B,A,C) \tkzGetPoint{x}
+\tkzInterLL(A,x)(B,C) \tkzGetPoint{D}
+\tkzInterLC(A,D)(O,A) \tkzGetPoints{ZZ}{E}
+
+\tkzFillPolygon[fill=white](A,B,C)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](B,A,D D,A,C)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr,mark=|,mksize=3](B,A,D D,A,C)
+
+\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.2](C,B,A C,E,A)
+\tkzMarkAngles[line width=1pt,size=.4,color=BlueClr,mark=s,mksize=3](C,B,A C,E,A)
+
+\tkzDrawCircle[black](O,A)
+\tkzDrawSegments[line width=1pt](A,E E,C)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+
+\tkzDrawPoints[size=3](A,B,C,D,E)
+
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[below left](D){$\rm \Delta$}
+\tkzLabelPoint[below](E){$\rm E$}
+
+\end{tikzpicture}
+
+\end{document}
