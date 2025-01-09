@@ -1,0 +1,69 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{5,81,163}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,0.4/3/A,5/0/C}
+
+
+% \tkzDefPointBy[projection=onto B--C](A)\tkzGetPoint{H}
+
+\tkzDefPointOnLine[pos=-0.2](A,C) \tkzGetPoint{C'}
+\tkzDefPointOnLine[pos=-0.2](A,B) \tkzGetPoint{B'}
+
+\tkzDefLine[bisector](C,A,B) \tkzGetPoint{y}
+\tkzDefLine[bisector out](C,A,B) \tkzGetPoint{x}
+\tkzDefMidPoint(B,C) \tkzGetPoint{M}
+
+\tkzFillPolygon[fill=white](A,B,C)
+
+\tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
+\tkzDrawCircle[color=black,line width=0.75pt](O,A)
+\tkzInterLC(x,A)(O,A) \tkzGetFirstPoint{EE}
+\tkzInterLC(y,A)(O,A) \tkzGetSecondPoint{DD}
+\tkzInterLL(y,A)(B,C) \tkzGetPoint{DDD}
+
+\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.2](B,A,DD DD,A,C)
+\tkzMarkAngles[line width=1pt,size=.4,color=BlueClr,mark=|,mksize=2](B,A,DD DD,A,C)
+
+\tkzFillAngles[fill=BlueClr,size=.4,fill opacity=0.2](DD,B,C B,C,DD)
+\tkzMarkAngles[line width=1pt,size=.4,color=BlueClr,mark=|,mksize=2](DD,B,C B,C,DD)
+
+\tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.2](EE,M,C)
+
+\tkzDrawSegments[line width=0.5pt,add=0 and 0.3](A,DD)
+\tkzDrawSegment[line width=1pt,add=0.2 and 0.2](DD,EE)
+\tkzDrawSegments[line width=0.5pt](B,DD DD,C)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+
+\tkzDrawPoints[size=3](A,B,C,DD)
+\tkzDrawPoints[size=2](M,DDD)
+
+% \tkzDrawSegment[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](H,B')
+
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+
+\tkzLabelPoint[below](DDD){$\rm \Delta$}
+\tkzLabelPoint[below left](DD){$\rm E$}
+
+\tkzMarkSegments[mark=s||,size=2](B,DD DD,C)
+
+\end{tikzpicture}
+
+\end{document}
