@@ -1,0 +1,67 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\newcommand{\sqrtXY}{2.73861}
+\tkzDefPoints{0/0/E,1.5/0/Z,6.5/0/H}
+\tkzDefPoints{1.5/\sqrtXY/Th,1.5+\sqrtXY/0/I,1.5+\sqrtXY/\sqrtXY/K}
+\tkzDefMidPoint(E,H) \tkzGetPoint{O}
+
+\tkzFillPolygon[fill=white](A,B,C)
+\tkzDrawArc[black,line width=1pt](O,H)(E)
+
+\tkzDrawPolygon[color=ShapeClr](E,H,Th)
+\tkzDrawPolygon[color=ShapeClr](Th,Z,I,K)
+
+\tkzMarkRightAngles[line width=1pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.2](Th,Z,I)
+
+\tkzDrawPoints[size=3](E,Z,H,Th,I,K)
+
+\tkzLabelPoint[below](Z){$\rm Z$}
+\tkzLabelPoint[below left](E){$\rm E$}
+\tkzLabelPoint[below right](H){$\rm H$}
+\tkzLabelPoint[below](I){$\rm I$}
+\tkzLabelPoint[above left](Th){$\rm \Theta$}
+\tkzLabelPoint[above right](K){$\rm K$}
+
+\tkzLabelSegment[right,scale=0.75](Th,Z){$\sqrt{xy}$}
+
+\draw [
+    thick,
+    decoration={
+        brace,
+        mirror,
+        raise=0.5cm
+    },
+    decorate
+] (E) -- (Z) 
+node [pos=0.5,anchor=north,yshift=-0.55cm] {$x$}; 
+\draw [
+    thick,
+    decoration={
+        brace,
+        mirror,
+        raise=0.5cm
+    },
+    decorate
+] (Z) -- (H) 
+node [pos=0.5,anchor=north,yshift=-0.55cm] {$y$}; 
+
+
+\end{tikzpicture}
+
+\end{document}
