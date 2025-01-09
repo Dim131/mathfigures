@@ -24,7 +24,7 @@
 \tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
 \tkzDefPointBy[rotation=center O angle -50](A) \tkzGetPoint{P}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzDefPointBy[projection = onto B--C](P) \tkzGetPoint{PA}
 \tkzDefPointBy[projection = onto A--C](P) \tkzGetPoint{PB}
@@ -32,14 +32,14 @@
 
 
 \tkzMarkAngles[line width=0.5pt, size=.45,color=BlueAngleClr](PC,P,A PC,PB,A)
-\tkzFillAngles[line width=0.5pt, size=.45,fill=BlueAngleClr,fill opacity=0.1](PC,P,A PC,PB,A)
-\tkzLabelAngle[scale=0.45,pos=1.6](PC,PB,A){$x$}
+\tkzFillAngles[line width=0.5pt, size=.45,fill=BlueAngleClr,fill opacity=0.2](PC,P,A PC,PB,A)
+\tkzLabelAngle[scale=0.55,pos=1.6](PC,PB,A){$\varphi$}
 
 \tkzMarkAngles[line width=0.5pt, size=.45,color=YellowAngleClr](PA,PB,C PA,P,C)
-\tkzFillAngles[line width=0.5pt, size=.45,fill=YellowAngleClr,fill opacity=0.1](PA,PB,C PA,P,C)
-\tkzLabelAngle[scale=0.45,pos=1.6](PA,PB,C){$y$}
+\tkzFillAngles[line width=0.5pt, size=.45,fill=YellowAngleClr,fill opacity=0.2](PA,PB,C PA,P,C)
+\tkzLabelAngle[scale=0.55,pos=1.6](PA,PB,C){$\omega$}
 
-\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](P,PA,C P,PB,A P,PC,B)
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](P,PA,C P,PB,A P,PC,B)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0 and 0.4](B,A)
 \tkzDrawPolygon[color=ShapeClr](A,B,C)

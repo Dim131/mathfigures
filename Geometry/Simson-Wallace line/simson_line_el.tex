@@ -21,13 +21,13 @@
 \tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{O}
 \tkzDefPointBy[rotation=center O angle -50](A) \tkzGetPoint{P}
 
-\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,B,C)
+\tkzFillPolygon[fill=white](A,B,C)
 
 \tkzDefPointBy[projection = onto B--C](P) \tkzGetPoint{PA}
 \tkzDefPointBy[projection = onto A--C](P) \tkzGetPoint{PB}
 \tkzDefPointBy[projection = onto A--B](P) \tkzGetPoint{PC}
 
-\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.1](P,PA,C P,PB,A P,PC,B)
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](P,PA,C P,PB,A P,PC,B)
 
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0 and 0.4](B,A)
 \tkzDrawPolygon[color=ShapeClr](A,B,C)
