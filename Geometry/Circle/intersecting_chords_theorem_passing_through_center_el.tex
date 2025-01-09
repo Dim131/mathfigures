@@ -1,0 +1,42 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O}
+
+\tkzDefPoint(167:2.5){C}
+\tkzDefPoint(-150:2.5){A}
+\tkzDefPoint(-13:2.5){D}
+\tkzDefPoint(70:2.5){B}
+
+\tkzInterLL(A,B)(C,D)\tkzGetPoint{I}
+
+\tkzDrawCircle[fill=white,draw=black,line width=0.5pt](O,A)
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,B C,D)
+
+\tkzDrawPoints[size=3](A,B,C,D,O)
+\tkzDrawPoints[size=2](I)
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[above right](B){$\rm B$}
+\tkzLabelPoint[left](C){$\rm \Gamma$}
+\tkzLabelPoint[right](D){$\rm \Delta$}
+\tkzLabelPoint[below](I){$\rm I$}
+\tkzLabelPoint[below](O){$\rm O$}
+
+\end{tikzpicture}
+\end{document}
