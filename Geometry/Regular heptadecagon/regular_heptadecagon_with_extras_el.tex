@@ -1,0 +1,58 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usepackage{xfrac}
+
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=17](P0,P1)
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](P3,P2,P1 P4,P3,P2 P5,P4,P3 P6,P5,P4 P7,P6,P5 P8,P7,P6 P9,P8,P7 P10,P9,P8 P11,P10,P9 P12,P11,P10 P13,P12,P11 P14,P13,P12 P15,P14,P13 P16,P15,P14 P17,P16,P15 P1,P17,P16 P2,P1,P17)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](P3,P2,P1 P4,P3,P2 P5,P4,P3 P6,P5,P4 P7,P6,P5 P8,P7,P6 P9,P8,P7 P10,P9,P8 P11,P10,P9 P12,P11,P10 P13,P12,P11 P14,P13,P12 P15,P14,P13 P16,P15,P14 P17,P16,P15 P1,P17,P16 P2,P1,P17)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](P3,P2,P1 P4,P3,P2 P5,P4,P3 P6,P5,P4 P7,P6,P5 P8,P7,P6 P9,P8,P7 P10,P9,P8 P11,P10,P9 P12,P11,P10 P13,P12,P11 P14,P13,P12 P15,P14,P13 P16,P15,P14 P17,P16,P15 P1,P17,P16 P2,P1,P17)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17)
+
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17)
+\tkzLabelPoint[below left](P1){${\rm P}_1$}
+\tkzLabelPoint[below right](P2){${\rm P}_{17}$}
+\tkzLabelPoint[below right](P3){${\rm P}_{16}$}
+\tkzLabelPoint[below right](P4){${\rm P}_{15}$}
+\tkzLabelPoint[below right](P5){${\rm P}_{14}$}
+\tkzLabelPoint[right](P6){${\rm P}_{13}$}
+\tkzLabelPoint[above right](P7){${\rm P}_{12}$}
+\tkzLabelPoint[above right](P8){${\rm P}_{11}$}
+\tkzLabelPoint[above right](P9){${\rm P}_{10}$}
+\tkzLabelPoint[above](P10){${\rm P}_9$}
+\tkzLabelPoint[above left](P11){${\rm P}_8$}
+\tkzLabelPoint[above left](P12){${\rm P}_7$}
+\tkzLabelPoint[above left](P13){${\rm P}_6$}
+\tkzLabelPoint[left](P14){${\rm P}_5$}
+\tkzLabelPoint[below left](P15){${\rm P}_4$}
+\tkzLabelPoint[left](P16){${\rm P}_3$}
+\tkzLabelPoint[below left](P17){${\rm P}_2$}
+
+\tkzMarkSegments[mark=||,size=3](P1,P2 P2,P3 P3,P4 P4,P5 P5,P6 P6,P7 P7,P8 P8,P9 P9,P10 P10,P11 P11,P12 P12,P13 P13,P14 P14,P15 P15,P16 P16,P17 P17,P1)
+
+\tkzLabelAngles[scale=0.7,pos=1.4](P3,P2,P1 P4,P3,P2 P5,P4,P3 P6,P5,P4 P7,P6,P5 P8,P7,P6 P9,P8,P7 P10,P9,P8 P11,P10,P9 P12,P11,P10 P13,P12,P11 P14,P13,P12 P15,P14,P13 P16,P15,P14 P17,P16,P15 P1,P17,P16 P2,P1,P17){$158 \frac{14}{17}^\circ$}
+
+\end{tikzpicture}
+
+\end{document}

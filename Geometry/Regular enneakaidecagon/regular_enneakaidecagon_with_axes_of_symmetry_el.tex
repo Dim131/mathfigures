@@ -1,0 +1,74 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+\tkzDefRegPolygon[side,sides=19](P0,P1)
+
+\tkzDefMidPoint(P1,P2) \tkzGetPoint{M1}
+\tkzDefMidPoint(P2,P3) \tkzGetPoint{M2}
+\tkzDefMidPoint(P3,P4) \tkzGetPoint{M3}
+\tkzDefMidPoint(P4,P5) \tkzGetPoint{M4}
+\tkzDefMidPoint(P5,P6) \tkzGetPoint{M5}
+\tkzDefMidPoint(P6,P7) \tkzGetPoint{M6}
+\tkzDefMidPoint(P7,P8) \tkzGetPoint{M7}
+\tkzDefMidPoint(P8,P9) \tkzGetPoint{M8}
+\tkzDefMidPoint(P9,P10) \tkzGetPoint{M9}
+\tkzDefMidPoint(P10,P11) \tkzGetPoint{M10}
+\tkzDefMidPoint(P11,P12) \tkzGetPoint{M11}
+\tkzDefMidPoint(P12,P13) \tkzGetPoint{M12}
+\tkzDefMidPoint(P13,P14) \tkzGetPoint{M13}
+\tkzDefMidPoint(P14,P15) \tkzGetPoint{M14}
+\tkzDefMidPoint(P15,P16) \tkzGetPoint{M15}
+\tkzDefMidPoint(P16,P17) \tkzGetPoint{M16}
+\tkzDefMidPoint(P17,P18) \tkzGetPoint{M17}
+\tkzDefMidPoint(P18,P19) \tkzGetPoint{M18}
+\tkzDefMidPoint(P19,P1) \tkzGetPoint{M19}
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19)
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt,add=0.15 and 0.15](P1,M10 P2,M11 P3,M12 P4,M13 P5,M14 P6,M15 P7,M16 P8,M17 P9,M18 P10,M19 P11,M1 P12,M2 P13,M3 P14,M4 P15,M5 P16,M6 P17,M7 P18,M8 P19,M9)
+
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19)
+
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19)
+\tkzLabelPoint[below left](P1){${\rm P}_1$}
+\tkzLabelPoint[below right](P2){${\rm P}_{19}$}
+\tkzLabelPoint[below right](P3){${\rm P}_{18}$}
+\tkzLabelPoint[below right](P4){${\rm P}_{17}$}
+\tkzLabelPoint[below right](P5){${\rm P}_{16}$}
+\tkzLabelPoint[right](P6){${\rm P}_{15}$}
+\tkzLabelPoint[above right](P7){${\rm P}_{14}$}
+\tkzLabelPoint[above right](P8){${\rm P}_{13}$}
+\tkzLabelPoint[above right](P9){${\rm P}_{12}$}
+\tkzLabelPoint[above](P10){${\rm P}_{11}$}
+\tkzLabelPoint[above](P11){${\rm P}_{10}$}
+\tkzLabelPoint[above left](P12){${\rm P}_9$}
+\tkzLabelPoint[above left](P13){${\rm P}_8$}
+\tkzLabelPoint[above left](P14){${\rm P}_7$}
+\tkzLabelPoint[above left](P15){${\rm P}_6$}
+\tkzLabelPoint[left](P16){${\rm P}_5$}
+\tkzLabelPoint[below left](P17){${\rm P}_4$}
+\tkzLabelPoint[left](P18){${\rm P}_3$}
+\tkzLabelPoint[below left](P19){${\rm P}_2$}
+
+\tkzMarkSegments[mark=s||,size=3](P1,M1 P2,M1 P2,M2 P3,M2 P3,M3 P4,M3 P4,M4 M4,P5 P5,M5 M5,P6 P6,M6 M6,P7 P7,M7 M7,P8 P8,M8 M8,P9 P9,M9 M9,P10 P10,M10 M10,P11 P11,M11 M11,P12 P12,M12 M12,P13 P13,M13 M13,P14 P14,M14 M14,P15 P15,M15 M15,P16 P16,M16 M16,P17 P17,M17 M17,P18 P18,M18 M18,P19 P19,M19 M19,P1)
+
+\end{tikzpicture}
+
+\end{document}

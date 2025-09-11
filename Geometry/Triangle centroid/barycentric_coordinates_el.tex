@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{108, 166, 224}
+
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,1.4/3/A,5/0/C}
+
+\tkzDefBarycentricPoint(A=3,B=2,C=1) \tkzGetPoint{P}
+
+\tkzDefMidPoint(B,C) \tkzGetPoint{MA}
+\tkzDefMidPoint(A,C) \tkzGetPoint{MB}
+\tkzDefMidPoint(A,B) \tkzGetPoint{MC}
+
+\tkzFillPolygon[fill=white](A,B,C)
+
+\tkzInterLL(B,MB)(C,MC)
+\tkzGetPoint{G}
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+\tkzDrawPoints[size=9](A)
+\tkzDrawPoints[size=6](B)
+\tkzDrawPoints[size=3](C)
+\tkzDrawPoints[size=3,red](P)
+
+\tkzLabelPoint[yshift=0.65cm](A){$t_{\rm A}$}
+\tkzLabelPoint[below left](B){$t_{\rm B}$}
+\tkzLabelPoint[below right](C){$t_{\rm \Gamma}$}
+\tkzLabelPoint[below,red](P){$\rm P$}
+
+\end{tikzpicture}
+
+\end{document}

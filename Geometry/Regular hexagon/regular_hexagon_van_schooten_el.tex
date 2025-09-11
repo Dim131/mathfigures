@@ -1,0 +1,58 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+\definecolor{RedClr}{RGB}{204, 0, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=6](P0,P1)
+
+\tkzDefMidPoint(P1,P2) \tkzGetPoint{M1}
+\tkzDefMidPoint(P2,P3) \tkzGetPoint{M2}
+\tkzDefMidPoint(P3,P4) \tkzGetPoint{M3}
+\tkzDefMidPoint(P4,P5) \tkzGetPoint{M4}
+\tkzDefMidPoint(P5,P6) \tkzGetPoint{M5}
+\tkzDefMidPoint(P6,P1) \tkzGetPoint{M6}
+
+\tkzDefMidPoint(P1,P4) \tkzGetPoint{O}
+
+\tkzDefShiftPoint[O](145:2.7){P}
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6)
+
+\tkzDrawCircle[line width=0.7pt,black](O,P1)
+
+\tkzDrawSegments[color=BlueClr](P,P2 P,P3)
+\tkzDrawSegments[color=AngleClr](P,P1 P,P4 P,P5 P,P6)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6)
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,O,P)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below right](P2){$\rm Z$}
+\tkzLabelPoint[right](P3){$\rm E$}
+\tkzLabelPoint[above right](P4){$\rm \Delta$}
+\tkzLabelPoint[above left](P5){$\rm \Gamma$}
+\tkzLabelPoint[left](P6){$\rm B$}
+\tkzLabelPoint[above left](P){$\rm P$}
+
+\tkzLabelPoint[below](O){$\rm O$}
+
+\end{tikzpicture}
+
+\end{document}
+

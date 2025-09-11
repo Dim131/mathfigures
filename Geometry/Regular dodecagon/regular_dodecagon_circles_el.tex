@@ -1,0 +1,63 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=12](P0,P1)
+
+\tkzDefMidPoint(P1,P2) \tkzGetPoint{M1}
+\tkzDefMidPoint(P2,P3) \tkzGetPoint{M2}
+\tkzDefMidPoint(P3,P4) \tkzGetPoint{M3}
+\tkzDefMidPoint(P4,P5) \tkzGetPoint{M4}
+\tkzDefMidPoint(P5,P6) \tkzGetPoint{M5}
+\tkzDefMidPoint(P6,P7) \tkzGetPoint{M6}
+\tkzDefMidPoint(P7,P8) \tkzGetPoint{M7}
+\tkzDefMidPoint(P8,P9) \tkzGetPoint{M8}
+\tkzDefMidPoint(P9,P10) \tkzGetPoint{M9}
+\tkzDefMidPoint(P10,P11) \tkzGetPoint{M10}
+\tkzDefMidPoint(P11,P12) \tkzGetPoint{M11}
+\tkzDefMidPoint(P12,P1) \tkzGetPoint{M12}
+
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12)
+
+\tkzDefCircle[circum](P1,P2,P3) \tkzGetPoint{O}
+\tkzDrawCircle[line width=0.7pt,black](O,P1)
+\tkzDrawCircle[line width=0.7pt,black](O,M1)
+
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12)
+\tkzDrawPoints[size=3](O,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12)
+\tkzLabelPoint[below left](P1){$\rm P_1$}
+\tkzLabelPoint[below right](P2){$\rm P_{12}$}
+\tkzLabelPoint[below right](P3){$\rm P_{11}$}
+\tkzLabelPoint[right](P4){$\rm P_{10}$}
+\tkzLabelPoint[right](P5){$\rm P_9$}
+\tkzLabelPoint[above right](P6){$\rm P_8$}
+\tkzLabelPoint[above right](P7){$\rm P_7$}
+\tkzLabelPoint[above left](P8){$\rm \rm P_6$}
+\tkzLabelPoint[left](P9){$\rm \rm P_5$}
+\tkzLabelPoint[left](P10){$\rm P_4$}
+\tkzLabelPoint[left](P11){$\rm P_3$}
+\tkzLabelPoint[below left](P12){$\rm P_2$}
+
+\tkzLabelPoint[below](O){$\rm O$}
+
+\end{tikzpicture}
+
+\end{document}

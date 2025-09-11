@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+\definecolor{RedClr}{RGB}{204, 0, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=10](P0,P1)
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](P1,P3,P5,P7,P9)
+
+\tkzDrawPolygon[color=black](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10)
+\tkzDrawPolygon[color=ShapeClr](P1,P3,P5,P7,P9)
+
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10)
+
+\end{tikzpicture}
+
+\end{document}

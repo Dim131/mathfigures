@@ -1,0 +1,52 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueSqr}{RGB}{5,81,163}
+\definecolor{RedSqr}{RGB}{0, 156, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,2.75/0/C,-0.65/1.4/A,1.25/2.7/E,3.8/1.6/D}
+
+\tkzDefPoints{1.2/-3.5/T}
+
+\tkzFillPolygon[fill=white](A,B,C,D,E)
+
+\begin{scope}[rotate around={-60:(T)},scale=1.0,shift={(2,5.5)}]
+
+\tkzDefPoints{0/0/BB,2.75/0/CC,-0.65/1.4/AA,1.25/2.7/EE,3.8/1.6/DD}
+\tkzFillPolygon[fill=white](AA,BB,CC,DD,EE)
+\tkzDrawPolygon[color=ShapeClr](AA,BB,CC,DD,EE)
+\end{scope}
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D,E)
+\tkzDrawPoints[size=3](A,B,C,D,E)
+\tkzDrawPoints[size=3](AA,BB,CC,DD,EE)
+
+\tkzLabelPoint[above left](A){${\rm A}_1$}
+\tkzLabelPoint[below left](B){${\rm A}_2$}
+\tkzLabelPoint[below right](C){${\rm A}_3$}
+\tkzLabelPoint[above right](D){${\rm A}_4$}
+\tkzLabelPoint[above](E){${\rm A}_5$}
+
+
+\tkzLabelPoint[above left](AA){${\rm B}_1$}
+\tkzLabelPoint[below left](BB){${\rm B}_2$}
+\tkzLabelPoint[below right](CC){${\rm B}_3$}
+\tkzLabelPoint[above right](DD){${\rm B}_4$}
+\tkzLabelPoint[above](EE){${\rm B}_5$}
+
+\end{tikzpicture}
+
+\end{document}

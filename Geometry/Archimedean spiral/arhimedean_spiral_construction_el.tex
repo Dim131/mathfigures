@@ -1,0 +1,67 @@
+\documentclass{article}
+
+% Required packages for drawing and animation
+\usepackage{tikz}
+\usepackage{animate}
+
+% Set page geometry for a better layout
+\usepackage[a4paper, margin=1in]{geometry}
+
+\begin{document}
+
+\begin{center}
+\section*{Animation of an Archimedean Spiral Construction}
+
+% Begin the animation environment.
+% 'autoplay' makes it start automatically.
+% 'loop' makes it repeat.
+% '25' is the frame rate (frames per second).
+\begin{animateinline}[autoplay, loop]{25}
+    % This loop iterates through the angles from 0 to 1080 degrees in steps of 5.
+    % Each iteration will create a new frame in the animation.
+    \foreach \angle in {0, 5, ..., 1080}{
+        % Create a new frame for the animation
+        \newframe
+        
+        % Start the TikZ picture environment for drawing
+        \begin{tikzpicture}
+            % Set the boundary of the drawing area.
+            % The values are determined by the maximum radius of the spiral.
+            % 1080 degrees * 0.005 = 5.4 radians.
+            \useasboundingbox (-6,-6) rectangle (6,6);
+
+            % 1. Draw the spiral path up to the current angle
+            % The plot is drawn in polar coordinates (angle:radius).
+            % The radius '0.005*\a' increases linearly with the angle '\a',
+            % which is the definition of an Archimedean spiral (r = aθ).
+            \draw[cyan, thick, domain=0:\angle, variable=\a, samples=200]
+                plot (\a: {0.005*\a});
+
+            % 2. Draw the "string" (a rotating radius line)
+            % This is a dashed red line from the origin (0,0) to the current
+            % point on the spiral.
+            \draw[red, dashed] (0,0) -- (\angle:{0.005*\angle});
+
+            % 3. Draw the "pen" (a point at the end of the string)
+            % This is a filled red circle at the current point on the spiral.
+            \fill[red] (\angle:{0.005*\angle}) circle (2pt);
+            
+            % 4. (Optional) Draw coordinate axes for reference
+            \draw[->, gray, thin] (-6,0) -- (6,0) node[right] {$x$};
+            \draw[->, gray, thin] (0,-6) -- (0,6) node[above] {$y$};
+        \end{tikzpicture}
+    }
+\end{animateinline}
+
+\subsection*{How it Works}
+This animation is created by drawing a sequence of frames. In each frame:
+\begin{enumerate}
+    \item A small segment of the \textcolor{cyan}{cyan spiral} is drawn. The radius of the spiral is directly proportional to the angle, which defines the Archimedean spiral.
+    \item A \textcolor{red}{dashed red line} represents the "string" unwinding from the center to the current point.
+    \item A \textcolor{red}{red dot} represents the pen at the tip of the string.
+\end{enumerate}
+To see the animation, open the compiled PDF in Adobe Acrobat Reader.
+
+\end{center}
+
+\end{document}

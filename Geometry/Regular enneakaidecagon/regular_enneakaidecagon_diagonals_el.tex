@@ -1,0 +1,63 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+\definecolor{RedClr}{RGB}{204, 0, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=19](P0,P1)
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19)
+
+\tkzDrawSegments[black,line width=1pt](P1,P3 P1,P4 P1,P5 P1,P6 P1,P7 P1,P8 P1,P9 P1,P10)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19)
+
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19)
+\tkzLabelPoint[below left](P1){${\rm P}_1$}
+\tkzLabelPoint[below right](P2){${\rm P}_{19}$}
+\tkzLabelPoint[below right](P3){${\rm P}_{18}$}
+\tkzLabelPoint[below right](P4){${\rm P}_{17}$}
+\tkzLabelPoint[below right](P5){${\rm P}_{16}$}
+\tkzLabelPoint[right](P6){${\rm P}_{15}$}
+\tkzLabelPoint[above right](P7){${\rm P}_{14}$}
+\tkzLabelPoint[above right](P8){${\rm P}_{13}$}
+\tkzLabelPoint[above right](P9){${\rm P}_{12}$}
+\tkzLabelPoint[above](P10){${\rm P}_{11}$}
+\tkzLabelPoint[above](P11){${\rm P}_{10}$}
+\tkzLabelPoint[above left](P12){${\rm P}_9$}
+\tkzLabelPoint[above left](P13){${\rm P}_8$}
+\tkzLabelPoint[above left](P14){${\rm P}_7$}
+\tkzLabelPoint[above left](P15){${\rm P}_6$}
+\tkzLabelPoint[left](P16){${\rm P}_5$}
+\tkzLabelPoint[below left](P17){${\rm P}_4$}
+\tkzLabelPoint[left](P18){${\rm P}_3$}
+\tkzLabelPoint[below left](P19){${\rm P}_2$}
+
+\tkzLabelSegment[yshift=0.09cm](P1,P3){$d_1$}
+\tkzLabelSegment[below right](P1,P4){$d_2$}
+\tkzLabelSegment[below right](P1,P5){$d_3$}
+\tkzLabelSegment[below right](P1,P6){$d_4$}
+\tkzLabelSegment[below right](P1,P7){$d_5$}
+\tkzLabelSegment[below right](P1,P8){$d_6$}
+\tkzLabelSegment[below right](P1,P9){$d_7$}
+\tkzLabelSegment[below right](P1,P10){$d_8$}
+
+\end{tikzpicture}
+
+\end{document}

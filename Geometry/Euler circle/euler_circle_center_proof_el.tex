@@ -1,0 +1,78 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,0.8/3.7/A,5/0/C}
+
+\tkzDefMidPoint(B,C) \tkzGetPoint{MA}
+\tkzDefMidPoint(A,C) \tkzGetPoint{MB}
+\tkzDefMidPoint(B,A) \tkzGetPoint{MC}
+
+
+\tkzDefTriangleCenter[circum](MA,MB,MC) \tkzGetPoint{O}
+\tkzDefTriangleCenter[circum](A,B,C) \tkzGetPoint{OO}
+\tkzDefTriangleCenter[ortho](A,B,C) \tkzGetPoint{H}
+
+\tkzDefMidPoint(A,H) \tkzGetPoint{MMA}
+\tkzDefMidPoint(B,H) \tkzGetPoint{MMB}
+\tkzDefMidPoint(C,H) \tkzGetPoint{MMC}
+
+\tkzDefPointBy[projection = onto B--C](H) \tkzGetPoint{HA}
+\tkzDefPointBy[projection = onto A--C](H) \tkzGetPoint{HB}
+\tkzDefPointBy[projection = onto A--B](H) \tkzGetPoint{HC}
+
+\tkzDefPointBy[projection = onto C--B](O) \tkzGetPoint{LA}
+
+\tkzFillPolygon[fill=white](A,B,C)
+
+\tkzMarkRightAngles[line width=0.5pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](A,HA,C B,HB,A C,HC,B O,LA,C OO,MA,C)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C)
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](A,HA B,HB C,HC)
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,LA OO,MA)
+\tkzDrawSegments[line width=0.5pt,color=black](OO,H)
+
+\tkzDrawCircle[color=black,line width=0.5pt](O,HA)
+
+\tkzDrawPoints[size=3](A,B,C)
+\tkzDrawPoints[size=2](HA,HB,HC,MA,MB,MC,MMA,MMB,MMC,O,H,LA,OO)
+\tkzLabelPoint[above](A){$\mathrm{A}$}
+\tkzLabelPoint[below left](B){$\mathrm{B}$}
+\tkzLabelPoint[below right](C){$\mathrm{\Gamma}$}
+
+\tkzLabelPoint[below,scale=0.65](MA){$\rm M_A$}
+\tkzLabelPoint[above right,scale=0.65](MB){$\rm M_B$}
+\tkzLabelPoint[left,scale=0.65](MC){$\rm M_\Gamma$}
+
+\tkzLabelPoint[below right,scale=0.65](MMA){$\rm \Sigma$}
+\tkzLabelPoint[right,scale=0.65](MMB){$\rm T$}
+\tkzLabelPoint[below right,scale=0.65](MMC){$\rm P$}
+
+\tkzLabelPoint[below,scale=0.65](HA){$\rm H_A$}
+\tkzLabelPoint[above right,scale=0.65](HB){$\rm H_B$}
+\tkzLabelPoint[left,scale=0.65](HC){$\rm H_\Gamma$}
+
+\tkzLabelPoint[below right,scale=0.75](H){$\rm H$}
+
+\tkzLabelPoint[above,scale=0.75](O){$\rm K$}
+\tkzLabelPoint[above,scale=0.75](OO){$\rm O$}
+
+\tkzLabelPoint[below=1.2pt,scale=0.75](LA){$\rm \Lambda_A$}
+
+\end{tikzpicture}
+\end{document}

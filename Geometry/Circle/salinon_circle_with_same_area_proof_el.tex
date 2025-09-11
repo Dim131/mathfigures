@@ -1,0 +1,59 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{GreenClr}{RGB}{7,122,7}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O,-4/0/A,4/0/B,-1/0/C,1/0/D,0/4/E,0/-1/Z}
+
+\tkzDefMidPoint(A,C) \tkzGetPoint{O1}
+\tkzDefMidPoint(D,B) \tkzGetPoint{O2}
+\tkzDefMidPoint(E,Z) \tkzGetPoint{O3}
+
+\tkzDrawSegments[line width=0.75pt,color=black, dashed,dash pattern=on 1pt off 1.75pt](A,B E,Z)
+
+\tkzFillSector[ShapeClr,fill opacity=0.1](O,B)(A)
+\tkzFillSector[white](O1,C)(A)
+\tkzFillSector[white](O2,B)(D)
+\tkzFillSector[ShapeClr,fill opacity=0.1](O,C)(D)
+
+\tkzDrawArc(O,B)(A)
+\tkzDrawArc(O1,C)(A)
+\tkzDrawArc(O2,B)(D)
+\tkzDrawArc(O,C)(D)
+
+\tkzDrawCircle[color=black,line width=0.5pt,fill=GreenClr,fill opacity=0.1](O3,E)
+
+
+\tkzDrawPoints[size=3](A,B,O,C,D,E,Z)
+\tkzDrawPoints[size=2](O1,O2,O3)
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[below left](C){$\rm \Gamma$}
+\tkzLabelPoint[below right](D){$\rm \Delta$}
+\tkzLabelPoint[above](E){$\rm E$}
+\tkzLabelPoint[below](Z){$\rm Z$}
+\tkzLabelPoint[below right](O){$\rm O$}
+
+\tkzLabelSegment[below](A,O1){$r_1$}
+\tkzLabelSegment[below](B,O2){$r_1$}
+\tkzLabelSegment[left](Z,O){$r_2$}
+\tkzLabelSegment[below,sloped](O,E){$2r_1 + r_2$}
+
+\end{tikzpicture}
+
+\end{document}
+

@@ -1,0 +1,36 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueSqr}{RGB}{5,81,163}
+\definecolor{RedSqr}{RGB}{0, 156, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,2.75/0/C,-0.75/1.85/A,1.6/3.3/F,3.25/2.7/E,3.8/1.6/D}
+
+\tkzFillPolygon[fill=white](A,B,C,D,E,F)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D,E,F)
+\tkzDrawPoints[size=3](A,B,C,D,E,F)
+\tkzLabelPoint[above left](A){$\mathrm{A}$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$}
+\tkzLabelPoint[above right](D){$\rm \Delta$}
+\tkzLabelPoint[above](E){$\rm E$}
+\tkzLabelPoint[above](F){$\rm Z$}
+
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+\definecolor{RedClr}{RGB}{204, 0, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=8](P0,P1)
+
+\tkzDefParallelogram(P1,P2,P3) \tkzGetPoint{D1}
+\tkzDefParallelogram(P4,P5,P6) \tkzGetPoint{D2}
+\tkzDefParallelogram(P7,P8,P1) \tkzGetPoint{D3}
+\tkzDefParallelogram(D3,P1,D1) \tkzGetPoint{D4}
+
+\tkzDefCircle[circum](P1,P2,P3) \tkzGetPoint{O}
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8)
+\tkzFillPolygon[fill=BlueClr,fill opacity=0.1](P1,P2,P3,D1)
+\tkzFillPolygon[fill=BlueClr,fill opacity=0.1](P4,P5,P6,D2)
+\tkzFillPolygon[fill=BlueClr,fill opacity=0.1](P7,P8,P1,D3)
+\tkzFillPolygon[fill=BlueClr,fill opacity=0.1](D3,P1,D1,D4)
+\tkzFillPolygon[fill=AngleClr,fill opacity=0.1](P3,P4,D2,D1)
+\tkzFillPolygon[fill=AngleClr,fill opacity=0.1](P6,P7,D3,D2)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8)
+\tkzDrawPolygons[color=ShapeClr](P1,P2,P3,D1 P4,P5,P6,D2 P7,P8,P1,D3 D3,P1,D1,D4 P3,P4,D2,D1)
+
+
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below right](P2){$\rm \Theta$}
+\tkzLabelPoint[below right](P3){$\rm H$}
+\tkzLabelPoint[above right](P4){$\rm Z$}
+\tkzLabelPoint[above right](P5){$\rm E$}
+\tkzLabelPoint[above left](P6){$\rm \Delta$}
+\tkzLabelPoint[above left](P7){$\rm \Gamma$}
+\tkzLabelPoint[below left](P8){$\rm B$}
+
+\end{tikzpicture}
+
+\end{document}

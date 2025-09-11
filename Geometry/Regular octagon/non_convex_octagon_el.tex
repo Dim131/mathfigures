@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,2.7/0/P1}
+
+\tkzDefPoint(-120:2){P1}
+\tkzDefPoint(-85:2.5){P2}
+\tkzDefPoint(-65:1.8){P3}
+\tkzDefPoint(-30:2.7){P4}
+\tkzDefPoint(10:1.2){P5}
+\tkzDefPoint(50:1.9){P6}
+\tkzDefPoint(130:1.7){P7}
+\tkzDefPoint(170:1.9){P8}
+
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8)
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below](P2){$\rm \Theta$}
+\tkzLabelPoint[below right](P3){$\rm H$}
+\tkzLabelPoint[right](P4){$\rm Z$}
+\tkzLabelPoint[above right](P5){$\rm E$}
+\tkzLabelPoint[above right](P6){$\rm \Delta$}
+\tkzLabelPoint[above left](P7){$\rm \Gamma$}
+\tkzLabelPoint[below left](P8){$\rm B$}
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,57 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,3/0/B,9/0/E}
+
+\tkzDefMidPoint(A,E) \tkzGetPoint{M}
+
+
+\tkzDefLine[perpendicular=through B](A,B) \tkzGetPoint{x}
+
+\tkzInterLC(B,x)(M,A) \tkzGetPoints{Z}{z}
+
+\tkzMarkRightAngles[line width=0.7pt, size=.25,color=AngleClr,fill=AngleClr,fill opacity=0.2](A,Z,E Z,B,E)
+
+\tkzDrawSegments[line width=1.0pt](A,E Z,E B,Z)
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](M,Z)
+
+\tkzDrawCircle[line width=0.5pt, color=black](M,A)
+% \tkzDrawCircle[line width=0.25pt, color=black,dashed,dash pattern=on 1pt off 1.75pt](B,E)
+
+
+
+
+\tkzDrawSegments[line width=1.0pt](A,Z)
+
+
+\tkzDrawPoints[size=3](A,E,M,Z,B)
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below](B){$\rm B$}
+\tkzLabelPoint[below](M){$\rm M$}
+\tkzLabelPoint[below right](E){$\rm E$}
+\tkzLabelPoint[above](Z){$\rm Z$}
+\tkzLabelSegment[left,](Z,B){$\sqrt{\alpha \beta}$}
+\tkzLabelSegment(B,E){$\beta$}
+
+\tkzLabelSegment(A,B){$\alpha$}
+
+
+
+\end{tikzpicture}
+
+\end{document}
+

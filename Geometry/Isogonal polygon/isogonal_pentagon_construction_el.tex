@@ -1,0 +1,71 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\tkzSetUpStyle[postaction=decorate,
+decoration={markings,
+mark=at position 1 with {\arrow[thick]{#1}}
+}]{myarrow}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1,4.2/1.2/T,-2/3.2/TT}
+
+\tkzDefRegPolygon[side,sides=5](P0,P1)
+
+\tkzDefMidPoint(P2,P3) \tkzGetPoint{M1}
+\tkzDefMidPoint(P4,P5) \tkzGetPoint{M2}
+
+\tkzDefLine[parallel=through T](P2,P3) \tkzGetPoint{x}
+\tkzInterLL(P1,P2)(T,x) \tkzGetPoint{Q2}
+\tkzInterLL(P4,P3)(T,x) \tkzGetPoint{Q3}
+
+
+\tkzDefLine[parallel=through TT](P4,P5) \tkzGetPoint{x}
+\tkzInterLL(P3,P4)(TT,x) \tkzGetPoint{Q4}
+\tkzInterLL(P1,P5)(TT,x) \tkzGetPoint{Q5}
+
+\tkzFillPolygon[fill=white](P1,Q2,Q3,Q4,Q5)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](P1,P2,P3,P4,P5)
+
+
+\tkzDefLine[perpendicular=through M1](P3,P2) \tkzGetPoint{y}
+\tkzDrawSegments[line width=1pt,black,add=0 and -0.8,myarrow=stealth](M1,y)
+
+\tkzDefLine[perpendicular=through M2](P5,P4) \tkzGetPoint{yy}
+\tkzDrawSegments[line width=1pt,black,add=0 and -0.8,myarrow=stealth](M2,yy)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.2](Q3,Q2,P1 Q4,Q3,Q2 Q5,Q4,Q3 P1,Q5,Q4 Q2,P1,Q5)
+\tkzMarkAngles[line width=1pt,size=.4,color=AngleClr](Q3,Q2,P1 Q4,Q3,Q2 Q5,Q4,Q3 P1,Q5,Q4 Q2,P1,Q5)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](Q3,Q2,P1 Q4,Q3,Q2 Q5,Q4,Q3 P1,Q5,Q4 Q2,P1,Q5)
+
+\tkzDrawPolygon[color=black](P1,P2,P3,P4,P5)
+\tkzDrawPolygon[color=ShapeClr](P1,Q2,Q3,Q4,Q5)
+\tkzDrawPoints[size=3](P1,Q2,Q3,Q4,Q5,P2,P3,P4,P5)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below right](P2){$\rm E$}
+\tkzLabelPoint[above right](P3){$\rm \Delta$}
+\tkzLabelPoint[above](P4){$\rm \Gamma$}
+\tkzLabelPoint[above left](P5){$\rm B$}
+\tkzLabelPoint[below right](Q2){$\rm E'$}
+\tkzLabelPoint[above right](Q3){$\rm \Delta'$}
+\tkzLabelPoint[above](Q4){$\rm \Gamma'$}
+\tkzLabelPoint[above left](Q5){$\rm B'$}
+
+\tkzLabelAngles[scale=0.75,pos=1.1](Q3,Q2,P1 Q4,Q3,Q2 Q5,Q4,Q3 P1,Q5,Q4 Q2,P1,Q5){$108^\circ$}
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+\definecolor{RedClr}{RGB}{204, 0, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=5](P0,P1)
+
+\tkzDefCircle[circum](P1,P2,P3) \tkzGetPoint{O}
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](P1,P2,P3,P4,P5)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5)
+\tkzDrawPolygons[color=ShapeClr](O,P1,P2 O,P2,P3 O,P3,P4 O,P4,P5 O,P5,P1)
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,O)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below right](P2){$\rm E$}
+\tkzLabelPoint[above right](P3){$\rm \Delta$}
+\tkzLabelPoint[above](P4){$\rm \Gamma$}
+\tkzLabelPoint[above left](P5){$\rm B$}
+
+\end{tikzpicture}
+
+\end{document}

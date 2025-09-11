@@ -1,0 +1,50 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+\definecolor{BlueClr}{RGB}{13,93,184}
+\definecolor{RedClr}{RGB}{204, 0, 0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/P0,2.7/0/P1}
+
+\tkzDefRegPolygon[side,sides=10](P0,P1)
+
+\tkzFillPolygon[fill=white](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10)
+
+\tkzDrawSegments[black,line width=1pt](P1,P3 P1,P4 P1,P5 P1,P6)
+
+\tkzDrawPolygon[color=ShapeClr](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10)
+\tkzDrawPoints[size=3](P1,P2,P3,P4,P5,P6,P7,P8,P9,P10)
+\tkzLabelPoint[below left](P1){$\rm A$}
+\tkzLabelPoint[below right](P2){$\rm K$}
+\tkzLabelPoint[below right](P3){$\rm I$}
+\tkzLabelPoint[right](P4){$\rm \Theta$}
+\tkzLabelPoint[above right](P5){$\rm H$}
+\tkzLabelPoint[above right](P6){$\rm Z$}
+\tkzLabelPoint[above left](P7){$\rm E$}
+\tkzLabelPoint[above left](P8){$\rm \Delta$}
+\tkzLabelPoint[left](P9){$\rm \Gamma$}
+\tkzLabelPoint[below left](P10){$\rm B$}
+
+\tkzLabelSegment(P1,P3){$d_1$}
+\tkzLabelSegment[below right](P1,P4){$d_2$}
+\tkzLabelSegment[below right](P1,P5){$d_3$}
+\tkzLabelSegment[below right](P1,P6){$d_4$}
+
+
+\end{tikzpicture}
+
+\end{document}
