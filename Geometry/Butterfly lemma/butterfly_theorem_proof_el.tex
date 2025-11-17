@@ -1,0 +1,98 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{RGB}{179, 132, 52}
+\definecolor{BlueClr}{RGB}{73, 125, 156}
+\definecolor{GreenClr}{RGB}{7,122,7}
+\definecolor{RedClr}{RGB}{232,57,14}
+\definecolor{PurpleClr}{RGB}{129, 84, 153}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/O}
+
+\tkzDefPoint(40:3){L}
+\tkzDefPoint(160:3){K}
+\tkzDefPoint(120:3){A}
+\tkzDefPoint(70:3){C}
+
+\tkzDefMidPoint(K,L) \tkzGetPoint{M}
+
+
+\tkzInterLC(A,M)(O,A) \tkzGetPoints{B}{x}
+\tkzInterLC(C,M)(O,C) \tkzGetPoints{y}{D}
+
+\tkzInterLL(A,D)(K,L) \tkzGetPoint{X}
+\tkzInterLL(B,C)(K,L) \tkzGetPoint{Y}
+
+\tkzDefPointBy[projection = onto A--B](X) \tkzGetPoint{X'}
+\tkzDefPointBy[projection = onto A--B](Y) \tkzGetPoint{Y'}
+
+\tkzDefPointBy[projection = onto C--D](X) \tkzGetPoint{X''}
+\tkzDefPointBy[projection = onto C--D](Y) \tkzGetPoint{Y''}
+
+\tkzDrawCircle[color=black,fill=white,line width=0.5pt](O,A)
+\tkzFillPolygon[fill=BlueClr,fill opacity=0.2](M,X,X')
+\tkzFillPolygon[fill=BlueClr,fill opacity=0.2](M,Y,Y')
+
+\tkzFillPolygon[fill=RedClr,fill opacity=0.2](M,X,X'')
+\tkzFillPolygon[fill=RedClr,fill opacity=0.2](M,Y,Y'')
+
+\tkzFillPolygon[fill=PurpleClr,fill opacity=0.2](A,X,X')
+\tkzFillPolygon[fill=PurpleClr,fill opacity=0.2](C,Y,Y'')
+
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.2](D,X,X'')
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.2](B,Y,Y')
+
+\tkzMarkRightAngles[line width=0.7pt, size=.15,color=AngleClr,fill=AngleClr,fill opacity=0.2](X,X',M Y,Y',B X,X'',D Y,Y'',M)
+
+\tkzFillAngles[fill=AngleClr,size=.3,fill opacity=0.1](D,A,B D,C,B)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.3](D,A,B D,C,B)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.3,color=AngleClr](D,A,B D,C,B)
+
+\tkzFillAngles[fill=AngleClr,size=.45,fill opacity=0.2](M,D,A C,B,A)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.35](M,D,A C,B,A)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.45](M,D,A C,B,A)
+
+\tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](X,X' X,X'' Y,Y' Y,Y'')
+
+\tkzDrawSegments[line width=0.75pt,color=black](A,B K,L B,C C,D A,D)
+\tkzDrawSegments[line width=0.75pt,color=red](X,Y)
+
+
+
+\tkzDrawPoints[size=3](A,B,C,D,M,K,L)
+\tkzDrawPoints[size=2](X,Y)
+
+\tkzDrawPoints[size=2](X',Y',X'',Y'')
+
+\tkzLabelPoint[left](K){$\rm K$}
+\tkzLabelPoint[above right](L){$\rm \Lambda$}
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above right](C){$\rm \Gamma$}
+\tkzLabelPoint[below left](D){$\rm \Delta$}
+\tkzLabelPoint[above](M){$\rm M$}
+\tkzLabelPoint[above left,scale=0.75](X){$\rm X$}
+\tkzLabelPoint[above right,scale=0.75](Y){$\rm Y$}
+\tkzLabelPoint[above right,scale=0.75](X'){$\rm X'$}
+\tkzLabelPoint[below right,scale=0.75](X''){$\rm X''$}
+\tkzLabelPoint[below left,scale=0.75](Y'){$\rm Y'$}
+\tkzLabelPoint[above left,scale=0.75](Y''){$\rm Y''$}
+
+\tkzMarkSegments[mark=s||,size=3](X,M Y,M)
+
+
+\end{tikzpicture}
+\end{document}

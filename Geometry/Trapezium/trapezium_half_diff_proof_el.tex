@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,6/0/B,1/3/D,3.8/3/C}
+
+\tkzDefMidPoint(A,C) \tkzGetPoint{M1}
+\tkzDefMidPoint(D,B) \tkzGetPoint{M2}
+
+\tkzDefPointBy[symmetry=center M2](C)\tkzGetPoint{K}
+
+\tkzFillPolygon[fill=white](A,B,C,D)
+
+\tkzFillAngles[fill=AngleClr,size=.35,fill opacity=0.1](C,M2,D K,M2,B)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.35](C,M2,D K,M2,B)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.35,color=AngleClr](C,M2,D K,M2,B)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](B,D,C D,B,A)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.3](B,D,C D,B,A)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](B,D,C D,B,A)
+
+\tkzDrawSegments(M1,M2 C,K A,C D,B)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPoints[size=3](A,B,C,D,K,M1,M2)
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above right](C){$\rm \Gamma$}
+\tkzLabelPoint[above left](D){$\rm \Delta$}
+\tkzLabelPoint[below](K){$\rm E$}
+\tkzLabelPoint[left](M1){$\rm N_1$}
+\tkzLabelPoint[right](M2){$\rm N_2$}
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/B,3.5/0/C,1/2/A,4.5/2/D}
+
+\tkzDefPointOnLine[pos=0.4](A,D) \tkzGetPoint{E}
+
+\tkzInterLL(A,C)(B,D) \tkzGetPoint{O}
+
+\tkzInterLL(E,O)(B,C) \tkzGetPoint{Z}
+
+\tkzFillPolygon[fill=white](A,B,C,D)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](A,O,E)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.1](Z,O,C)
+
+\tkzFillAngles[fill=AngleClr,size=.4,fill opacity=0.1](E,O,A Z,O,C)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](E,O,A Z,O,C)
+\tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.4,color=AngleClr](E,O,A Z,O,C)
+
+\tkzFillAngles[fill=AngleClr,size=.5,fill opacity=0.1](C,A,D A,C,B)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.4](C,A,D A,C,B)
+\tkzMarkAngles[line width=1pt,color=AngleClr,size=.5](C,A,D A,C,B)
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,C B,D)
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPolygon[color=ShapeClr](A,O,E)
+\tkzDrawPolygon[color=ShapeClr](C,O,Z)
+
+\tkzDrawPoints[size=3](A,B,C,D,O,E,Z)
+\tkzLabelPoint[above left](A){$\rm A$}
+\tkzLabelPoint[below left](B){$\rm B$}
+\tkzLabelPoint[below right](C){$\rm \Gamma$};
+\tkzLabelPoint[above right](D){$\rm \Delta$};
+\tkzLabelPoint[right](O){$\rm O$};
+\tkzLabelPoint[above](E){$\rm E$};
+\tkzLabelPoint[below](Z){$\rm Z$};
+
+\tkzMarkSegments[mark=s||,size=2](A,O C,O)
+
+\end{tikzpicture}
+\end{document}

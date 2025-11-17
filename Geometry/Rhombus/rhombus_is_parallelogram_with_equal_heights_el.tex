@@ -1,0 +1,44 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{-1.5/0/B,1/1.8/A,3.5/0/D,1/-1.8/C,1/0/O}
+
+\tkzDefPointBy[projection=onto B--C](A)\tkzGetPoint{A'}
+\tkzDefPointBy[projection=onto D--C](A)\tkzGetPoint{A''}
+
+\tkzFillPolygon[fill=white](A,B,C,D)
+
+% \tkzMarkRightAngle[line width=0.75pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,O,B)
+
+\tkzMarkRightAngles[line width=0.75pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](A,A',B A,A'',D)
+
+\tkzDrawSegments[line width=0.75pt,color=black](A,C A,A' A,A'')
+
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+\tkzDrawPoints[size=3](A,B,C,D)
+\tkzDrawPoints[size=2](A',A'')
+\tkzLabelPoint[above](A){$\rm A$}
+\tkzLabelPoint[left](B){$\rm B$}
+\tkzLabelPoint[below](C){$\rm \Gamma$}
+\tkzLabelPoint[right](D){$\rm \Delta$}
+
+\tkzLabelPoint[below left](A'){$\rm A'$}
+\tkzLabelPoint[below right](A''){$\rm A''$}
+
+\end{tikzpicture}
+
+\end{document}

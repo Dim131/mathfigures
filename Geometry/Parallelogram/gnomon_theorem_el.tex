@@ -1,0 +1,47 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,3.5/0/B,1/2/D,4.5/2/C}
+
+\tkzDefPointOnLine[pos=0.4](A,C)\tkzGetPoint{P}
+\tkzDefPointOnLine[pos=0.4](B,C)\tkzGetPoint{E}
+\tkzDefPointOnLine[pos=0.4](D,C)\tkzGetPoint{Z}
+\tkzDefPointOnLine[pos=0.4](A,B)\tkzGetPoint{H}
+\tkzDefPointOnLine[pos=0.4](A,D)\tkzGetPoint{Th}
+
+\tkzFillPolygon[fill=white](A,B,C,D)
+\tkzFillPolygon[fill=ShapeClr,fill opacity=0.2](A,Th,E,B)
+\tkzFillPolygon[fill=AngleClr,fill opacity=0.2](A,H,Z,D)
+\tkzDrawPolygon[color=ShapeClr](A,B,C,D)
+
+\tkzDrawSegments(A,C E,Th Z,H);
+
+\tkzDrawPoints[size=3](A,B,C,D,P,E,Z,H,Th)
+\tkzLabelPoint[below left](A){$\rm A$}
+\tkzLabelPoint[below right](B){$\rm B$}
+\tkzLabelPoint[above right](C){$\rm \Gamma$};
+\tkzLabelPoint[above left](D){$\rm \Delta$};
+\tkzLabelPoint[below right](P){$\rm P$};
+
+\tkzLabelPoint[right](E){$\rm E$};
+\tkzLabelPoint[above](Z){$\rm Z$};
+\tkzLabelPoint[below](H){$\rm H$};
+\tkzLabelPoint[left](Th){$\rm \Theta$};
+
+\end{tikzpicture}
+
+\end{document}

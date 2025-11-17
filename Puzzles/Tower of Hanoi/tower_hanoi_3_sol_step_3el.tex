@@ -1,0 +1,29 @@
+
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{BlueClr}{RGB}{45,148,189}
+\definecolor{GreenClr}{RGB}{94,176,62}
+\definecolor{RedClr}{RGB}{232,99,63}
+\definecolor{PurpleClr}{RGB}{146,83,194}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+
+\draw[fill=orange,draw=none] (2.9,0.9) rectangle ++(0.2,4);
+\draw[fill=orange,draw=none] (7.9,0.9) rectangle ++(0.2,4);
+\draw[fill=orange,draw=none] (12.9,0.9) rectangle ++(0.2,4);
+\draw[fill=black,draw=none] (0,0.9) rectangle ++(20,0.1);
+\draw[fill=GreenClr,draw=none] (1.5,1) rectangle ++(3,0.75);
+\draw[fill=RedClr,draw=none] (7,1) rectangle ++(2,0.75);
+\draw[fill=BlueClr,draw=none] (7.5,1.75) rectangle ++(1,0.75);
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,15 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usetikzlibrary{arrows,automata}
+
+\begin{document}
+\begin{tikzpicture}[node distance=2cm,->,>=latex,auto,
+  every edge/.append style={thick}]
+  \node[state] (1) {$\rm A$};
+  \node[state] (2) [right of=1] {$\rm B$};  
+  \path (1) edge[loop left]  node{$1-p$} (1)
+            edge[bend left]  node{$p$}   (2)
+        (2) edge[loop right] node{$1-q$}  (2)
+            edge[bend left] node{$q$}     (1);
+\end{tikzpicture}
+\end{document}
+
