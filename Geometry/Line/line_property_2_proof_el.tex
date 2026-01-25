@@ -1,0 +1,43 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows,calc}
+\usepackage{tkz-euclide}
+
+\pagestyle{empty}
+
+\definecolor{AngleClr}{rgb}{0,0.39215686274509803,0}
+\definecolor{ShapeClr}{rgb}{0.6,0.2,0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+\tkzSetUpLine[line width=1pt,color=black]
+\tkzSetUpPoint[fill=black]
+
+\tkzDefPoints{0/0/A,8/0/B,0/-3/C,8/-3/D}
+\tkzDefPoints{4/1.5/S0,4/0/S1,4/-3/S2,1.5/-4/R}
+
+\tkzMarkRightAngles[line width=0.5pt, size=.2,color=AngleClr,fill=AngleClr,fill opacity=0.1](S2,S1,A)
+
+
+\tkzDrawSegments[line width=0.5pt,color=black](A,B C,D)
+\tkzDrawSegments[line width=0.5pt,color=black](S0,S2)
+
+\tkzDrawSegments[line width=0.5pt,color=black,add=0 and 1](R,S2)
+
+
+\tkzDrawPoints[size=2](S1,S2)
+\tkzLabelPoint[below right](S0){$\rm \varepsilon_1$}
+\tkzLabelPoint[left](A){$\rm \varepsilon_2$}
+\tkzLabelPoint[left](C){$\rm \varepsilon_3$}
+\tkzLabelPoint[below left](R){$\rm \varepsilon_4$}
+
+\tkzLabelPoint[above left](S1){$\rm A$}
+\tkzLabelPoint[below](S2){$\rm B$}
+
+
+\end{tikzpicture}
+
+\end{document}
