@@ -27,9 +27,10 @@
 \tkzDrawSegments[line width=0.75pt,color=black](A,B C,B)
 \tkzDrawSegments[line width=0.5pt,color=black,dashed,dash pattern=on 1pt off 1.75pt](O,A O,B O,C)
 
-\tkzFillAngles[fill=AngleClr,size=.55,fill opacity=0.1](O,B,A B,A,O C,B,O O,C,B)
+\tkzFillAngles[fill=AngleClr,size=.55,fill opacity=0.1](O,B,A B,A,O)
+\tkzFillAngles[fill=AngleClr,size=.55,fill opacity=0.1,ShapeClr](C,B,O O,C,B)
 \tkzMarkAngles[mark=|,mksize=2,line width=1pt,size=.55,color=AngleClr](O,B,A B,A,O)
-\tkzMarkAngles[mark=s,mksize=2,line width=1pt,size=.55,color=AngleClr](C,B,O O,C,B)
+\tkzMarkAngles[mark=s,mksize=2,line width=1pt,size=.55,color=ShapeClr](C,B,O O,C,B)
 \tkzLabelAngles[scale=0.7,pos=1.2](O,B,A B,A,O){$\varphi$}
 \tkzLabelAngles[scale=0.7,pos=1.2](C,B,O O,C,B){$\omega$}
 
